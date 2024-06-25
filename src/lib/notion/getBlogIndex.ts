@@ -29,8 +29,6 @@ export default async function getBlogIndex(previews = true) {
       })
 
       postsTable = getPostsTable(data.recordMap.block)
-
-      console.log('postsTable: ', postsTable)
     } catch (err) {
       console.warn(
         `Failed to load Notion posts, have you run the create-table script?`

@@ -50,9 +50,11 @@ export default async function loadTable(
               .map((arr: any[]) => arr[1][0][1])
             break
           case 'p': // page (block)
-            // const page = collectionData.recordMap.block[type[1]]
-            // row.id = page.value.id
-            // val = page.value.properties.title[0][0]
+            const page = collectionData.recordMap.block[type[1]]
+            if (page) {
+              row.id = page.value.id
+              val = page.value.properties.title[0][0]
+            }
             break
           case 'd': // date
             // start_date: 2019-06-18

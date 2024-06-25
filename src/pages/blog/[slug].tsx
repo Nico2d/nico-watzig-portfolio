@@ -83,8 +83,6 @@ export async function getStaticPaths() {
 
 const RenderPost = ({ post, redirect, preview }) => {
   const router = useRouter()
-  console.log('post: ', post.content)
-
   const { renderPostHeader, renderContent } = useNotionRender(post)
 
   useEffect(() => {
