@@ -8,7 +8,6 @@ import { BLOG_INDEX_ID, BLOG_INDEX_CACHE } from './server-constants'
 export default async function getBlogIndex(previews = true) {
   let postsTable: any = null
   const useCache = process.env.USE_CACHE === 'true'
-
   const cacheFile = `${BLOG_INDEX_CACHE}${previews ? '_previews' : ''}`
 
   if (useCache) {
@@ -23,26 +22,18 @@ export default async function getBlogIndex(previews = true) {
     try {
       const data = await rpc('loadPageChunk', {
         pageId: BLOG_INDEX_ID,
-        limit: 30, // TODO: figure out Notion's way of handling pagination
+        limit: 100, // TODO: figure out Notion's way of handling pagination
         cursor: { stack: [] },
         chunkNumber: 0,
         verticalColumns: false,
       })
 
-      // Parse table with posts
-      const tableBlock = values(data.recordMap.block).find(
-        (block: any) => block.value.type === 'collection_view'
-        // (block: any) => block.value.type === 'collection_view_page'
-      )
-      
-      console.log('HERE: ', tableBlock)
-      
-      postsTable = await getTableData(tableBlock, true)
+      postsTable = getPostsTable(data.recordMap.block)
+
       console.log('postsTable: ', postsTable)
     } catch (err) {
       console.warn(
-        `Failed to load Notion posts, have you run the create-table script?`,
-        err
+        `Failed to load Notion posts, have you run the create-table script?`
       )
       return {}
     }
@@ -79,4 +70,49 @@ export default async function getBlogIndex(previews = true) {
   }
 
   return postsTable
+}
+
+// refactor:
+
+const BlockType = {
+  CollectionViewPage: 'collection_view_page',
+  CollectionView: 'collection_view',
+}
+
+const getPostsTable = async (recordMapBlocks) => {
+  const tableBlock = findTableBlock(recordMapBlocks)
+
+  if (!tableBlock) {
+    throw new Error('No table block found')
+  }
+
+  const { collectionId, viewId } = extractCollectionAndViewIds(tableBlock)
+
+  return await getTableData(collectionId, viewId, true)
+}
+
+const findTableBlock = (recordMapBlocks) => {
+  return values(recordMapBlocks).find((block) => {
+    return [BlockType.CollectionViewPage, BlockType.CollectionView].includes(
+      block.value.type
+    )
+  })
+}
+
+const extractCollectionAndViewIds = (tableBlock) => {
+  const { type, format, collection_id, view_ids } = tableBlock.value
+
+  if (type === BlockType.CollectionViewPage) {
+    return {
+      collectionId: format.collection_pointer.id,
+      viewId: view_ids[0],
+    }
+  } else if (type === BlockType.CollectionView) {
+    return {
+      collectionId: collection_id,
+      viewId: view_ids[0],
+    }
+  } else {
+    throw new Error('Unsupported table block type')
+  }
 }

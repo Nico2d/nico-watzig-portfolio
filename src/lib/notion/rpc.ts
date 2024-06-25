@@ -15,11 +15,9 @@ export default async function rpc(fnName: string, body: any) {
   })
 
   if (res.ok) {
-    // console.log(res)
     return res.json()
   } else {
-    // console.log(res)
-    throw res //new Error(await getError(res))
+    throw new Error(await getError(res))
   }
 }
 

@@ -3,28 +3,24 @@ import Slugger from 'github-slugger'
 import queryCollection from './queryCollection'
 import { normalizeSlug } from '../blog-helpers'
 
-export default async function loadTable(collectionBlock: any, isPosts = false) {
+export default async function loadTable(
+  collection_id: string,
+  view_id: string,
+  isPosts = false
+) {
   const slugger = new Slugger()
 
-  console.log(collectionBlock)
-
-  const { value } = collectionBlock
-  console.log('value: ', value)
-
-  console.log(value.collection_id)
-  console.log(value.view_ids[0])
-
   let table: any = {}
-  const col = await queryCollection({
-    collectionId: value.collection_id,
-    collectionViewId: value.view_ids[0],
+  const collectionData = await queryCollection({
+    collectionId: collection_id,
+    collectionViewId: view_id,
   })
-  const entries = values(col.recordMap.block).filter((block: any) => {
-    return block.value && block.value.parent_id === value.collection_id
-  })
+  const entries = values(collectionData.recordMap.block).filter(
+    (block: any) => block.value && block.value.parent_id === collection_id
+  )
 
-  const colId = Object.keys(col.recordMap.collection)[0]
-  const schema = col.recordMap.collection[colId].value.schema
+  const colId = Object.keys(collectionData.recordMap.collection)[0]
+  const schema = collectionData.recordMap.collection[colId].value.schema
   const schemaKeys = Object.keys(schema)
 
   for (const entry of entries) {
@@ -54,9 +50,9 @@ export default async function loadTable(collectionBlock: any, isPosts = false) {
               .map((arr: any[]) => arr[1][0][1])
             break
           case 'p': // page (block)
-            const page = col.recordMap.block[type[1]]
-            row.id = page.value.id
-            val = page.value.properties.title[0][0]
+            // const page = collectionData.recordMap.block[type[1]]
+            // row.id = page.value.id
+            // val = page.value.properties.title[0][0]
             break
           case 'd': // date
             // start_date: 2019-06-18
@@ -93,6 +89,10 @@ export default async function loadTable(collectionBlock: any, isPosts = false) {
       }
       row[schema[key].name] = val || null
     })
+
+    if (!row.Slug) {
+      console.log("missing 'Slug'")
+    }
 
     // auto-generate slug from title
     row.Slug = normalizeSlug(row.Slug || slugger.slug(row.Page || ''))

@@ -8,8 +8,6 @@ import { ProjectItem } from '../../components/ProjectItem'
 export async function getStaticProps({ preview }) {
   const postsTable = await getBlogIndex()
 
-  console.log('postsTable: ', postsTable)
-
   const authorsToGet: Set<string> = new Set()
   const posts: any[] = Object.keys(postsTable)
     .map((slug) => {
@@ -17,13 +15,13 @@ export async function getStaticProps({ preview }) {
       if (!preview && !postIsPublished(post)) {
         return null
       }
-      // post.Authors = post.Authors || []
-      // for (const author of post.Authors) {
-      //   authorsToGet.add(author)
-      // }
+      post.Authors = post.Authors || []
+      for (const author of post.Authors) {
+        authorsToGet.add(author)
+      }
       return post
     })
-    // .filter(Boolean)
+    .filter(Boolean)
 
   const { users } = await getNotionUsers([...authorsToGet])
 
@@ -59,7 +57,7 @@ const Index = ({ posts = [] }) => {
             return (
               <ProjectItem
                 key={post.Slug}
-                title={post.Page}
+                title={post.Name}
                 description={post.preview}
                 stack={stack}
                 repoUrl={post.Repo}
