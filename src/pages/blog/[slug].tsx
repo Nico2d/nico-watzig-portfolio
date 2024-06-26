@@ -121,8 +121,6 @@ const RenderPost = ({ post, redirect, preview }) => {
     )
   }
 
-  console.log(post.content)
-
   return (
     <>
       <Header titlePre={post.Page} />

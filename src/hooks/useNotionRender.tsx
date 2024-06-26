@@ -7,6 +7,10 @@ import { renderText } from '../lib/notion/renderers/renderText'
 import { renderBookmark } from '../lib/notion/renderers/renderBookmark'
 import { renderEmbed } from '../lib/notion/renderers/renderEmbed'
 import { renderCode } from '../lib/notion/renderers/renderCode'
+import { renderTweet } from '../lib/notion/renderers/renderTweet'
+import { renderEquation } from '../lib/notion/renderers/renderEquation'
+import { renderCallout } from '../lib/notion/renderers/renderCallout'
+import { renderQuote } from '../lib/notion/renderers/renderQuote'
 
 interface pageContent {
   Page: string
@@ -112,66 +116,49 @@ export const useNotionRender = (post: pageContent) => {
       case 'page':
       case 'divider':
         break
+
       case 'text':
         return renderText(block)
+
       case 'image':
         if (!properties.title) {
-          return <img src={properties.source[0]} />
-        }
-
-      case 'video':
-      case 'embed':
-        return renderEmbed(block)
-      case 'header':
-        return renderText(block, 'h2')
-      case 'sub_header':
-        return renderText(block, 'h3')
-      case 'sub_sub_header':
-        return renderText(block, 'h4')
-      case 'bookmark':
-        const { link, title, description } = properties
-        const { format = {} } = value
-        return renderBookmark({ link, title, description, format })
-      case 'code':
-        return renderCode(block)
-      case 'quote': {
-        if (properties.title) {
-          return React.createElement(
-            components.blockquote,
-            { key: id },
-            properties.title
-          )
+          return <img key={block.value.id} src={properties.source[0]} />
         }
         break
-      }
-      case 'callout':
-        return (
-          <div className="callout" key={id}>
-            {value.format?.page_icon && <div>{value.format?.page_icon}</div>}
-            <div className="text">{textBlock(properties.title, true, id)}</div>
-          </div>
-        )
 
-      case 'tweet': {
-        if (properties.html) {
-          return (
-            <div
-              dangerouslySetInnerHTML={{ __html: properties.html }}
-              key={id}
-            />
-          )
-        }
-      }
-      case 'equation': {
-        if (properties && properties.title) {
-          const content = properties.title[0][0]
-          return (
-            <components.Equation key={id} displayMode={true}>
-              {content}
-            </components.Equation>
-          )
-        }
-      }
+      case 'video':
+        break
+
+      case 'embed':
+        return renderEmbed(block)
+
+      case 'header':
+        return renderText(block, 'h2')
+
+      case 'sub_header':
+        return renderText(block, 'h3')
+
+      case 'sub_sub_header':
+        return renderText(block, 'h4')
+
+      case 'bookmark':
+        return renderBookmark(block)
+
+      case 'code':
+        return renderCode(block)
+
+      case 'quote':
+        return renderQuote(block)
+
+      case 'callout':
+        return renderCallout(block)
+
+      case 'tweet':
+        return renderTweet(block)
+
+      case 'equation':
+        return renderEquation(block)
+
       default:
         console.log('unknown type', type)
         break

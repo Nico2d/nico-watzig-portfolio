@@ -1,35 +1,23 @@
-import ReactJSXParser from '@zeit/react-jsx-parser'
-import components from '../../../components/dynamic'
+import { CopyBlock, dracula } from 'react-code-blocks'
 
 export const renderCode = (block) => {
   const { value } = block
-  const { properties, id } = value
-
-  console.log('code snipped')
+  const { properties } = value
 
   if (properties.title) {
     const content = properties.title[0][0]
     const language = properties.language[0][0]
 
-    if (language === 'LiveScript') {
-      // this requires the DOM for now
-      return (
-        <ReactJSXParser
-          key={id}
-          jsx={content}
-          components={components}
-          componentsOnly={false}
-          renderInpost={false}
-          allowUnknownElements={true}
-          blacklistedTags={['script', 'style']}
+    return (
+      <div className="notion-wrapper code-snipped" key={value.id}>
+        <CopyBlock
+          codeBlock={true}
+          text={content}
+          language={language}
+          showLineNumbers={false}
+          theme={dracula}
         />
-      )
-    } else {
-      return (
-        <components.Code key={id} language={language || ''}>
-          {content}
-        </components.Code>
-      )
-    }
+      </div>
+    )
   }
 }

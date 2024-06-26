@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import blogStyles from '../../../styles/blog.module.css'
 
-export const renderBookmark = ({ link, title, description, format }) => {
-  const { bookmark_icon: icon, bookmark_cover: cover } = format
+export const renderBookmark = (block) => {
+  const { link, title, description } = block.value.properties
+  const { bookmark_icon: icon, bookmark_cover: cover } = block.value.format
 
   return (
     <div className={blogStyles.bookmark}>

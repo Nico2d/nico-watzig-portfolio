@@ -10,7 +10,6 @@ export default {
   blockquote: 'blockquote',
   a: ExtLink,
 
-  Code: dynamic(() => import('./code')),
   Counter: dynamic(() => import('./counter')),
   Equation: dynamic(() => import('./equation')),
 }

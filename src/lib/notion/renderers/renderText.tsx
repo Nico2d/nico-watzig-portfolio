@@ -22,7 +22,8 @@ const attributeClassMap: Record<string, string> = {
 
 const getClassNamesFromAttributes = (attributes: string[]): string[] => {
   return attributes.reduce((classNames: string[], attribute: string) => {
-    if (attributeClassMap[attribute]) {
+    if (attribute === 'h') {
+    } else if (attributeClassMap[attribute]) {
       classNames.push(attributeClassMap[attribute])
     } else {
       console.log('missing attribute: ', attribute)
@@ -39,13 +40,18 @@ const determineTag = (
 }
 
 export const renderText = (
-  block: { value: { properties?: { title: [string, any[]][] } } },
+  block: {
+    value: {
+      id: string
+      properties?: { title: [string, any[]][] }
+    }
+  },
   tag: React.ElementType = 'p'
 ) => {
   const { value } = block
 
   if (!value.properties) {
-    return
+    return <p key={value.id} className="notion-wrapper"></p>
   }
 
   const title = value.properties.title[0]
@@ -55,5 +61,9 @@ export const renderText = (
   const Tag = determineTag(tag, attributes)
   const className = getClassNamesFromAttributes(attributes).join(' ')
 
-  return <Tag className={className}>{text}</Tag>
+  return (
+    <Tag key={value.id} className={'notion-wrapper ' + className}>
+      {text}
+    </Tag>
+  )
 }
