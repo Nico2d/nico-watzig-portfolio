@@ -39,8 +39,6 @@ export async function getStaticProps({ preview }) {
 }
 
 const Index = ({ posts = [] }) => {
-  console.log('posts', posts)
-
   return (
     <>
       <Header titlePre="Blog" />

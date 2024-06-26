@@ -1,12 +1,12 @@
-import { CSSProperties } from 'react'
 import { textBlock } from '../lib/notion/renderers'
 import Heading from '../components/heading'
-import ReactJSXParser from '@zeit/react-jsx-parser'
 import { getDateStr } from '../lib/blog-helpers'
 import components from '../components/dynamic'
 import React from 'react'
-import Link from 'next/link'
-import blogStyles from '../styles/blog.module.css'
+import { renderText } from '../lib/notion/renderers/renderText'
+import { renderBookmark } from '../lib/notion/renderers/renderBookmark'
+import { renderEmbed } from '../lib/notion/renderers/renderEmbed'
+import { renderCode } from '../lib/notion/renderers/renderCode'
 
 interface pageContent {
   Page: string
@@ -95,6 +95,8 @@ export const useNotionRender = (post: pageContent) => {
   ) => {
     const { properties, id } = block.value
 
+    console.log('heading', block.value)
+
     return (
       <Heading key={id}>
         <Type key={id}>{textBlock(properties.title, true, id)}</Type>
@@ -102,184 +104,36 @@ export const useNotionRender = (post: pageContent) => {
     )
   }
 
-  const renderBookmark = ({ link, title, description, format }) => {
-    const { bookmark_icon: icon, bookmark_cover: cover } = format
-
-    return (
-      <div className={blogStyles.bookmark}>
-        <div>
-          <div style={{ display: 'flex' }}>
-            <Link
-              target="_blank"
-              rel="noopener noreferrer"
-              className={blogStyles.bookmarkContentsWrapper}
-              href={link}
-            >
-              <div role="button" className={blogStyles.bookmarkContents}>
-                <div className={blogStyles.bookmarkInfo}>
-                  <div className={blogStyles.bookmarkTitle}>{title}</div>
-                  <div className={blogStyles.bookmarkDescription}>
-                    {description}
-                  </div>
-                  <div className={blogStyles.bookmarkLinkWrapper}>
-                    <img src={icon} className={blogStyles.bookmarkLinkIcon} />
-                    <div className={blogStyles.bookmarkLink}>{link}</div>
-                  </div>
-                </div>
-                <div className={blogStyles.bookmarkCoverWrapper1}>
-                  <div className={blogStyles.bookmarkCoverWrapper2}>
-                    <div className={blogStyles.bookmarkCoverWrapper3}>
-                      <img src={cover} className={blogStyles.bookmarkCover} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  const switchRender = (block, blockIdx) => {
+  const switchRender = (block) => {
     const { value } = block
-    const { type, properties, id, parent_id } = value
+    const { type, properties, id } = value
 
     switch (type) {
       case 'page':
       case 'divider':
         break
       case 'text':
-        if (properties) {
-          return textBlock(properties.title, false, id)
-        }
-        break
+        return renderText(block)
       case 'image':
         if (!properties.title) {
           return <img src={properties.source[0]} />
         }
 
       case 'video':
-      case 'embed': {
-        const { format = {} } = value
-        const {
-          block_width,
-          block_height,
-          display_source,
-          block_aspect_ratio,
-        } = format
-        const baseBlockWidth = 768
-        const roundFactor = Math.pow(10, 2)
-        // calculate percentages
-        const width = block_width
-          ? `${
-              Math.round((block_width / baseBlockWidth) * 100 * roundFactor) /
-              roundFactor
-            }%`
-          : block_height || '100%'
-
-        const isImage = type === 'image'
-        const Comp = isImage ? 'img' : 'video'
-        const useWrapper = block_aspect_ratio && !block_height
-        const childStyle: CSSProperties = useWrapper
-          ? {
-              width: '100%',
-              height: '100%',
-              border: 'none',
-              position: 'absolute',
-              top: 0,
-            }
-          : {
-              width,
-              border: 'none',
-              height: block_height,
-              display: 'block',
-              maxWidth: '100%',
-            }
-
-        let child = null
-
-        if (!isImage && !value.file_ids) {
-          // external resource use iframe
-          child = (
-            <iframe
-              style={childStyle}
-              src={display_source}
-              key={!useWrapper ? id : undefined}
-              className={!useWrapper ? 'asset-wrapper' : undefined}
-            />
-          )
-        } else {
-          // notion resource
-          child = (
-            <Comp
-              key={!useWrapper ? id : undefined}
-              src={`/api/asset?assetUrl=${encodeURIComponent(
-                display_source as any
-              )}&blockId=${id}`}
-              controls={!isImage}
-              alt={`An ${isImage ? 'image' : 'video'} from Notion`}
-              loop={!isImage}
-              muted={!isImage}
-              autoPlay={!isImage}
-              style={childStyle}
-            />
-          )
-        }
-
-        return useWrapper ? (
-          <div
-            style={{
-              paddingTop: `${Math.round(block_aspect_ratio * 100)}%`,
-              position: 'relative',
-            }}
-            className="asset-wrapper"
-            key={id}
-          >
-            {child}
-          </div>
-        ) : (
-          child
-        )
-      }
+      case 'embed':
+        return renderEmbed(block)
       case 'header':
-        return renderHeading(block, blockIdx, 'h1')
+        return renderText(block, 'h2')
       case 'sub_header':
-        return renderHeading(block, blockIdx, 'h2')
+        return renderText(block, 'h3')
       case 'sub_sub_header':
-        return renderHeading(block, blockIdx, 'h3')
+        return renderText(block, 'h4')
       case 'bookmark':
         const { link, title, description } = properties
         const { format = {} } = value
         return renderBookmark({ link, title, description, format })
-      case 'code': {
-        if (properties.title) {
-          const content = properties.title[0][0]
-          const language = properties.language[0][0]
-
-          if (language === 'LiveScript') {
-            // this requires the DOM for now
-            return (
-              <ReactJSXParser
-                key={id}
-                jsx={content}
-                components={components}
-                componentsOnly={false}
-                renderInpost={false}
-                allowUnknownElements={true}
-                blacklistedTags={['script', 'style']}
-              />
-            )
-          } else {
-            return (
-              <components.Code key={id} language={language || ''}>
-                {content}
-              </components.Code>
-            )
-          }
-        }
-        break
-      }
+      case 'code':
+        return renderCode(block)
       case 'quote': {
         if (properties.title) {
           return React.createElement(
@@ -290,14 +144,14 @@ export const useNotionRender = (post: pageContent) => {
         }
         break
       }
-      case 'callout': {
+      case 'callout':
         return (
           <div className="callout" key={id}>
             {value.format?.page_icon && <div>{value.format?.page_icon}</div>}
             <div className="text">{textBlock(properties.title, true, id)}</div>
           </div>
         )
-      }
+
       case 'tweet': {
         if (properties.html) {
           return (
@@ -320,7 +174,6 @@ export const useNotionRender = (post: pageContent) => {
       }
       default:
         console.log('unknown type', type)
-
         break
     }
   }
@@ -336,7 +189,7 @@ export const useNotionRender = (post: pageContent) => {
         toRender.push(renderList(block, blockIdx))
       }
 
-      toRender.push(switchRender(block, blockIdx))
+      toRender.push(switchRender(block))
     })
 
     return toRender

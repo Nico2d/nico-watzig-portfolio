@@ -1,11 +1,13 @@
+/* TODO: refactor */
+
 :root {
   --gap-quarter: 0.25rem;
   --gap-half: 0.5rem;
   --gap: 1rem;
   --gap-double: 2rem;
 
-  --bg: #fff;
-  --fg: #000;
+  /* --bg: #fff;
+  --fg: #000; */
   --accents-1: #111;
   --accents-2: #333;
   --accents-3: #888;
@@ -13,42 +15,169 @@
 
   --radius: 8px;
 
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   --font-mono: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
+    Bitstream Vera Sans Mono, Courier New, monospace; */
+
+  --notion-gray: #979a9b;
+  --notion-brown: #937264;
+  --notion-orange: #ffa344;
+  --notion-yellow: #ffdc49;
+  --notion-green: #4dab9a;
+  --notion-blue: #529cca;
+  --notion-purple: #9a6dd7;
+  --notion-pink: #e255a1;
+  --notion-red: #ff7369;
 }
 
-* {
-  box-sizing: border-box;
+.notion-gray {
+  color: var(--notion-gray);
+}
+.notion-brown {
+  color: var(--notion-brown);
+}
+.notion-orange {
+  color: var(--notion-orange);
+}
+.notion-yellow {
+  color: var(--notion-yellow);
+}
+.notion-green {
+  color: var(--notion-green);
+}
+.notion-blue {
+  color: var(--notion-blue);
+}
+.notion-purple {
+  color: var(--notion-purple);
+}
+.notion-pink {
+  color: var(--notion-pink);
+}
+.notion-red {
+  color: var(--notion-red);
 }
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-size: 20px;
+.notion-gray-background {
+  width: fit-content;
+  background-color: var(--notion-gray);
+}
+.notion-brown-background {
+  width: fit-content;
+  background-color: var(--notion-brown);
+}
+.notion-orange-background {
+  width: fit-content;
+  background-color: var(--notion-orange);
+}
+.notion-yellow-background {
+  width: fit-content;
+  background-color: var(--notion-yellow);
+}
+.notion-green-background {
+  width: fit-content;
+  background-color: var(--notion-green);
+}
+.notion-blue-background {
+  width: fit-content;
+  background-color: var(--notion-blue);
+}
+.notion-purple-background {
+  width: fit-content;
+  background-color: var(--notion-purple);
+}
+.notion-pink-background {
+  width: fit-content;
+  background-color: var(--notion-pink);
+}
+.notion-red-background {
+  width: fit-content;
+  background-color: var(--notion-red);
 }
 
-body {
-  min-height: 100vh;
-  background: var(--bg);
-  color: var(--fg);
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-
-  background-image: radial-gradient(#ddd 1px, transparent 1px),
-    radial-gradient(#ddd 1px, transparent 1px);
-  background-position: 0 0, 25px 25px;
-  background-attachment: fixed;
-  background-size: 50px 50px;
-
-  /* Hack */
-  overflow-x: hidden;
+.code {
+  font-family: 'SFMono-Regular', Menlo, Consolas, 'PT Mono', 'Liberation Mono',
+    Courier, monospace;
+  line-height: normal;
+  background: rgba(135, 131, 120, 0.15);
+  color: #eb5757;
+  border-radius: 4px;
+  font-size: 85%;
+  padding: 0.2em 0.4em;
+  width: fit-content;
 }
 
-code[class*='language-'],
+.code-snipped {
+  font-size: 85%;
+  font-family: SFMono-Regular, Menlo, Consolas, 'PT Mono', 'Liberation Mono',
+    Courier, monospace;
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.code-snipped pre {
+  tab-size: 2;
+}
+.code-snipped code {
+  overflow: auto;
+  display: block;
+  padding: 0.8rem;
+  line-height: 1.5;
+  font-size: 0.75rem;
+  border-radius: var(--radius);
+  /* background-color: rgba(255, 255, 255, 0.81); */
+}
+
+h2 {
+  max-width: 100%;
+  width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  caret-color: rgba(255, 255, 255, 0.81);
+  padding: 3px 2px;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+    'Segoe UI Variable Display', 'Segoe UI', Helvetica, 'Apple Color Emoji',
+    Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-weight: 600;
+  font-size: 1.875em;
+  line-height: 1.3;
+  margin: 0px;
+}
+
+h3 {
+  max-width: 100%;
+  width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  caret-color: rgba(255, 255, 255, 0.81);
+  padding: 3px 2px;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+    'Segoe UI Variable Display', 'Segoe UI', Helvetica, 'Apple Color Emoji',
+    Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-weight: 600;
+  font-size: 1.5em;
+  line-height: 1.3;
+  margin: 0px;
+}
+
+h4 {
+  max-width: 100%;
+  width: 100%;
+  white-space: pre-wrap;
+  word-break: break-word;
+  caret-color: rgba(255, 255, 255, 0.81);
+  padding: 3px 2px;
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+    'Segoe UI Variable Display', 'Segoe UI', Helvetica, 'Apple Color Emoji',
+    Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+  font-weight: 600;
+  font-size: 1.25em;
+  line-height: 1.3;
+  margin: 0px;
+}
+
+/* code[class*='language-'],
 pre[class*='language-'] {
   color: #000;
   text-align: left;
@@ -59,8 +188,8 @@ pre[class*='language-'] {
   line-height: 1.4em;
   tab-size: 4;
   hyphens: none;
-}
-.token.comment,
+} */
+/* .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
@@ -90,13 +219,16 @@ pre[class*='language-'] {
 code[class*='language-css'] {
   font-weight: 600;
 }
+
 .language-json .token.boolean {
   color: var(--geist-success);
 }
+
 .token.keyword {
   color: #ff0078;
   font-weight: bolder;
 }
+
 .token.function,
 .token.tag,
 .token.class-name,
@@ -104,13 +236,16 @@ code[class*='language-css'] {
 .token.tag .token.punctuation {
   color: var(--geist-success);
 }
+
 .language-autohotkey .token.tag {
   color: #9a050f;
 }
+
 .token.selector,
 .language-autohotkey .token.keyword {
   color: #00009f;
 }
+
 .token.important,
 .token.bold {
   font-weight: bold;
@@ -157,9 +292,9 @@ code[class*='language-css'] {
 .token.directive.tag .tag {
   background: #ff0;
   color: #393a34;
-}
+} */
 /* dark */
-pre.dark[class*='language-'] {
+/* pre.dark[class*='language-'] {
   color: #fafbfc;
 }
 .language-json .dark .token.boolean {
@@ -303,10 +438,9 @@ h2 {
   max-width: 100%;
   max-height: 90vh;
   outline: none;
-}
+} */
 
-p {
-  color: #555;
+/* p {
   font-weight: 400;
   font-size: 0.94rem;
   line-height: 1.7;
@@ -373,4 +507,4 @@ footer span:nth-child(3) {
 
 footer span:nth-child(3) a {
   color: inherit;
-}
+} */
