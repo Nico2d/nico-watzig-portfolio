@@ -1,168 +1,146 @@
-/* TODO: refactor */
-
 :root {
-  --gap-quarter: 0.25rem;
-  --gap-half: 0.5rem;
-  --gap: 1rem;
-  --gap-double: 2rem;
-
-  /* --bg: #fff;
-  --fg: #000; */
-  --accents-1: #111;
-  --accents-2: #333;
-  --accents-3: #888;
-  --geist-foreground: #000;
-
-  --radius: 8px;
-
-  /* --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  --font-mono: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace; */
-
-  --notion-gray: #979a9b;
-  --notion-brown: #937264;
-  --notion-orange: #ffa344;
-  --notion-yellow: #ffdc49;
-  --notion-green: #4dab9a;
-  --notion-blue: #529cca;
-  --notion-purple: #9a6dd7;
-  --notion-pink: #e255a1;
-  --notion-red: #ff7369;
+	--notion-gray: #979a9b;
+	--notion-brown: #937264;
+	--notion-orange: #ffa344;
+	--notion-yellow: #ffdc49;
+	--notion-green: #4dab9a;
+	--notion-blue: #529cca;
+	--notion-purple: #9a6dd7;
+	--notion-pink: #e255a1;
+	--notion-red: #ff7369;
 }
 
 .notion-gray {
-  color: var(--notion-gray);
+	color: var(--notion-gray);
 }
 .notion-brown {
-  color: var(--notion-brown);
+	color: var(--notion-brown);
 }
 .notion-orange {
-  color: var(--notion-orange);
+	color: var(--notion-orange);
 }
 .notion-yellow {
-  color: var(--notion-yellow);
+	color: var(--notion-yellow);
 }
 .notion-green {
-  color: var(--notion-green);
+	color: var(--notion-green);
 }
 .notion-blue {
-  color: var(--notion-blue);
+	color: var(--notion-blue);
 }
 .notion-purple {
-  color: var(--notion-purple);
+	color: var(--notion-purple);
 }
 .notion-pink {
-  color: var(--notion-pink);
+	color: var(--notion-pink);
 }
 .notion-red {
-  color: var(--notion-red);
+	color: var(--notion-red);
 }
 
 .notion-gray-background {
-  width: fit-content;
-  background-color: var(--notion-gray);
+	width: fit-content;
+	background-color: var(--notion-gray);
 }
 .notion-brown-background {
-  width: fit-content;
-  background-color: var(--notion-brown);
+	width: fit-content;
+	background-color: var(--notion-brown);
 }
 .notion-orange-background {
-  width: fit-content;
-  background-color: var(--notion-orange);
+	width: fit-content;
+	background-color: var(--notion-orange);
 }
 .notion-yellow-background {
-  width: fit-content;
-  background-color: var(--notion-yellow);
+	width: fit-content;
+	background-color: var(--notion-yellow);
 }
 .notion-green-background {
-  width: fit-content;
-  background-color: var(--notion-green);
+	width: fit-content;
+	background-color: var(--notion-green);
 }
 .notion-blue-background {
-  width: fit-content;
-  background-color: var(--notion-blue);
+	width: fit-content;
+	background-color: var(--notion-blue);
 }
 .notion-purple-background {
-  width: fit-content;
-  background-color: var(--notion-purple);
+	width: fit-content;
+	background-color: var(--notion-purple);
 }
 .notion-pink-background {
-  width: fit-content;
-  background-color: var(--notion-pink);
+	width: fit-content;
+	background-color: var(--notion-pink);
 }
 .notion-red-background {
-  width: fit-content;
-  background-color: var(--notion-red);
+	width: fit-content;
+	background-color: var(--notion-red);
 }
 
 .code {
-  font-family: 'SFMono-Regular', Menlo, Consolas, 'PT Mono', 'Liberation Mono',
-    Courier, monospace;
-  line-height: normal;
-  background: rgba(135, 131, 120, 0.15);
-  color: #eb5757;
-  border-radius: 4px;
-  font-size: 85%;
-  padding: 0.2em 0.4em;
-  width: fit-content;
+	font-family: 'SFMono-Regular', Menlo, Consolas, 'PT Mono', 'Liberation Mono',
+		Courier, monospace;
+	line-height: normal;
+	background: rgba(135, 131, 120, 0.15);
+	color: #eb5757;
+	border-radius: 4px;
+	font-size: 85%;
+	padding: 0.2em 0.4em;
+	width: fit-content;
 }
 
 h2 {
-  max-width: 100%;
-  width: 100%;
-  white-space: pre-wrap;
-  word-break: break-word;
-  caret-color: rgba(255, 255, 255, 0.81);
-  padding: 3px 2px;
-  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
-    'Segoe UI Variable Display', 'Segoe UI', Helvetica, 'Apple Color Emoji',
-    Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
-  font-weight: 600;
-  font-size: 1.875em;
-  line-height: 1.3;
-  margin: 0px;
+	max-width: 100%;
+	width: 100%;
+	white-space: pre-wrap;
+	word-break: break-word;
+	caret-color: rgba(255, 255, 255, 0.81);
+	padding: 3px 2px;
+	font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+		'Segoe UI Variable Display', 'Segoe UI', Helvetica, 'Apple Color Emoji',
+		Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+	font-weight: 600;
+	font-size: 1.875em;
+	line-height: 1.3;
+	margin: 0px;
 }
 
 h3 {
-  max-width: 100%;
-  width: 100%;
-  white-space: pre-wrap;
-  word-break: break-word;
-  caret-color: rgba(255, 255, 255, 0.81);
-  padding: 3px 2px;
-  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
-    'Segoe UI Variable Display', 'Segoe UI', Helvetica, 'Apple Color Emoji',
-    Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
-  font-weight: 600;
-  font-size: 1.5em;
-  line-height: 1.3;
-  margin: 0px;
+	max-width: 100%;
+	width: 100%;
+	white-space: pre-wrap;
+	word-break: break-word;
+	caret-color: rgba(255, 255, 255, 0.81);
+	padding: 3px 2px;
+	font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+		'Segoe UI Variable Display', 'Segoe UI', Helvetica, 'Apple Color Emoji',
+		Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+	font-weight: 600;
+	font-size: 1.5em;
+	line-height: 1.3;
+	margin: 0px;
 }
 
 h4 {
-  max-width: 100%;
-  width: 100%;
-  white-space: pre-wrap;
-  word-break: break-word;
-  caret-color: rgba(255, 255, 255, 0.81);
-  padding: 3px 2px;
-  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
-    'Segoe UI Variable Display', 'Segoe UI', Helvetica, 'Apple Color Emoji',
-    Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
-  font-weight: 600;
-  font-size: 1.25em;
-  line-height: 1.3;
-  margin: 0px;
+	max-width: 100%;
+	width: 100%;
+	white-space: pre-wrap;
+	word-break: break-word;
+	caret-color: rgba(255, 255, 255, 0.81);
+	padding: 3px 2px;
+	font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont,
+		'Segoe UI Variable Display', 'Segoe UI', Helvetica, 'Apple Color Emoji',
+		Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+	font-weight: 600;
+	font-size: 1.25em;
+	line-height: 1.3;
+	margin: 0px;
 }
 
 .notion-wrapper {
-  margin: 0.3rem 0;
+	margin: 0.3rem 0;
 }
 
 .code-snipped {
-  font-family: SFMono-Regular, Menlo, Consolas, 'PT Mono', 'Liberation Mono',
-    Courier, monospace;
-  font-size: 85%;
+	font-family: SFMono-Regular, Menlo, Consolas, 'PT Mono', 'Liberation Mono',
+		Courier, monospace;
+	font-size: 85%;
 }
