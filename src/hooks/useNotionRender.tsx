@@ -9,6 +9,7 @@ import { renderEquation } from '../lib/notion/renderers/renderEquation'
 import { renderCallout } from '../lib/notion/renderers/renderCallout'
 import { renderQuote } from '../lib/notion/renderers/renderQuote'
 import { renderList } from '../lib/notion/renderers/renderBulletList'
+import { renderCheckbox } from '../lib/notion/renderers/renderCheckbox'
 
 interface pageContent {
 	id: string
@@ -43,7 +44,7 @@ export const useNotionRender = (post: pageContent) => {
 	const isList = (block) => {
 		return LIST_TYPES.has(block.value.type)
 	}
-	
+
 	const switchRender = (block) => {
 		switch (block.value.type) {
 			case 'page':
@@ -99,6 +100,9 @@ export const useNotionRender = (post: pageContent) => {
 
 			case 'listCollection':
 				return renderList(block, post.id)
+
+			case 'to_do':
+				return renderCheckbox(block)
 
 			default:
 				console.log('unknown type', block.value.type)
