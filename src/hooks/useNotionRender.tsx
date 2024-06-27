@@ -1,6 +1,4 @@
-import { textBlock } from '../lib/notion/renderers'
 import { getDateStr } from '../lib/blog-helpers'
-import components from '../components/dynamic'
 import React from 'react'
 import { renderText } from '../lib/notion/renderers/renderText'
 import { renderBookmark } from '../lib/notion/renderers/renderBookmark'
@@ -10,7 +8,7 @@ import { renderTweet } from '../lib/notion/renderers/renderTweet'
 import { renderEquation } from '../lib/notion/renderers/renderEquation'
 import { renderCallout } from '../lib/notion/renderers/renderCallout'
 import { renderQuote } from '../lib/notion/renderers/renderQuote'
-import { renderBulletList } from '../lib/notion/renderers/renderBulletList'
+import { renderList } from '../lib/notion/renderers/renderBulletList'
 
 interface pageContent {
 	id: string
@@ -45,58 +43,7 @@ export const useNotionRender = (post: pageContent) => {
 	const isList = (block) => {
 		return LIST_TYPES.has(block.value.type)
 	}
-
-	const renderList = (block, blockIdx) => {
-		const { type, properties, id, parent_id } = block.value
-
-		const isLast = blockIdx === post.content.length - 1
-		const isList = LIST_TYPES.has(type)
-		const listTagName = components[type === 'bulleted_list' ? 'ul' : 'ol']
-		const listLastId = `list${id}`
-
-		const listMap = {}
-
-		listMap[id] = {
-			key: id,
-			nested: [],
-			children: textBlock(properties?.title ?? '', true, id),
-		}
-
-		if (listMap[parent_id]) {
-			listMap[id].isNested = true
-			listMap[parent_id].nested.push(id)
-		}
-
-		if (listTagName && (isLast || !isList)) {
-			return React.createElement(
-				listTagName,
-				{ key: listLastId! },
-				Object.keys(listMap).map((itemId) => {
-					if (listMap[itemId].isNested) return null
-
-					const createEl = (item) =>
-						React.createElement(
-							components.li || 'ul',
-							{ key: item.key },
-							item.children,
-							item.nested.length > 0
-								? React.createElement(
-										components.ul || 'ul',
-										{ key: item + 'sub-list' },
-										item.nested.map((nestedId) =>
-											createEl(listMap[nestedId])
-										)
-								  )
-								: null
-						)
-					return createEl(listMap[itemId])
-				})
-			)
-		}
-
-		return []
-	}
-
+	
 	const switchRender = (block) => {
 		switch (block.value.type) {
 			case 'page':
@@ -151,7 +98,7 @@ export const useNotionRender = (post: pageContent) => {
 				return renderEquation(block)
 
 			case 'listCollection':
-				return renderBulletList(block, post.id)
+				return renderList(block, post.id)
 
 			default:
 				console.log('unknown type', block.value.type)

@@ -1,4 +1,4 @@
-export const renderBulletList = (block, postId) => {
+export const renderList = (block, postId) => {
 	const { listCollection } = block.value
 
 	const ListType =
