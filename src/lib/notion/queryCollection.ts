@@ -1,9 +1,10 @@
+import { IQueryCollection } from '../../types/notion.types'
 import rpc from './rpc'
 
 export default function queryCollection({
 	collectionId,
 	collectionViewId,
-}: any) {
+}): Promise<IQueryCollection> {
 	const queryCollectionBody = {
 		loader: {
 			type: 'reducer',

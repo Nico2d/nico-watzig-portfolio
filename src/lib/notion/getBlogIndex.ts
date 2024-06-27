@@ -4,6 +4,7 @@ import getTableData from './getTableData'
 import { getPostPreview } from './getPostPreview'
 import { readFile, writeFile } from '../fs-helpers'
 import { BLOG_INDEX_ID, BLOG_INDEX_CACHE } from './server-constants'
+import { IPageChunk } from '../../types/notion.types'
 
 export default async function getBlogIndex(previews = true) {
 	let postsTable: any = null
@@ -20,7 +21,7 @@ export default async function getBlogIndex(previews = true) {
 
 	if (!postsTable) {
 		try {
-			const data = await rpc('loadPageChunk', {
+			const data: IPageChunk = await rpc<IPageChunk>('loadPageChunk', {
 				pageId: BLOG_INDEX_ID,
 				limit: 100,
 				cursor: { stack: [] },
