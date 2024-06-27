@@ -5,7 +5,7 @@ import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { ProjectItem } from '../../components/ProjectItem'
 import { getNotionPrivImage } from '../../lib/notion/utils'
 import { Filter } from '../../components/Filter'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export async function getStaticProps({ preview }) {
 	const postsTable = await getBlogIndex()
@@ -31,23 +31,29 @@ export async function getStaticProps({ preview }) {
 }
 
 const Index = ({ posts = [] }) => {
-	const [currentFilter, setCurrentFilter] = useState('all')
 	const [filteredPosts, setFilteredPosts] = useState(posts)
 
-	console.log('posts: ', posts)
-	console.log('filteredPosts: ', filteredPosts)
+	const filterProjects = (filter) => {
+		if (filter === 'all') {
+			setFilteredPosts(posts)
+		} else {
+			setFilteredPosts(
+				posts.filter((item) => {
+					const technologies = item.Technology?.split(',') ?? []
+
+					return technologies
+						.map((item) => item.toLowerCase())
+						.includes(filter.toLowerCase())
+				})
+			)
+		}
+	}
 
 	return (
 		<>
 			<Header titlePre="Projects" />
 
-			<Filter
-				onClick={(filter) => {
-					console.log(filter)
-
-					setCurrentFilter(filter)
-				}}
-			/>
+			<Filter onClick={filterProjects} />
 
 			{filteredPosts.length === 0 ? (
 				<p className={blogStyles.noPosts}>There are no posts yet</p>
