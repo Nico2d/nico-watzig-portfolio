@@ -22,7 +22,7 @@ export async function getStaticProps({ params: { slug }, preview }) {
 		console.log(`Failed to find post for slug: ${slug}`)
 		return {
 			props: {
-				redirect: '/blog',
+				redirect: '/projects',
 				preview: false,
 			},
 			unstable_revalidate: 5,
@@ -126,6 +126,7 @@ const RenderPost = ({ post, redirect, preview }) => {
 	return (
 		<>
 			<Header titlePre={post.Page} />
+
 			{preview && (
 				<div className={blogStyles.previewAlertContainer}>
 					<div className={blogStyles.previewAlert}>

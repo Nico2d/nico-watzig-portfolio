@@ -29,9 +29,19 @@ export function handleError(res: NextApiResponse, error: string | Error) {
 	})
 }
 
-export const getNotionPrivImage = (rawUrl: string, blockId: string) => {
+export const getNotionPrivImage = (
+	rawUrl: string,
+	blockId: string,
+	size?: number
+) => {
 	const encodedUrl = encodeURIComponent(rawUrl)
 	const baseSpaceUrl = 'https://www.notion.so'
 
-	return `${baseSpaceUrl}/image/${encodedUrl}?table=block&id=${blockId}`
+	let imageUrl = `${baseSpaceUrl}/image/${encodedUrl}?table=block&id=${blockId}`
+
+	if (size) {
+		imageUrl += `&width=${size}`
+	}
+
+	return imageUrl
 }

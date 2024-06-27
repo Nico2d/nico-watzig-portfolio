@@ -6,20 +6,7 @@ import sharedStyles from '../styles/shared.module.css'
 export default function Index() {
 	return (
 		<>
-			<h1 className="text-3xl font-bold underline">Hello world!</h1>
-			<h1>Hello world!</h1>
-
-			<ul>
-				<li>Coffee</li>
-				<li>
-					Tea
-					<ul>
-						<li>Black tea</li>
-						<li>Green tea</li>
-					</ul>
-				</li>
-				<li>Milk</li>
-			</ul>
+			<img src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F9fb3299f-8ee2-4c08-ba6b-0876c38334e1%2Fa94468ec-0d58-4143-a300-c29c1dc86028%2Fportfolio.jpg" />
 
 			<Header titlePre="Home" />
 			<div className={sharedStyles.layout}>

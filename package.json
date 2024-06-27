@@ -12,6 +12,7 @@
   "dependencies": {
     "@zeit/react-jsx-parser": "2.0.0",
     "async-sema": "3.1.0",
+    "framer-motion": "^11.2.12",
     "github-slugger": "1.2.1",
     "katex": "^0.16.10",
     "next": "^14.2.4",
