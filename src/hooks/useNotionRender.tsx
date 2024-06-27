@@ -166,7 +166,7 @@ export const useNotionRender = (post: pageContent) => {
 
 		let toRender = []
 		let listCollection = []
-		post.content.map((block, blockIdx) => {
+		post.content.map((block) => {
 			if (isList(block)) {
 				listCollection.push(block)
 			} else {
