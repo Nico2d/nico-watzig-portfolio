@@ -4,10 +4,6 @@ import components from '../../components/dynamic'
 function applyTags(tags = [], children, noPTag = false, key) {
   let child = children
 
-  // console.log('tags', tags)
-
-  console.log('tags:', tags)
-
   for (const tag of tags) {
     const props: { [key: string]: any } = { key }
     let tagName = tag[0]
@@ -26,8 +22,6 @@ function applyTags(tags = [], children, noPTag = false, key) {
     //   props.displayMode = false
     //   child = tag[1]
     // }
-
-    console.log('tagName: ', tagName)
 
     switch (tagName) {
       case 'c':
@@ -61,8 +55,6 @@ function applyTags(tags = [], children, noPTag = false, key) {
   // const props: { [key: string]: any } = { key }
   // let tagName
   // tags[0].forEach((tag) => {
-  //   console.log(tag)
-
   //   switch (tag) {
   //     case 'blue':
   //       break

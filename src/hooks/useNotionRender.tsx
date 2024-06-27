@@ -10,6 +10,7 @@ import { renderCallout } from '../lib/notion/renderers/renderCallout'
 import { renderQuote } from '../lib/notion/renderers/renderQuote'
 import { renderList } from '../lib/notion/renderers/renderBulletList'
 import { renderCheckbox } from '../lib/notion/renderers/renderCheckbox'
+import { renderImage } from '../lib/notion/renderers/renderImage'
 
 interface pageContent {
 	id: string
@@ -55,15 +56,7 @@ export const useNotionRender = (post: pageContent) => {
 				return renderText(block)
 
 			case 'image':
-				if (!block.value.properties.title) {
-					return (
-						<img
-							key={block.value.id}
-							src={block.value.properties.source[0]}
-						/>
-					)
-				}
-				break
+				return renderImage(block)
 
 			case 'video':
 				break
