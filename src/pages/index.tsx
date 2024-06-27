@@ -1,15 +1,18 @@
 import Header from '../components/header'
-import ExtLink from '../components/ext-link'
-import Features from '../components/features'
-import sharedStyles from '../styles/shared.module.css'
+import { AboutSection } from '../components/sections/about'
+import { WelcomeSection } from '../components/sections/introduction'
+import { TechnologiesSection } from '../components/sections/technologies'
 
 export default function Index() {
 	return (
 		<>
-			<img src="https://www.notion.so/image/https%3A%2F%2Fprod-files-secure.s3.us-west-2.amazonaws.com%2F9fb3299f-8ee2-4c08-ba6b-0876c38334e1%2Fa94468ec-0d58-4143-a300-c29c1dc86028%2Fportfolio.jpg" />
-
 			<Header titlePre="Home" />
-			<div className={sharedStyles.layout}>
+
+			<WelcomeSection />
+			<AboutSection />
+			<TechnologiesSection />
+
+			{/* <div className={sharedStyles.layout}>
 				<img
 					src="/vercel-and-notion.png"
 					height="85"
@@ -65,7 +68,7 @@ export default function Index() {
 						your blog's page id you should be good to go!
 					</p>
 				</div>
-			</div>
+			</div> */}
 		</>
 	)
 }

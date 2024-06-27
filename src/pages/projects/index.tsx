@@ -5,7 +5,7 @@ import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { ProjectItem } from '../../components/ProjectItem'
 import { getNotionPrivImage } from '../../lib/notion/utils'
 import { Filter } from '../../components/Filter'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 export async function getStaticProps({ preview }) {
 	const postsTable = await getBlogIndex()
