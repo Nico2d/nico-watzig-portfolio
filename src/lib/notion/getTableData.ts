@@ -95,7 +95,7 @@ export default async function loadTable(
 		})
 
 		if (!row.Slug) {
-			console.log("missing 'Slug'")
+			console.log(`missing "Slug" field for ${row.Name}`)
 		}
 
 		// auto-generate slug from title

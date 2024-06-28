@@ -1,7 +1,6 @@
 import { resolve } from 'path'
 import { writeFile } from './fs-helpers'
 import { renderToStaticMarkup } from 'react-dom/server'
-
 import { textBlock } from './notion/renderers'
 import getBlogIndex from './notion/getBlogIndex'
 import getNotionUsers from './notion/getNotionUsers'
@@ -17,20 +16,20 @@ process.env.USE_CACHE = 'true'
 const NOW = new Date().toJSON()
 
 function mapToAuthor(author) {
-  return `<author><name>${author.full_name}</name></author>`
+	return `<author><name>${author.full_name}</name></author>`
 }
 
 function decode(string) {
-  return string
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&apos;')
+	return string
+		.replace(/&/g, '&amp;')
+		.replace(/</g, '&lt;')
+		.replace(/>/g, '&gt;')
+		.replace(/"/g, '&quot;')
+		.replace(/'/g, '&apos;')
 }
 
 function mapToEntry(post) {
-  return `
+	return `
     <entry>
       <id>${post.link}</id>
       <title>${decode(post.title)}</title>
@@ -39,12 +38,12 @@ function mapToEntry(post) {
       <content type="xhtml">
         <div xmlns="http://www.w3.org/1999/xhtml">
           ${renderToStaticMarkup(
-            post.preview
-              ? (post.preview || []).map((block, idx) =>
-                  textBlock(block, false, post.title + idx)
-                )
-              : post.content
-          )}
+				post.preview
+					? (post.preview || []).map((block, idx) =>
+							textBlock(block, false, post.title + idx)
+					  )
+					: post.content
+			)}
           <p class="more">
             <Link href="${post.link}">Read more</Link>
           </p>
@@ -55,13 +54,13 @@ function mapToEntry(post) {
 }
 
 function concat(total, item) {
-  return total + item
+	return total + item
 }
 
 function createRSS(blogPosts = []) {
-  const postsString = blogPosts.map(mapToEntry).reduce(concat, '')
+	const postsString = blogPosts.map(mapToEntry).reduce(concat, '')
 
-  return `<?xml version="1.0" encoding="utf-8"?>
+	return `<?xml version="1.0" encoding="utf-8"?>
   <feed xmlns="http://www.w3.org/2005/Atom">
     <title>My Blog</title>
     <subtitle>Blog</subtitle>
@@ -73,41 +72,41 @@ function createRSS(blogPosts = []) {
 }
 
 async function main() {
-  await loadEnvConfig(process.cwd())
-  serverConstants.NOTION_TOKEN = process.env.NOTION_TOKEN
-  serverConstants.BLOG_INDEX_ID = serverConstants.normalizeId(
-    process.env.BLOG_INDEX_ID
-  )
+	await loadEnvConfig(process.cwd())
+	serverConstants.NOTION_TOKEN = process.env.NOTION_TOKEN
+	serverConstants.BLOG_INDEX_ID = serverConstants.normalizeId(
+		process.env.BLOG_INDEX_ID
+	)
 
-  const postsTable = await getBlogIndex(true)
-  const neededAuthors = new Set<string>()
+	const postsTable = await getBlogIndex(true)
+	const neededAuthors = new Set<string>()
 
-  const blogPosts = Object.keys(postsTable)
-    .map((slug) => {
-      const post = postsTable[slug]
-      if (!postIsPublished(post)) return
+	const blogPosts = Object.keys(postsTable)
+		.map((slug) => {
+			const post = postsTable[slug]
+			if (!postIsPublished(post)) return
 
-      post.authors = post.Authors || []
+			post.authors = post.Authors || []
 
-      for (const author of post.authors) {
-        neededAuthors.add(author)
-      }
-      return post
-    })
-    .filter(Boolean)
+			for (const author of post.authors) {
+				neededAuthors.add(author)
+			}
+			return post
+		})
+		.filter(Boolean)
 
-  const { users } = await getNotionUsers([...neededAuthors])
+	const { users } = await getNotionUsers([...neededAuthors])
 
-  blogPosts.forEach((post) => {
-    post.authors = post.authors.map((id) => users[id])
-    post.link = getBlogLink(post.Slug)
-    post.title = post.Page
-    post.date = post.Date
-  })
+	blogPosts.forEach((post) => {
+		post.authors = post.authors.map((id) => users[id])
+		post.link = getBlogLink(post.Slug)
+		post.title = post.Page
+		post.date = post.Date
+	})
 
-  const outputPath = './public/atom'
-  await writeFile(resolve(outputPath), createRSS(blogPosts))
-  console.log(`Atom feed file generated at \`${outputPath}\``)
+	const outputPath = './public/atom'
+	await writeFile(resolve(outputPath), createRSS(blogPosts))
+	console.log(`Atom feed file generated at \`${outputPath}\``)
 }
 
 main().catch((error) => console.error(error))
