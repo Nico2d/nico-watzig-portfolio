@@ -1,11 +1,11 @@
 import Header from '../../components/header'
 import blogStyles from '../../styles/blog.module.css'
-import { postIsPublished } from '../../lib/blog-helpers'
-import getBlogIndex from '../../lib/notion/getBlogIndex'
-import { ProjectItem } from '../../components/ProjectItem'
-import { getNotionPrivImage } from '../../lib/notion/utils'
 import { Filter } from '../../components/Filter'
 import { useState } from 'react'
+import getBlogIndex from '../../lib/notion/getBlogIndex'
+import { postIsPublished } from '../../lib/blog-helpers'
+import { ProjectItem } from '../../components/ProjectItem'
+import { getNotionPrivImage } from '../../lib/notion/utils'
 
 export async function getStaticProps({ preview }) {
 	const postsTable = await getBlogIndex()

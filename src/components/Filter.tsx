@@ -52,6 +52,7 @@ export function Filter({ onClick = (f) => f }) {
 				<div className="flex items-center gap-4">
 					{FILTER_TECHNOLOGIES.map((item) => (
 						<FilterButton
+							key={item.id}
 							onClick={() => handleFilterClick(item.id)}
 							label={item.id}
 							active={activeFilter === item.id}
