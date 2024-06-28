@@ -4,13 +4,12 @@
   "scripts": {
     "dev": "next dev",
     "start": "next start",
-    "build": "next build && node .next/server/build-rss.js",
+    "build": "next build",
     "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,sass}\" --ignore-path .gitignore",
     "lint-staged": "lint-staged"
   },
   "pre-commit": "lint-staged",
   "dependencies": {
-    "@next/env": "^14.2.4",
     "async-sema": "3.1.0",
     "framer-motion": "^11.2.12",
     "github-slugger": "1.2.1",
