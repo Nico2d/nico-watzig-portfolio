@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@next/env':
-        specifier: ^14.2.4
-        version: 14.2.4
       async-sema:
         specifier: 3.1.0
         version: 3.1.0

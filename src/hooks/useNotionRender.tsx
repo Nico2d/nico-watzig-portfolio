@@ -29,9 +29,6 @@ export const useNotionRender = (post: pageContent) => {
 		return (
 			<>
 				<h1>{post.Page || ''}</h1>
-				{post.Authors.length > 0 && (
-					<div className="authors">By: {post.Authors.join(' ')}</div>
-				)}
 				{post.Date && (
 					<div className="posted">
 						Posted: {getDateStr(post.Date)}
