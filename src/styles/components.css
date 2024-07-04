@@ -10,6 +10,11 @@
   mark {
     @apply bg-transparent text-blue-light;
   }
+
+  .highlight {
+    @apply bg-transparent text-blue-light;
+  }
+
   .btn {
     @apply min-h-[40px] px-4 rounded-md bg-blue-light text-white inline-flex items-center justify-center whitespace-nowrap align-middle transition-colors duration-200 ease-linear relative hover:bg-blue-normal  focus:ring-1 focus:ring-blue-normal;
   }

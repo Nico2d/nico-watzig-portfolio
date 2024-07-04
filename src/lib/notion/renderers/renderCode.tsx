@@ -9,7 +9,7 @@ export const renderCode = (block) => {
     const language = properties.language[0][0]
 
     return (
-      <div className="notion-wrapper code-snipped" key={value.id}>
+      <div className="code-snipped" key={value.id}>
         <CopyBlock
           codeBlock={true}
           text={content}

@@ -1,42 +1,45 @@
 import Link from 'next/link'
-import blogStyles from '../../../styles/blog.module.css'
 
 export const renderBookmark = (block) => {
-  const { link, title, description } = block.value.properties
-  const { bookmark_icon: icon, bookmark_cover: cover } = block.value.format
+	const { link, title, description } = block.value.properties
+	const { bookmark_icon: icon, bookmark_cover: cover } = block.value.format
 
-  return (
-    <div className={blogStyles.bookmark}>
-      <div>
-        <div style={{ display: 'flex' }}>
-          <Link
-            target="_blank"
-            rel="noopener noreferrer"
-            className={blogStyles.bookmarkContentsWrapper}
-            href={link}
-          >
-            <div role="button" className={blogStyles.bookmarkContents}>
-              <div className={blogStyles.bookmarkInfo}>
-                <div className={blogStyles.bookmarkTitle}>{title}</div>
-                <div className={blogStyles.bookmarkDescription}>
-                  {description}
-                </div>
-                <div className={blogStyles.bookmarkLinkWrapper}>
-                  <img src={icon} className={blogStyles.bookmarkLinkIcon} />
-                  <div className={blogStyles.bookmarkLink}>{link}</div>
-                </div>
-              </div>
-              <div className={blogStyles.bookmarkCoverWrapper1}>
-                <div className={blogStyles.bookmarkCoverWrapper2}>
-                  <div className={blogStyles.bookmarkCoverWrapper3}>
-                    <img src={cover} className={blogStyles.bookmarkCover} />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Link>
-        </div>
-      </div>
-    </div>
-  )
+	return (
+		<div>
+			<div style={{ display: 'flex' }}>
+				<Link
+					target="_blank"
+					rel="noopener noreferrer"
+					className={'bookmarkContentsWrapper'}
+					href={link}
+				>
+					<div role="button" className={'bookmarkContents'}>
+						<div className={'bookmarkInfo'}>
+							<div className={'bookmarkTitle'}>{title}</div>
+							<div className={'bookmarkDescription'}>
+								{description}
+							</div>
+							<div className={'bookmarkLinkWrapper'}>
+								<img
+									src={icon}
+									className={'bookmarkLinkIcon'}
+								/>
+								<div className={'bookmarkLink'}>{link}</div>
+							</div>
+						</div>
+						<div className={'bookmarkCoverWrapper1'}>
+							<div className={'bookmarkCoverWrapper2'}>
+								<div className={'bookmarkCoverWrapper3'}>
+									<img
+										src={cover}
+										className={'bookmarkCover'}
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</Link>
+			</div>
+		</div>
+	)
 }
