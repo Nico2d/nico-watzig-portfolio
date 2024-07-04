@@ -8,9 +8,10 @@ import { renderTweet } from '../lib/notion/renderers/renderTweet'
 import { renderEquation } from '../lib/notion/renderers/renderEquation'
 import { renderCallout } from '../lib/notion/renderers/renderCallout'
 import { renderQuote } from '../lib/notion/renderers/renderQuote'
-import { renderList } from '../lib/notion/renderers/renderBulletList'
+import { renderList } from '../lib/notion/renderers/renderList'
 import { renderCheckbox } from '../lib/notion/renderers/renderCheckbox'
 import { renderImage } from '../lib/notion/renderers/renderImage'
+import { renderLink } from '../lib/notion/renderers/renderLink'
 
 interface pageContent {
 	id: string

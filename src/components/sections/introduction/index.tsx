@@ -13,6 +13,12 @@ export function WelcomeSection() {
 		'convert design into modern UI',
 		'build interactive UI using React',
 		'develop websites using Next.js',
+
+		"Freelancer",
+		"React Developer",
+		"Wordpress developer",
+		"Software developer",
+
 	])
 
 	useEffect(() => {

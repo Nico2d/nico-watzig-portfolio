@@ -10,6 +10,7 @@ export const renderList = (block, postId) => {
 
 	return (
 		<ListType
+			key={listCollection[0].value.id + 'wrapperListType'}
 			className={`max-w-md ml-6 ${
 				ListType === 'ul' ? 'list-disc' : 'list-decimal'
 			}`}
@@ -27,7 +28,7 @@ const getRenderBlockAsListItem = (block, listCollection, ListType) => {
 	if (listContent.length > 0) {
 		return (
 			<>
-				<NotionLI block={block} />
+				<NotionLI key={block.value.id} block={block} />
 				<NotionUL
 					block={block}
 					listCollection={listCollection}
@@ -37,7 +38,7 @@ const getRenderBlockAsListItem = (block, listCollection, ListType) => {
 		)
 	}
 
-	return <NotionLI block={block} />
+	return <NotionLI key={block?.value?.id} block={block} />
 }
 
 const NotionUL = ({ block, listCollection, ListType }) => {
@@ -61,5 +62,5 @@ const NotionUL = ({ block, listCollection, ListType }) => {
 }
 
 const NotionLI = ({ block }) => {
-	return <li>{block.value.properties.title[0][0]}</li>
+	return <li>{block?.value?.properties?.title?.[0]?.[0]}</li>
 }

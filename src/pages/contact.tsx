@@ -1,12 +1,9 @@
 import Header from '../components/header'
 import ExtLink from '../components/ext-link'
-
-import sharedStyles from '../styles/shared.module.css'
-import contactStyles from '../styles/contact.module.css'
-
 import GitHub from '../components/svgs/github'
 import Envelope from '../components/svgs/envelope'
 import LinkedIn from '../components/svgs/linkedin'
+import Landscape from '../components/svgs/landscape'
 
 const contacts = [
 	{
@@ -28,25 +25,25 @@ const contacts = [
 
 export default function Contact() {
 	return (
-		<>
+		<div>
 			<Header titlePre="Contact" />
-			<div className={sharedStyles.layout}>
-				<h1 style={{ marginTop: 0 }}>Contact</h1>
+			<div>
+				<h1 className="text-6xl bold">Contact</h1>
 
-				<div className={contactStyles.name}>
-					<ExtLink href="https://vercel.com">Vercel</ExtLink>
-				</div>
-
-				<div className={contactStyles.links}>
+				<div className="flex flex-row gap-8 mt-8">
 					{contacts.map(({ Comp, link, alt }) => {
 						return (
 							<ExtLink key={link} href={link} aria-label={alt}>
-								<Comp height={32} />
+								<Comp height={32} fill="#ffffff" />
 							</ExtLink>
 						)
 					})}
 				</div>
+
+				<div className="fixed -bottom-20 -right-6 h-screen aspect-square">
+					<Landscape />
+				</div>
 			</div>
-		</>
+		</div>
 	)
 }

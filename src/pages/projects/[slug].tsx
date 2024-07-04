@@ -1,21 +1,15 @@
-import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Header from '../../components/header'
-import blogStyles from '../../styles/blog.module.css'
 import getPageData from '../../lib/notion/getPageData'
 import React, { useEffect } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { getBlogLink } from '../../lib/blog-helpers'
 import { useNotionRender } from '../../hooks/useNotionRender'
 
-// Get the data for each blog post
 export async function getStaticProps({ params: { slug }, preview }) {
-	// load the postsTable so that we can get the page's ID
 	const postsTable = await getBlogIndex()
 	const post = postsTable[slug]
 
-	// if we can't find the post or if it is unpublished and
-	// viewed without preview mode then we just redirect to /blog
 	if (!post || (post.Published !== 'Yes' && !preview)) {
 		console.log(`Failed to find post for slug: ${slug}`)
 		return {
@@ -38,11 +32,9 @@ export async function getStaticProps({ params: { slug }, preview }) {
 	}
 }
 
-// Return our list of blog posts to prerender
 export async function getStaticPaths() {
 	const postsTable = await getBlogIndex()
-	// we fallback for any unpublished posts to save build time
-	// for actually published ones
+
 	return {
 		paths: Object.keys(postsTable)
 			.filter((post) => postsTable[post].Published === 'Yes')
@@ -58,8 +50,6 @@ const RenderPost = ({ post, redirect, preview }) => {
 
 	useEffect(() => {
 		const twitterSrc = 'https://platform.twitter.com/widgets.js'
-		// make sure to initialize any new widgets loading on
-		// client navigation
 		if (post && post.hasTweet) {
 			if ((window as any)?.twttr?.widgets) {
 				;(window as any).twttr.widgets.load()
@@ -71,23 +61,20 @@ const RenderPost = ({ post, redirect, preview }) => {
 			}
 		}
 	}, [])
+
 	useEffect(() => {
 		if (redirect && !post) {
 			router.replace(redirect)
 		}
 	}, [redirect, post])
 
-	// If the page is not yet generated, this will be displayed
-	// initially until getStaticProps() finishes running
 	if (router.isFallback) {
 		return <div>Loading...</div>
 	}
 
-	// if you don't have a post at this point, and are not
-	// loading one from fallback then  redirect back to the index
 	if (!post) {
 		return (
-			<div className={blogStyles.post}>
+			<div>
 				<p>
 					Woops! didn't find that post, redirecting you back to the
 					blog index
@@ -100,20 +87,7 @@ const RenderPost = ({ post, redirect, preview }) => {
 		<>
 			<Header titlePre={post.Page} />
 
-			{preview && (
-				<div className={blogStyles.previewAlertContainer}>
-					<div className={blogStyles.previewAlert}>
-						<b>Note:</b>
-						Viewing in preview mode
-						<Link href={`/api/clear-preview?slug=${post.Slug}`}>
-							<button className={blogStyles.escapePreview}>
-								Exit Preview
-							</button>
-						</Link>
-					</div>
-				</div>
-			)}
-			<div className={blogStyles.post}>
+			<div className="space-y-3">
 				{renderPostHeader()}
 				{renderContent()}
 			</div>
