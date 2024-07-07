@@ -11,7 +11,8 @@ import { NotionQuote } from '../lib/notion/renderers/NotionQuote'
 import { NotionList } from '../lib/notion/renderers/NotionList'
 import { NotionCheckbox } from '../lib/notion/renderers/NotionCheckbox'
 import { NotionImage } from '../lib/notion/renderers/NotionImage'
-import { IBlock, INotionCollectionBlock } from '../types/notion.types'
+import { IBlock } from '../types/notion.types'
+import { NotionDivider } from '../lib/notion/renderers/NotionDivider'
 
 interface pageContent {
 	id: string
@@ -48,7 +49,7 @@ export const useNotionRender = (post: pageContent) => {
 		switch (block.value.type) {
 			case 'page':
 			case 'divider':
-				break
+				return <NotionDivider key={idx} />
 
 			case 'text':
 				return <NotionText key={idx} block={block} />
@@ -108,6 +109,9 @@ export const useNotionRender = (post: pageContent) => {
 
 		let toRender = []
 		let listCollection = []
+
+		console.log(post.content.map((item) => item.value))
+
 		post.content.map((block, idx) => {
 			if (isList(block)) {
 				listCollection.push(block)

@@ -10,8 +10,6 @@ export const ProjectItem = ({
 }) => {
 	const cardRef = useRef(null)
 
-	console.log('thumbnail: ', title, thumbnail)
-
 	return (
 		<Link href={`projects/${slug}`} className="icon-link-btn items-start">
 			<article

@@ -52,13 +52,6 @@ export interface IBlock {
 	}
 }
 
-export interface INotionCollectionBlock {
-	value: {
-		type: string
-		listCollection: IBlock[]
-	}
-}
-
 export interface IPageChunk {
 	cursor: {
 		stack: object[]
