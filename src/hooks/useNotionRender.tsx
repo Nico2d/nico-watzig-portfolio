@@ -1,17 +1,17 @@
 import { getDateStr } from '../lib/blog-helpers'
 import React from 'react'
-import { renderText } from '../lib/notion/renderers/renderText'
-import { renderBookmark } from '../lib/notion/renderers/renderBookmark'
-import { renderEmbed } from '../lib/notion/renderers/renderEmbed'
-import { renderCode } from '../lib/notion/renderers/renderCode'
-import { renderTweet } from '../lib/notion/renderers/renderTweet'
-import { renderEquation } from '../lib/notion/renderers/renderEquation'
-import { renderCallout } from '../lib/notion/renderers/renderCallout'
-import { renderQuote } from '../lib/notion/renderers/renderQuote'
-import { renderList } from '../lib/notion/renderers/renderList'
-import { renderCheckbox } from '../lib/notion/renderers/renderCheckbox'
-import { renderImage } from '../lib/notion/renderers/renderImage'
-import { renderLink } from '../lib/notion/renderers/renderLink'
+import { NotionText } from '../lib/notion/renderers/NotionText'
+import { NotionBookmark } from '../lib/notion/renderers/NotionBookmark'
+import { NotionEmbed } from '../lib/notion/renderers/NotionEmbed'
+import { NotionCode } from '../lib/notion/renderers/NotionCode'
+import { NotionTweet } from '../lib/notion/renderers/NotionTweet'
+import { NotionEquation } from '../lib/notion/renderers/NotionEquation'
+import { NotionCallout } from '../lib/notion/renderers/NotionCallout'
+import { NotionQuote } from '../lib/notion/renderers/NotionQuote'
+import { NotionList } from '../lib/notion/renderers/NotionList'
+import { NotionCheckbox } from '../lib/notion/renderers/NotionCheckbox'
+import { NotionImage } from '../lib/notion/renderers/NotionImage'
+import { IBlock, INotionCollectionBlock } from '../types/notion.types'
 
 interface pageContent {
 	id: string
@@ -44,56 +44,56 @@ export const useNotionRender = (post: pageContent) => {
 		return LIST_TYPES.has(block.value.type)
 	}
 
-	const switchRender = (block) => {
+	const switchRender = (block: IBlock, idx: number) => {
 		switch (block.value.type) {
 			case 'page':
 			case 'divider':
 				break
 
 			case 'text':
-				return renderText(block)
+				return <NotionText key={idx} block={block} />
 
 			case 'image':
-				return renderImage(block)
+				return <NotionImage key={idx} block={block} />
 
 			case 'video':
 				break
 
 			case 'embed':
-				return renderEmbed(block)
+				return <NotionEmbed key={idx} block={block} />
 
 			case 'header':
-				return renderText(block, 'h2')
+				return <NotionText key={idx} block={block} tag="h2" />
 
 			case 'sub_header':
-				return renderText(block, 'h3')
+				return <NotionText key={idx} block={block} tag="h3" />
 
 			case 'sub_sub_header':
-				return renderText(block, 'h4')
+				return <NotionText key={idx} block={block} tag="h4" />
 
 			case 'bookmark':
-				return renderBookmark(block)
+				return <NotionBookmark key={idx} block={block} />
 
 			case 'code':
-				return renderCode(block)
+				return <NotionCode key={idx} block={block} />
 
 			case 'quote':
-				return renderQuote(block)
+				return <NotionQuote key={idx} block={block} />
 
 			case 'callout':
-				return renderCallout(block)
+				return <NotionCallout key={idx} block={block} />
 
 			case 'tweet':
-				return renderTweet(block)
+				return <NotionTweet key={idx} block={block} />
 
 			case 'equation':
-				return renderEquation(block)
+				return <NotionEquation key={idx} block={block} />
 
 			case 'listCollection':
-				return renderList(block, post.id)
+				return <NotionList key={idx} block={block} postId={post.id} />
 
 			case 'to_do':
-				return renderCheckbox(block)
+				return <NotionCheckbox key={idx} block={block} />
 
 			default:
 				console.log('unknown type', block.value.type)
@@ -108,24 +108,24 @@ export const useNotionRender = (post: pageContent) => {
 
 		let toRender = []
 		let listCollection = []
-		post.content.map((block) => {
+		post.content.map((block, idx) => {
 			if (isList(block)) {
 				listCollection.push(block)
 			} else {
 				if (listCollection.length > 0) {
-					const blockCollectionObject = {
+					const blockCollectionObject: IBlock = {
 						value: {
 							type: 'listCollection',
 							listCollection: listCollection,
 						},
-					}
+					} as IBlock
 
-					toRender.push(switchRender(blockCollectionObject))
+					toRender.push(switchRender(blockCollectionObject, idx - 1))
 					listCollection = []
 				}
 
 				if (listCollection.length === 0) {
-					toRender.push(switchRender(block))
+					toRender.push(switchRender(block, idx))
 				}
 			}
 		})
@@ -135,8 +135,7 @@ export const useNotionRender = (post: pageContent) => {
 
 	return {
 		renderPostHeader,
-		renderList,
-		renderBookmark,
+		renderList: NotionList,
 		isList,
 		switchRender,
 		renderContent,

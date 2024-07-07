@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import ExtLink from './ext-link'
 import { useRouter } from 'next/router'
+import { ContactIcons } from './contactIcons'
 
 const navItems: { label: string; page?: string; link?: string }[] = [
 	{ label: 'Home', page: '/' },
@@ -11,7 +12,7 @@ const navItems: { label: string; page?: string; link?: string }[] = [
 
 const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
 
-const Header = ({ titlePre = '' }) => {
+export const Header = ({ titlePre = '' }) => {
 	const { pathname } = useRouter()
 
 	return (
@@ -29,7 +30,9 @@ const Header = ({ titlePre = '' }) => {
 				<meta name="twitter:image" content={ogImageUrl} />
 			</Head>
 
-			<nav>
+			<nav className="flex flex-1 flex-row justify-between items-center">
+				<ContactIcons size={24} />
+
 				<ul className="flex flex-1 flex-row uppercase justify-end py-8 gap-10 tracking-widest">
 					{navItems.map(({ label, page, link }) => {
 						const isHome = page === navItems[0].page
@@ -60,5 +63,3 @@ const Header = ({ titlePre = '' }) => {
 		</header>
 	)
 }
-
-export default Header

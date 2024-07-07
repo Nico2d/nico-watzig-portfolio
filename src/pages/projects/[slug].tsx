@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import Header from '../../components/header'
+import { Header } from '../../components/header'
 import getPageData from '../../lib/notion/getPageData'
 import React, { useEffect } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'

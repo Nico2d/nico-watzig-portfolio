@@ -1,5 +1,7 @@
-export const renderCheckbox = ({ value }) => {
-	const { properties } = value
+import { INotionComponent } from '../../../types/notion.types'
+
+export const NotionCheckbox = ({ block }: INotionComponent) => {
+	const { properties } = block.value
 	const isChecked = properties?.checked?.[0][0] === 'Yes'
 
 	return (

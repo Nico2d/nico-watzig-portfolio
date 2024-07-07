@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { IBlock } from '../../../types/notion.types'
 
 const attributeClassMap: Record<string, string> = {
 	gray: 'notion-gray',
@@ -34,15 +35,12 @@ const getClassNamesFromAttributes = (attributes: string[]): string[] => {
 	}, [])
 }
 
-export const renderText = (
-	block: {
-		value: {
-			id: string
-			properties?: { title: [string, any[]][] }
-		}
-	},
-	tag: React.ElementType = 'div'
-) => {
+interface INotionText {
+	block: IBlock
+	tag?: React.ElementType
+}
+
+export const NotionText = ({ block, tag = 'div' }: INotionText) => {
 	const { value } = block
 
 	if (!value.properties) {

@@ -1,4 +1,6 @@
-export const renderTweet = (block) => {
+import { INotionComponent } from "../../../types/notion.types"
+
+export const NotionTweet = ({block}: INotionComponent) => {
   const { value } = block
   const { properties, id } = value
 

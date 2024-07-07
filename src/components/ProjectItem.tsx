@@ -1,10 +1,4 @@
 import { useRef } from 'react'
-import { VscSourceControl } from 'react-icons/vsc'
-import { FiExternalLink } from 'react-icons/fi'
-import { BsArrowsFullscreen } from 'react-icons/bs'
-
-import 'react-image-gallery/styles/css/image-gallery.css'
-import ExtLink from './ext-link'
 import Link from 'next/link'
 
 export const ProjectItem = ({
@@ -16,18 +10,20 @@ export const ProjectItem = ({
 }) => {
 	const cardRef = useRef(null)
 
+	console.log('thumbnail: ', title, thumbnail)
+
 	return (
-		<Link href={`projects/${slug}`} className="icon-link-btn">
+		<Link href={`projects/${slug}`} className="icon-link-btn items-start">
 			<article
 				ref={cardRef}
 				className="flex flex-col rounded-lg bg-card-light dark:bg-card-dark overflow-hidden"
 			>
-				<figure>
+				{thumbnail && (
 					<img
-						className="aspect-[12/9.2] w-full h-full object-cover"
+						className="aspect-[4/3] w-full h-full object-cover"
 						src={thumbnail}
 					/>
-				</figure>
+				)}
 
 				<div className="flex-[2] px-5 py-6 text-center flex flex-col gap-10">
 					<header className="flex-1 flex items-center justify-start flex-col gap-3">
