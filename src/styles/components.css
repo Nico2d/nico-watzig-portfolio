@@ -8,7 +8,7 @@
 		@apply max-w-7xl mx-auto px-4;
 	}
 	mark {
-		@apply bg-transparent text-blue-light;
+		@apply bg-transparent text-blue-light font-bold;
 	}
 
 	.highlight {

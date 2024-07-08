@@ -82,10 +82,7 @@ const DynamicTextTag = ({ Tag, attributes, children }) => {
 		return (
 			<Link
 				href={attributes[1]}
-				className={
-					'font-medium text-blue-600 dark:text-blue-500 hover:underline ' +
-					classNamesString
-				}
+				className={'custom-link ' + classNamesString}
 			>
 				{children}
 			</Link>

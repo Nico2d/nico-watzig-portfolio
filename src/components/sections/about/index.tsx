@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { LazyMotion, domAnimation, useInView } from 'framer-motion'
 import { TimeLine } from './TimeLine'
 import { HeadingDivider } from '../../HeadingDivider'
+import Link from 'next/link'
 
 export function AboutSection() {
 	const ref = useRef(null)
@@ -15,7 +16,7 @@ export function AboutSection() {
 					<div
 						tabIndex={0}
 						ref={ref}
-						className="text-xl font-light leading-relaxed"
+						className="text-xl font-light leading-relaxed space-y-8"
 						style={{
 							transform: isInView ? 'none' : 'translateX(-200px)',
 							opacity: isInView ? 1 : 0,
@@ -24,40 +25,95 @@ export function AboutSection() {
 						}}
 					>
 						<p>
-							My name is Nico Wätzig. I have over four years of
-							commercial experience, most recently working at BSG,
-							which was acquired by Spyrosoft. Due to the changes
-							that occurred after the acquisition, I am seeking a
-							new position.
+							I am a passionate and dedicated software developer
+							with a Master's degree in Computer Science from the
+							Opole University of Technology. My journey in the
+							tech industry began with a six-month internship at
+							Axabee, where I had my first exposure to React and
+							WordPress. During this internship, I worked in a
+							team of junior developers to create a{' '}
+							<StyledLink project="axabee">
+								company website
+							</StyledLink>{' '}
+							using JAMstack principles, resulting in a highly
+							SEO-optimized static site.
 						</p>
 
-						<p className="my-3.5">
-							At BSG, I was responsible for developing OTT
-							applications for the web and other platforms using
-							React, as well as for Roku devices. I have extensive
-							knowledge in the media field, including players,
-							streaming, and content playback technologies.
-						</p>
+						<div>
+							<p>
+								Throughout my career, I have collaborated with
+								various clients, delivering custom modifications
+								primarily for WordPress sites. Some of my
+								notable projects include:
+							</p>
+							<ul className="list-disc ml-8 mt-1 space-y-3">
+								<li>
+									Developing a post generator for a local
+									cemetery, which creates posts about deceased
+									individuals from an Excel file to identify
+									their location in the cemetery.
+								</li>
+								<li>
+									Creating an{' '}
+									<StyledLink project="inteligentne-reklamy">
+										interactive map
+									</StyledLink>{' '}
+									for a local advertising company, allowing
+									users to add advertising spots to their cart
+									and plan their campaigns, complete with
+									Google Calendar and email notifications.
+								</li>
+								<li>
+									Building a{' '}
+									<StyledLink project="prime-garage">
+										garage designer tool
+									</StyledLink>{' '}
+									that provides real-time updates and pricing
+									based on client specifications.
+								</li>
+							</ul>
+						</div>
 
-						<p className="my-3.5">
-							I also worked as a Freelancer, completing various
-							projects for smaller companies, such as a 3D carport
-							designer and a generator for deceased persons' posts
-							based on Excel data for a cemetery.
+						<p>
+							In 2021, I joined Better Software Group, where I
+							worked on large-scale projects such as Better Media
+							Suite (BMS), a comprehensive service available on
+							all platforms. My contributions included{' '}
+							<StyledLink project="the-better">web</StyledLink>{' '}
+							and <StyledLink project="bms-roku">Roku</StyledLink>{' '}
+							platform development, where I honed my skills in
+							application architecture and OTT platforms. I also
+							played a significant role in maintaining{' '}
+							<StyledLink project="siriusxm">SiriusXM</StyledLink>
+							,{' '}
+							<StyledLink project="disc-golf-network">
+								Disc Golf Network
+							</StyledLink>
+							, <StyledLink project="fanmio">Fanmio</StyledLink>{' '}
+							and PlayKids+.
 						</p>
-
-						<p className="my-3.5">
-							I am currently seeking a new challenge that will
-							allow me to leverage my skills in a dynamic
-							environment and continue growing as a Frontend
-							Developer. I believe that my experience and passion
-							for technology can bring value to your team.
+						<p>
+							Through these experiences, I have become proficient
+							in various technologies and platforms, including
+							React, TypeScript, BrightScript, and OTT streaming.
+							I am known for my ability to tackle complex projects
+							and deliver high-quality solutions. My passion for
+							continuous learning and problem-solving drives me to
+							seek new challenges and opportunities for growth.
 						</p>
 					</div>
 				</div>
-
-				<TimeLine />
 			</section>
 		</LazyMotion>
+	)
+}
+
+const StyledLink = ({ project, children }) => {
+	return (
+		<Link className="custom-link" href={`/projects/${project}`}>
+			{/* {` ${text} `} */}
+
+			{children}
+		</Link>
 	)
 }
