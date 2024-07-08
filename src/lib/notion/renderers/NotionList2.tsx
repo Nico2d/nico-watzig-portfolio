@@ -11,12 +11,8 @@ export const NotionList2 = ({ block, postId }: INotionList) => {
 	const { value } = block
 
 	const ListType = value.type === 'bulleted_list' ? 'ul' : 'ol'
-
-	// console.log('NotionList2')
-	// console.log(value)
-	// console.log(value.contentBlock)
-
 	const contentBlock = value.contentBlock ?? []
+	const title = value.properties?.title
 
 	return (
 		<ListType
@@ -25,7 +21,7 @@ export const NotionList2 = ({ block, postId }: INotionList) => {
 				ListType === 'ul' ? 'list-disc' : 'list-decimal'
 			}`}
 		>
-			<li>{value.properties.title}</li>
+			{title && <li>{title}</li>}
 			{contentBlock.map((block, idx) => switchRender(block, idx))}
 		</ListType>
 	)

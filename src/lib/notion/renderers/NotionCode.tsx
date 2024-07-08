@@ -1,7 +1,7 @@
 import { CopyBlock, dracula } from 'react-code-blocks'
 import { INotionComponent } from '../../../types/notion.types'
 
-export const NotionCode = ({block}: INotionComponent) => {
+export const NotionCode = ({ block }: INotionComponent) => {
 	const { value } = block
 	const { properties } = value
 

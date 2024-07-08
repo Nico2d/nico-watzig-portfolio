@@ -41,7 +41,7 @@ interface INotionText {
 	tag?: React.ElementType
 }
 
-export const NotionText = ({ block, tag = 'div' }: INotionText) => {
+export const NotionText = ({ block, tag = 'span' }: INotionText) => {
 	const { value } = block
 
 	if (!value.properties) {
@@ -51,7 +51,7 @@ export const NotionText = ({ block, tag = 'div' }: INotionText) => {
 	const subBlocks = value.properties.title
 
 	return (
-		<div className={'flex gap-2'}>
+		<div>
 			{subBlocks.map((subBlockTitle, idx) => {
 				let [text, attributes] = subBlockTitle
 

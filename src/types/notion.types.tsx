@@ -41,7 +41,7 @@ export interface IBlock {
 		properties: {
 			size?: string[]
 			source?: string[]
-			title?: Array<Array<Array<string>>>
+			title?: Array<any>
 			description?: string[]
 			link?: string[]
 			language?: string[]

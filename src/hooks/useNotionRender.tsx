@@ -92,10 +92,10 @@ export const useNotionRender = (post: pageContent) => {
 			case 'equation':
 				return <NotionEquation key={idx} block={block} />
 
-			// case 'listCollection':
-			// 	return <NotionList key={idx} block={block} postId={post.id} />
-
 			case 'bulleted_list':
+				return <NotionList2 key={idx} block={block} postId={post.id} />
+
+			case 'numbered_list':
 				return <NotionList2 key={idx} block={block} postId={post.id} />
 
 			case 'to_do':
@@ -115,39 +115,11 @@ export const useNotionRender = (post: pageContent) => {
 			return <p>This post has no content</p>
 		}
 
-		let toRender = []
-		let listCollection = []
-
 		const contentBlocks = extractContent(post.content, post.id)
 
-		console.log(
-			'contentBlocks: ',
-			contentBlocks.map((item) => item.value)
+		return contentBlocks.map((block: IBlock, idx) =>
+			switchRender(block, idx)
 		)
-
-		contentBlocks.map((block: IBlock, idx) => {
-			// if (isList(block)) {
-			// 	listCollection.push(block)
-			// } else {
-			// if (listCollection.length > 0) {
-			// 	const blockCollectionObject: IBlock = {
-			// 		value: {
-			// 			type: 'listCollection',
-			// 			listCollection: listCollection,
-			// 		},
-			// 	} as IBlock
-
-			// 	toRender.push(switchRender(blockCollectionObject, idx - 1))
-			// 	listCollection = []
-			// }
-
-			// if (listCollection.length === 0) {
-			toRender.push(switchRender(block, idx))
-			// }
-			// }
-		})
-
-		return toRender
 	}
 
 	return {
