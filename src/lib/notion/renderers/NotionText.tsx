@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { IBlock } from '../../../types/notion.types'
 
 const attributeClassMap: Record<string, string> = {
 	gray: 'notion-gray',
@@ -20,6 +21,7 @@ const attributeClassMap: Record<string, string> = {
 	purple_background: 'notion-purple-background',
 	pink_background: 'notion-pink-background',
 	red_background: 'notion-red-background',
+	i: 'italic',
 }
 
 const getClassNamesFromAttributes = (attributes: string[]): string[] => {
@@ -34,15 +36,12 @@ const getClassNamesFromAttributes = (attributes: string[]): string[] => {
 	}, [])
 }
 
-export const renderText = (
-	block: {
-		value: {
-			id: string
-			properties?: { title: [string, any[]][] }
-		}
-	},
-	tag: React.ElementType = 'div'
-) => {
+interface INotionText {
+	block: IBlock
+	tag?: React.ElementType
+}
+
+export const NotionText = ({ block, tag = 'span' }: INotionText) => {
 	const { value } = block
 
 	if (!value.properties) {
@@ -52,15 +51,15 @@ export const renderText = (
 	const subBlocks = value.properties.title
 
 	return (
-		<div className={'flex gap-2'}>
+		<div>
 			{subBlocks.map((subBlockTitle, idx) => {
-				const [text, attributes] = subBlockTitle
+				let [text, attributes] = subBlockTitle
 
 				return (
 					<DynamicTextTag
 						key={idx}
 						Tag={tag}
-						attributes={attributes ? attributes[0] : []}
+						attributes={attributes ? attributes.flat() : []}
 					>
 						{text}
 					</DynamicTextTag>
@@ -73,6 +72,7 @@ export const renderText = (
 const DynamicTextTag = ({ Tag, attributes, children }) => {
 	const classNamesArray = [
 		'text-wrap',
+		'whitespace-pre-wrap',
 		...getClassNamesFromAttributes(attributes),
 	]
 
@@ -82,10 +82,7 @@ const DynamicTextTag = ({ Tag, attributes, children }) => {
 		return (
 			<Link
 				href={attributes[1]}
-				className={
-					'font-medium text-blue-600 dark:text-blue-500 hover:underline ' +
-					classNamesString
-				}
+				className={'custom-link ' + classNamesString}
 			>
 				{children}
 			</Link>

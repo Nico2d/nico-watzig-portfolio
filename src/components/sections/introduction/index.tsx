@@ -9,23 +9,21 @@ export function WelcomeSection() {
 
 	let [count, setCount] = useState(0)
 	const [text] = useState([
-		'build Flutter apps for Android/iOS',
-		'convert design into modern UI',
-		'build interactive UI using React',
-		'develop websites using Next.js',
-
-		"Freelancer",
-		"React Developer",
-		"Wordpress developer",
-		"Software developer",
-
+		'convert design into modern UI.',
+		'bring flexibility and expertise from years of freelancing.',
+		'specialize in responsive, interactive React applications.',
+		'craft custom WordPress websites for your needs.',
+		'adapt to diverse tools for optimal solutions.',
+		'specialize in OTT platform development.',
+		'develop maintainable software with clean code principles.',
+		'am an Agile Software Developer.',
 	])
 
 	useEffect(() => {
 		let interval = setInterval(() => {
 			setCount(count + 1)
 
-			if (count === 3) {
+			if (count === text.length - 1) {
 				setCount(0)
 			}
 		}, 2000)
@@ -52,7 +50,7 @@ export function WelcomeSection() {
 							}}
 						>
 							<p>
-								Hi, I&apos;m <mark>Nico Wätzig</mark> a{' '}
+								Hi, I&apos;m <mark>Nico Wätzig</mark> a
 								passionate <mark>software developer.</mark>
 							</p>
 						</h1>
@@ -74,16 +72,7 @@ export function WelcomeSection() {
 								<span
 									className="absolute flex flex-col transition-all duration-500 ease-in-expo"
 									style={{
-										top:
-											count === 0
-												? '0'
-												: count === 1
-												? '-100%'
-												: count === 2
-												? '-200%'
-												: count === 3
-												? '-300%'
-												: '0',
+										top: count === 0 ? '0' : `-${count}00%`,
 										left: '13px',
 									}}
 								>
@@ -100,7 +89,7 @@ export function WelcomeSection() {
 						<p
 							tabIndex={0}
 							ref={ref}
-							className="mt-3 mb-10 text-gray-500 text-xl"
+							className="mt-10 mb-2 text-gray-500 text-xl"
 							style={{
 								transform: isInView
 									? 'none'
@@ -124,18 +113,15 @@ export function WelcomeSection() {
 							}}
 						>
 							<Link
-								href="#projects"
-								// onClick={onClick}
+								href="/projects"
 								tabIndex={0}
-								className="btn"
+								className="btn tracking-wide"
 								aria-label="Latest projects"
 							>
-								See my latest projects
+								SEE MY PROJECTS
 							</Link>
 						</div>
 					</div>
-
-					{/* {isTabletUp && <WelcomeAnimation />} */}
 				</div>
 			</section>
 		</LazyMotion>

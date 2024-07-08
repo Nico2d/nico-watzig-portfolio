@@ -1,4 +1,4 @@
-import Header from '../../components/header'
+import { Header } from '../../components/header'
 import { Filter } from '../../components/Filter'
 import { useState } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'

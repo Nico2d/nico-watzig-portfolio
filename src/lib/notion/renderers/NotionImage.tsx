@@ -1,6 +1,8 @@
+import { IBlock, INotionComponent } from '../../../types/notion.types'
 import { getNotionPrivImage } from '../utils'
 
-export const renderImage = ({ value }) => {
+export const NotionImage = ({ block }: INotionComponent) => {
+	const { value } = block
 	const { properties } = value
 
 	const isLocal = properties.title ? true : false
