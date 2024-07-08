@@ -21,6 +21,7 @@ const attributeClassMap: Record<string, string> = {
 	purple_background: 'notion-purple-background',
 	pink_background: 'notion-pink-background',
 	red_background: 'notion-red-background',
+	i: 'italic',
 }
 
 const getClassNamesFromAttributes = (attributes: string[]): string[] => {
@@ -52,13 +53,13 @@ export const NotionText = ({ block, tag = 'div' }: INotionText) => {
 	return (
 		<div className={'flex gap-2'}>
 			{subBlocks.map((subBlockTitle, idx) => {
-				const [text, attributes] = subBlockTitle
+				let [text, attributes] = subBlockTitle
 
 				return (
 					<DynamicTextTag
 						key={idx}
 						Tag={tag}
-						attributes={attributes ? attributes[0] : []}
+						attributes={attributes ? attributes.flat() : []}
 					>
 						{text}
 					</DynamicTextTag>
@@ -71,6 +72,7 @@ export const NotionText = ({ block, tag = 'div' }: INotionText) => {
 const DynamicTextTag = ({ Tag, attributes, children }) => {
 	const classNamesArray = [
 		'text-wrap',
+		'whitespace-pre-wrap',
 		...getClassNamesFromAttributes(attributes),
 	]
 

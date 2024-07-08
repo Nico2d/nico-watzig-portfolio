@@ -17,6 +17,8 @@ export interface IBlock {
 		created_by_table: string
 		created_time: number
 		file_ids: string[]
+		content?: string[]
+		contentBlock?: IBlock[]
 		format?: {
 			block_aspect_ratio: number
 			block_full_width: boolean
@@ -28,6 +30,7 @@ export interface IBlock {
 			bookmark_icon?: string
 			bookmark_cover?: string
 			page_icon?: string
+			column_ratio?: number
 		}
 		id: string
 		last_edited_by_id: string
@@ -38,7 +41,7 @@ export interface IBlock {
 		properties: {
 			size?: string[]
 			source?: string[]
-			title?: string[]
+			title?: Array<Array<Array<string>>>
 			description?: string[]
 			link?: string[]
 			language?: string[]

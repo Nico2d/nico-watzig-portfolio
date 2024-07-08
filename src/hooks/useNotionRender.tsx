@@ -13,8 +13,10 @@ import { NotionCheckbox } from '../lib/notion/renderers/NotionCheckbox'
 import { NotionImage } from '../lib/notion/renderers/NotionImage'
 import { IBlock } from '../types/notion.types'
 import { NotionDivider } from '../lib/notion/renderers/NotionDivider'
+import { NotionColumnList } from '../lib/notion/renderers/NotionColumnList'
+import { NotionList2 } from '../lib/notion/renderers/NotionList2'
 
-interface pageContent {
+export interface pageContent {
 	id: string
 	Page: string
 	Date: string
@@ -90,11 +92,17 @@ export const useNotionRender = (post: pageContent) => {
 			case 'equation':
 				return <NotionEquation key={idx} block={block} />
 
-			case 'listCollection':
-				return <NotionList key={idx} block={block} postId={post.id} />
+			// case 'listCollection':
+			// 	return <NotionList key={idx} block={block} postId={post.id} />
+
+			case 'bulleted_list':
+				return <NotionList2 key={idx} block={block} postId={post.id} />
 
 			case 'to_do':
 				return <NotionCheckbox key={idx} block={block} />
+
+			case 'column_list':
+				return <NotionColumnList key={idx} block={block} />
 
 			default:
 				console.log('unknown type', block.value.type)
@@ -110,28 +118,33 @@ export const useNotionRender = (post: pageContent) => {
 		let toRender = []
 		let listCollection = []
 
-		console.log(post.content.map((item) => item.value))
+		const contentBlocks = extractContent(post.content, post.id)
 
-		post.content.map((block, idx) => {
-			if (isList(block)) {
-				listCollection.push(block)
-			} else {
-				if (listCollection.length > 0) {
-					const blockCollectionObject: IBlock = {
-						value: {
-							type: 'listCollection',
-							listCollection: listCollection,
-						},
-					} as IBlock
+		console.log(
+			'contentBlocks: ',
+			contentBlocks.map((item) => item.value)
+		)
 
-					toRender.push(switchRender(blockCollectionObject, idx - 1))
-					listCollection = []
-				}
+		contentBlocks.map((block: IBlock, idx) => {
+			// if (isList(block)) {
+			// 	listCollection.push(block)
+			// } else {
+			// if (listCollection.length > 0) {
+			// 	const blockCollectionObject: IBlock = {
+			// 		value: {
+			// 			type: 'listCollection',
+			// 			listCollection: listCollection,
+			// 		},
+			// 	} as IBlock
 
-				if (listCollection.length === 0) {
-					toRender.push(switchRender(block, idx))
-				}
-			}
+			// 	toRender.push(switchRender(blockCollectionObject, idx - 1))
+			// 	listCollection = []
+			// }
+
+			// if (listCollection.length === 0) {
+			toRender.push(switchRender(block, idx))
+			// }
+			// }
 		})
 
 		return toRender
@@ -144,4 +157,29 @@ export const useNotionRender = (post: pageContent) => {
 		switchRender,
 		renderContent,
 	}
+}
+
+const extractContent = (blocksCollection: IBlock[], postId) => {
+	const collectionObject = convertBlocksArrayToObject(blocksCollection)
+
+	const extractContentByBlock = (block: IBlock, level = 1): IBlock => {
+		if (block?.value?.content) {
+			block.value.contentBlock = block.value.content.map((contentId) =>
+				extractContentByBlock(collectionObject[contentId], level + 1)
+			)
+		}
+
+		return block
+	}
+
+	return blocksCollection
+		.filter((block) => block.value.parent_id === postId)
+		.map((block) => extractContentByBlock(block))
+}
+
+const convertBlocksArrayToObject = (blocksCollection) => {
+	return blocksCollection.reduce((accumulator, currentValue) => {
+		accumulator[currentValue.value.id] = currentValue
+		return accumulator
+	}, {})
 }
