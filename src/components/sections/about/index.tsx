@@ -12,7 +12,7 @@ export function AboutSection() {
 		<LazyMotion features={domAnimation}>
 			<section id="about" className="section">
 				<HeadingDivider title="About me" />
-				<div className="pt-10 pb-16 max-w-5xl flex flex-col gap-3">
+				<div className="pt-10 max-w-5xl flex flex-col gap-3">
 					<div
 						tabIndex={0}
 						ref={ref}
@@ -111,8 +111,6 @@ export function AboutSection() {
 const StyledLink = ({ project, children }) => {
 	return (
 		<Link className="custom-link" href={`/projects/${project}`}>
-			{/* {` ${text} `} */}
-
 			{children}
 		</Link>
 	)

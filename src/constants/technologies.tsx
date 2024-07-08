@@ -14,6 +14,7 @@ import {
 	SiRoku,
 	SiGatsby,
 	SiWordpress,
+	SiFramer,
 } from 'react-icons/si'
 import { TbBrandReactNative, TbBrandThreejs } from 'react-icons/tb'
 
@@ -35,7 +36,7 @@ export const TECHNOLOGIES = [
 			{
 				name: 'React-Native',
 				icon: <TbBrandReactNative size={iconSize} />,
-				},
+			},
 		],
 	},
 	{
@@ -67,6 +68,7 @@ export const TECHNOLOGIES = [
 			{ name: 'Postman', icon: <SiPostman size={iconSize} /> },
 			{ name: 'Swagger', icon: <SiSwagger size={iconSize} /> },
 			{ name: 'Atlassian ', icon: <SiAtlassian size={iconSize} /> },
+			{ name: 'Framer ', icon: <SiFramer size={iconSize} /> },
 		],
 	},
 ]
