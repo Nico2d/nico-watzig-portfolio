@@ -34,6 +34,10 @@ export const getNotionPrivImage = (
 	blockId: string,
 	size?: number
 ) => {
+	if (!rawUrl) {
+		return ''
+	}
+
 	const encodedUrl = encodeURIComponent(rawUrl)
 	const baseSpaceUrl = 'https://www.notion.so'
 

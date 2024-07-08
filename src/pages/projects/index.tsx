@@ -1,5 +1,4 @@
-import Header from '../../components/header'
-import blogStyles from '../../styles/blog.module.css'
+import { Header } from '../../components/header'
 import { Filter } from '../../components/Filter'
 import { useState } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
@@ -56,7 +55,7 @@ const Index = ({ posts = [] }) => {
 			<Filter onClick={filterProjects} />
 
 			{filteredPosts.length === 0 ? (
-				<p className={blogStyles.noPosts}>There are no posts yet</p>
+				<p>There are no posts yet</p>
 			) : (
 				<div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
 					{filteredPosts.map((post) => (

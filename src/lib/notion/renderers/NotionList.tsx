@@ -1,4 +1,11 @@
-export const renderList = (block, postId) => {
+import { IBlock } from '../../../types/notion.types'
+
+interface INotionList {
+	block: IBlock
+	postId: string
+}
+
+export const NotionList = ({ block, postId }: INotionList) => {
 	const { listCollection } = block.value
 
 	const ListType =
@@ -10,34 +17,41 @@ export const renderList = (block, postId) => {
 
 	return (
 		<ListType
+			key={listCollection[0].value.id + 'wrapperListType'}
 			className={`max-w-md ml-6 ${
 				ListType === 'ul' ? 'list-disc' : 'list-decimal'
 			}`}
 		>
-			{listCollectionLevel1.map((block) => {
-				return getRenderBlockAsListItem(block, listCollection, ListType)
-			})}
+			{listCollectionLevel1.map((block, idx: number) => (
+				<BlockList
+					key={idx}
+					block={block}
+					blocksCollection={listCollection}
+					listType={ListType}
+				/>
+			))}
 		</ListType>
 	)
 }
 
-const getRenderBlockAsListItem = (block, listCollection, ListType) => {
+const BlockList = ({ block, blocksCollection, listType }) => {
 	const listContent = block?.value?.content ?? []
 
 	if (listContent.length > 0) {
 		return (
 			<>
-				<NotionLI block={block} />
+				<NotionLI key={`LI-${block.value.id}`} block={block} />
 				<NotionUL
+					key={`UL-${block.value.id}`}
 					block={block}
-					listCollection={listCollection}
-					ListType={ListType}
+					listCollection={blocksCollection}
+					ListType={listType}
 				/>
 			</>
 		)
 	}
 
-	return <NotionLI block={block} />
+	return <NotionLI key={`LI-${block?.value?.id}`} block={block} />
 }
 
 const NotionUL = ({ block, listCollection, ListType }) => {
@@ -46,7 +60,17 @@ const NotionUL = ({ block, listCollection, ListType }) => {
 			(item) => item.value.id === contentItem
 		)
 
-		return getRenderBlockAsListItem(contentBlock, listCollection, ListType)
+		if (!contentBlock) {
+			return
+		}
+
+		return (
+			<BlockList
+				block={contentBlock}
+				blocksCollection={listCollection}
+				listType={ListType}
+			/>
+		)
 	})
 
 	return (
@@ -61,5 +85,5 @@ const NotionUL = ({ block, listCollection, ListType }) => {
 }
 
 const NotionLI = ({ block }) => {
-	return <li>{block.value.properties.title[0][0]}</li>
+	return <li>{block?.value?.properties?.title?.[0]?.[0]}</li>
 }

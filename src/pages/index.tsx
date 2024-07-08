@@ -1,4 +1,4 @@
-import Header from '../components/header'
+import { Header } from '../components/header'
 import { AboutSection } from '../components/sections/about'
 import { WelcomeSection } from '../components/sections/introduction'
 import { TechnologiesSection } from '../components/sections/technologies'
