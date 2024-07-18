@@ -5,6 +5,7 @@ import { ProjectItem } from '../../components/ProjectItem'
 import { getNotionPrivImage } from '../../lib/notion/utils'
 import { Header } from '../../components/header'
 import { Filter } from '../../components/Filter'
+import { ProjectsGrid } from '../../components/ProjectsGrid'
 
 export async function getStaticProps({ preview }) {
 	const postsTable = await getBlogIndex()
@@ -31,7 +32,6 @@ export async function getStaticProps({ preview }) {
 
 const Index = ({ posts = [] }) => {
 	const [filteredPosts, setFilteredPosts] = useState(posts)
-	const [columnsNum, setColumnsNum] = useState(4)
 
 	const filterProjects = (filter) => {
 		if (filter === 'all') {
@@ -49,71 +49,15 @@ const Index = ({ posts = [] }) => {
 		}
 	}
 
-	function splitListIntoColumns(list, numColumns) {
-		const columns = []
-		for (let i = 0; i < numColumns; i++) {
-			columns.push([])
-		}
-
-		for (let i = 0; i < list.length; i++) {
-			const columnIndex = i % numColumns
-			columns[columnIndex].push(list[i])
-		}
-
-		return columns
-	}
-
-	const columns = splitListIntoColumns(filteredPosts, columnsNum)
-
-	useEffect(() => {
-		const updateColumnsNum = () => {
-			const width = window.innerWidth
-			if (width < 768) {
-				setColumnsNum(1)
-			} else if (width < 1280) {
-				setColumnsNum(2)
-			} else if (width < 1920) {
-				setColumnsNum(3)
-			} else {
-				setColumnsNum(4)
-			}
-		}
-
-		updateColumnsNum()
-		window.addEventListener('resize', updateColumnsNum)
-
-		return () => window.removeEventListener('resize', updateColumnsNum)
-	}, [])
-
 	return (
 		<>
 			<Header titlePre="Projects" />
-
 			<Filter onClick={filterProjects} />
 
-			{filteredPosts.length === 0 ? (
-				<p>There are no posts yet</p>
+			{filteredPosts.length > 0 ? (
+				<ProjectsGrid posts={filteredPosts} />
 			) : (
-				<div className="flex flex-row gap-5">
-					{columns.map((column) => (
-						<div className="flex flex-col gap-5">
-							{column.map((post) => (
-								<ProjectItem
-									key={post.Slug}
-									title={post.Name}
-									description={post.Summary}
-									stack={post.Technology?.split(',')}
-									thumbnail={getNotionPrivImage(
-										post.Thumbnail,
-										post.id,
-										500
-									)}
-									slug={post.Slug}
-								/>
-							))}
-						</div>
-					))}
-				</div>
+				<p>There are no posts yet</p>
 			)}
 		</>
 	)
