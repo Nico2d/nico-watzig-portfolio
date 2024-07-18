@@ -35,7 +35,7 @@ export const ProjectItem = ({
 
 const ProjectCard = ({ thumbnail, title, description, stack }) => {
 	return (
-		<article className="bg-card-light dark:bg-card-dark flex flex-col rounded-lg overflow-hidden h-min">
+		<article className="bg-card-light dark:bg-card-dark flex flex-col rounded-lg overflow-hidden h-min min-w-96">
 			{thumbnail && (
 				<img
 					className="aspect-[4/3] w-full h-full object-cover"

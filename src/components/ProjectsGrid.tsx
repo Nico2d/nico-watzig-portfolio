@@ -16,7 +16,7 @@ export const ProjectsGrid = ({ posts }) => {
 			} else if (width < 1920) {
 				return 3
 			} else {
-				return 4
+				return 3
 			}
 		}
 
@@ -32,8 +32,29 @@ export const ProjectsGrid = ({ posts }) => {
 		return () => window.removeEventListener('resize', updateColumnsData)
 	}, [posts])
 
+	if (posts.length < 4) {
+		return (
+			<div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+				{posts.map((post) => (
+					<ProjectItem
+						key={post.Slug}
+						title={post.Name}
+						description={post.Summary}
+						stack={post.Technology?.split(',')}
+						thumbnail={getNotionPrivImage(
+							post.Thumbnail,
+							post.id,
+							500
+						)}
+						slug={post.Slug}
+					/>
+				))}
+			</div>
+		)
+	}
+
 	return (
-		<div className="flex flex-row gap-5">
+		<div className="flex flex-row justify-between gap-8">
 			{columnsData.map((column, idx) => (
 				<div key={`column-${idx}`} className="flex flex-col gap-5">
 					{column.map((post) => (

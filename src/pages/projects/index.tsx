@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { postIsPublished } from '../../lib/blog-helpers'
-import { ProjectItem } from '../../components/ProjectItem'
-import { getNotionPrivImage } from '../../lib/notion/utils'
 import { Header } from '../../components/header'
 import { Filter } from '../../components/Filter'
 import { ProjectsGrid } from '../../components/ProjectsGrid'
