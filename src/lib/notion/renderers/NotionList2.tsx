@@ -17,7 +17,7 @@ export const NotionList2 = ({ block, postId }: INotionList) => {
 	return (
 		<ListType
 			key={value.id + 'wrapperListType'}
-			className={`ml-6 ${
+			className={`ml-6 space-y-3 ${
 				ListType === 'ul' ? 'list-disc' : 'list-decimal'
 			}`}
 		>

@@ -45,7 +45,7 @@ export const NotionText = ({ block, tag = 'span' }: INotionText) => {
 	const { value } = block
 
 	if (!value.properties) {
-		return <div key={value.id}></div>
+		return <div key={value.id} className='h-6'></div>
 	}
 
 	const subBlocks = value.properties.title

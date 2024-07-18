@@ -95,13 +95,10 @@ export default async function loadTable(
 		})
 
 		if (!row.Slug) {
-			// console.log(`missing "Slug" field for ${row.Name}`)
+			console.log(`missing "Slug" field for ${row.Name}`)
 		}
 
-		// auto-generate slug from title
-		row.Slug = normalizeSlug(row.Slug || slugger.slug(row.Page || ''))
-
-		const key = row.Slug
+		const key = row.id
 		if (isPosts && !key) continue
 
 		if (key) {

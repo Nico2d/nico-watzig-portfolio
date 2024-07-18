@@ -8,7 +8,7 @@ import { useNotionRender } from '../../hooks/useNotionRender'
 
 export async function getStaticProps({ params: { slug }, preview }) {
 	const postsTable = await getBlogIndex()
-	const post = postsTable[slug]
+	const post = Object.values(postsTable).find((postItem) => postItem.Slug === slug)
 
 	if (!post || (post.Published !== 'Yes' && !preview)) {
 		console.log(`Failed to find post for slug: ${slug}`)
