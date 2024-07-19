@@ -9,6 +9,18 @@ export interface INotionComponent {
 	block: IBlock
 }
 
+export interface INotionProject {
+	id: string
+	Published: string
+	Slug?: string
+	Customer: string
+	Technology: string
+	Thumbnail: string
+	Name: string
+	Status: string
+	Summary: string
+	content: IBlock[]
+}
 export interface IBlock {
 	role?: string
 	value: {

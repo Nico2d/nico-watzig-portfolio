@@ -5,10 +5,13 @@ import React, { useEffect } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { getBlogLink } from '../../lib/blog-helpers'
 import { useNotionRender } from '../../hooks/useNotionRender'
+import { INotionProject } from '../../types/notion.types'
 
 export async function getStaticProps({ params: { slug }, preview }) {
 	const postsTable = await getBlogIndex()
-	const post = Object.values(postsTable).find((postItem) => postItem.Slug === slug)
+	const post: INotionProject = Object.values(postsTable).find(
+		(postItem: INotionProject) => postItem.Slug === slug
+	) as INotionProject
 
 	if (!post || (post.Published !== 'Yes' && !preview)) {
 		console.log(`Failed to find post for slug: ${slug}`)

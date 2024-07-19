@@ -1,22 +1,19 @@
 import { values } from './rpc'
-import Slugger from 'github-slugger'
 import queryCollection from './queryCollection'
-import { normalizeSlug } from '../blog-helpers'
+import { IBlock } from '../../types/notion.types'
 
 export default async function loadTable(
 	collection_id: string,
 	view_id: string,
 	isPosts = false
 ) {
-	const slugger = new Slugger()
-
 	let table: any = {}
 	const collectionData = await queryCollection({
 		collectionId: collection_id,
 		collectionViewId: view_id,
 	})
 	const entries = values(collectionData.recordMap.block).filter(
-		(block: any) => block.value && block.value.parent_id === collection_id
+		(block: IBlock) => block.value && block.value.parent_id === collection_id
 	)
 
 	const colId = Object.keys(collectionData.recordMap.collection)[0]
