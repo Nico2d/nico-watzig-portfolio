@@ -92,7 +92,7 @@ export default async function loadTable(
 		})
 
 		if (!row.Slug) {
-			console.log(`missing "Slug" field for ${row.Name}`)
+			// console.log(`missing "Slug" field for ${row.Name}`)
 		}
 
 		const key = row.id
