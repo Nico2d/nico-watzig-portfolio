@@ -1,10 +1,9 @@
-import { Header } from '../../components/header'
-import { Filter } from '../../components/Filter'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import getBlogIndex from '../../lib/notion/getBlogIndex'
 import { postIsPublished } from '../../lib/blog-helpers'
-import { ProjectItem } from '../../components/ProjectItem'
-import { getNotionPrivImage } from '../../lib/notion/utils'
+import { Header } from '../../components/header'
+import { Filter } from '../../components/Filter'
+import { ProjectsGrid } from '../../components/ProjectsGrid'
 
 export async function getStaticProps({ preview }) {
 	const postsTable = await getBlogIndex()
@@ -25,7 +24,7 @@ export async function getStaticProps({ preview }) {
 			preview: preview || false,
 			posts,
 		},
-		revalidate: 10,
+		revalidate	: 10,
 	}
 }
 
@@ -51,28 +50,12 @@ const Index = ({ posts = [] }) => {
 	return (
 		<>
 			<Header titlePre="Projects" />
-
 			<Filter onClick={filterProjects} />
 
-			{filteredPosts.length === 0 ? (
-				<p>There are no posts yet</p>
+			{filteredPosts.length > 0 ? (
+				<ProjectsGrid posts={filteredPosts} />
 			) : (
-				<div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-					{filteredPosts.map((post) => (
-						<ProjectItem
-							key={post.Slug}
-							title={post.Name}
-							description={post.Summary}
-							stack={post.Technology?.split(',')}
-							thumbnail={getNotionPrivImage(
-								post.Thumbnail,
-								post.id,
-								500
-							)}
-							slug={post.Slug}
-						/>
-					))}
-				</div>
+				<p>There are no posts yet</p>
 			)}
 		</>
 	)
