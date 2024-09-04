@@ -2,9 +2,9 @@ import { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
 import { LazyMotion, domAnimation, useInView } from 'framer-motion'
 
-export function WelcomeSection() {
+export function WelcomeSection({redirectRef}) {
 	const ref = useRef(null)
-	const introRef = useRef(null)
+	// const introRef = useRef(null)
 	const isInView = useInView(ref, { once: true })
 
 	let [count, setCount] = useState(0)
@@ -33,13 +33,13 @@ export function WelcomeSection() {
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<section id="intro" className="section" ref={introRef}>
+			<section id="intro" className="section" ref={redirectRef}>
 				<div className="grid grid-cols-1 md:grid-cols-[1fr_0.5fr] lg:grid-cols-[1fr_0.7fr] gap-4 items-center">
 					<div className="py-5 md:py-10">
 						<h1
 							tabIndex={0}
-							ref={ref}
 							className="text-3xl md:text-5xl xl:text-6xl font-bold"
+							ref={ref}
 							style={{
 								transform: isInView
 									? 'none'

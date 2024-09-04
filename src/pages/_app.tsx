@@ -6,10 +6,10 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 export default function MyApp({ Component, pageProps }) {
 	return (
 		<ThemeContext>
-			<div className="container-md space-y-8">
+			{/* <div className="w-screen overflow-hidden"> */}
 				<Component {...pageProps} />
 				<Footer />
-			</div>
+			{/* </div> */}
 			<SpeedInsights />
 		</ThemeContext>
 	)
