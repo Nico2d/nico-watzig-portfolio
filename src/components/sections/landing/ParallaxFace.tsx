@@ -1,13 +1,20 @@
 import { useState, useEffect } from 'react'
-import face1 from '../../assets/face/LandingFace-part1.png'
-import face2 from '../../assets/face/LandingFace-part2.png'
-import face3 from '../../assets/face/LandingFace-part3.png'
-import { ParallaxLayer } from '../components/ParallaxLayer'
+import face1 from '../../../../assets/face/LandingFace-part1.png'
+import face2 from '../../../../assets/face/LandingFace-part2.png'
+import face3 from '../../../../assets/face/LandingFace-part3.png'
+import { ParallaxLayer } from './ParallaxLayer'
 
 export const ParallaxFace = ({ isLocked = false }) => {
 	const FOCUS_POINT_OFFSET = 140
 
 	const [focusPoint, setFocusPoint] = useState([0, 0])
+	// TODO: add focusArea instead of focusPoint
+	// const [focusArea, setFocusArea] = useState([
+	// 	[0, 0],
+	// 	[0, 10],
+	// 	[10, 0],
+	// 	[10, 10],
+	// ])
 
 	useEffect(() => {
 		setFocusPoint([
