@@ -1,21 +1,24 @@
-import { useRef } from 'react'
-import { Header } from '../components/header'
+import { useState } from 'react'
 import { AboutSection } from '../components/sections/about'
-import { WelcomeSection } from '../components/sections/introduction'
 import { TechnologiesSection } from '../components/sections/technologies'
 import Landing from './landing'
 
 export default function Index() {
+	const [isLandingLock, setIsLandingLock] = useState(true)
+
 	return (
 		<>
-			<Landing />
+			<Landing
+				isLandingLock={isLandingLock}
+				setIsLandingLock={setIsLandingLock}
+			/>
 
-			<div className="container-md space-y-8 ">
-				<Header titlePre="Home" />
-				<WelcomeSection />
-				<AboutSection />
-				<TechnologiesSection />
-			</div>
+			{isLandingLock ? (
+				<div className="container-md space-y-8">
+					<AboutSection />
+					<TechnologiesSection />
+				</div>
+			) : null}
 		</>
 	)
 }

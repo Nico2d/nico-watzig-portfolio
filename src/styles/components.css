@@ -45,7 +45,8 @@
 	}
 
 	.landing-action-circle-background {
-		@apply bg-primary;
+		/* @apply bg-primary; */
+		@apply bg-landingUnlockPrimary;
 
 		content: '';
 		display: block;
@@ -54,5 +55,27 @@
 		bottom: 0;
 		width: 80px;
 		height: 80px;
+	}
+
+	.left-section::before {
+		@apply bg-landingLockLeftBackground;
+
+		content: '';
+		position: absolute;
+		/* -webkit-clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%); */
+		/* clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%); */
+
+		clip-path: polygon(0 0, 75% 0, 100% 100%, 0 100%);
+		width: 150%;
+		height: 100%;
+	}
+
+	.right-section {
+		@apply bg-landingLockRightBackground;
+		/* clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); */
+		/* clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); */
+		/* background: #232332; */
+
+		/* clip-path: polygon(4% 0, 100% 0, 100% 100%, 17% 100%); */
 	}
 }

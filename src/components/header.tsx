@@ -1,8 +1,7 @@
 import Link from 'next/link'
-import Head from 'next/head'
 import ExtLink from './ext-link'
 import { useRouter } from 'next/router'
-import { ContactIcons } from './contactIcons'
+import { ContactIcons } from './ContactIcons'
 
 const navItems: { label: string; page?: string; link?: string }[] = [
 	{ label: 'Home', page: '/' },
@@ -10,26 +9,11 @@ const navItems: { label: string; page?: string; link?: string }[] = [
 	{ label: 'Contact', page: '/contact' },
 ]
 
-const ogImageUrl = 'https://notion-blog.now.sh/og-image.png'
-
-export const Header = ({ titlePre = '' }) => {
+export const Header = () => {
 	const { pathname } = useRouter()
 
 	return (
-		<header>
-			<Head>
-				<title>Nico Wätzig - Portfolio</title>
-				<meta
-					name="description"
-					content="An example Next.js site using Notion for the blog"
-				/>
-				<meta name="og:title" content="My Notion Blog" />
-				<meta property="og:image" content={ogImageUrl} />
-				<meta name="twitter:site" content="@_ijjk" />
-				<meta name="twitter:card" content="summary_large_image" />
-				<meta name="twitter:image" content={ogImageUrl} />
-			</Head>
-
+		<header className="absolute inset-x-0 w-full container-md space-y-8 z-50">
 			<nav className="flex flex-1 flex-row justify-between items-center">
 				<ContactIcons size={24} />
 

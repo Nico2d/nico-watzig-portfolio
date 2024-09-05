@@ -5,7 +5,7 @@ import { Header } from '../components/header'
 export default function Contact() {
 	return (
 		<div>
-			<Header titlePre="Contact" />
+			<Header />
 			<div>
 				<h1 className="text-6xl bold mt-20 mb-8">Contact</h1>
 

@@ -88,7 +88,8 @@ const RenderPost = ({ post, redirect, preview }) => {
 
 	return (
 		<>
-			<Header titlePre={post.Page} />
+			{/* <Header titlePre={post.Page} /> */}
+			<Header />
 
 			<div className="space-y-3">
 				{renderPostHeader()}

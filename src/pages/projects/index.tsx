@@ -24,7 +24,7 @@ export async function getStaticProps({ preview }) {
 			preview: preview || false,
 			posts,
 		},
-		revalidate	: 10,
+		revalidate: 10,
 	}
 }
 
@@ -49,7 +49,7 @@ const Index = ({ posts = [] }) => {
 
 	return (
 		<>
-			<Header titlePre="Projects" />
+			<Header />
 			<Filter onClick={filterProjects} />
 
 			{filteredPosts.length > 0 ? (

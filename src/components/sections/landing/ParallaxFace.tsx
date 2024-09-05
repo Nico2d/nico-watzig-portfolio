@@ -27,13 +27,16 @@ export const ParallaxFace = ({ isLocked = false }) => {
 		<div
 			className={`${
 				isLocked ? '' : 'right-section'
-			}  relative lg:w-3/4 h-3/4 lg:h-full`}
+			}  relative lg:w-3/4 h-3/4 lg:h-full
+			
+			${isLocked ? 'z-30' : 'z-0'}
+			`}
 		>
 			<ParallaxLayer speed={5} focusPoint={focusPoint} isLock={isLocked}>
 				<img
 					src={face1.src}
 					alt="Layer 1"
-					className={`aspect-square ${isLocked ? 'z-20' : 'z-0'}`}
+					className={`aspect-square`}
 				/>
 			</ParallaxLayer>
 			<ParallaxLayer
@@ -44,14 +47,14 @@ export const ParallaxFace = ({ isLocked = false }) => {
 				<img
 					src={face2.src}
 					alt="Layer 2"
-					className={`aspect-square ${isLocked ? 'z-20' : 'z-0'}`}
+					className={`aspect-square`}
 				/>
 			</ParallaxLayer>
 			<ParallaxLayer speed={40} focusPoint={focusPoint} isLock={isLocked}>
 				<img
 					src={face3.src}
 					alt="Layer 3"
-					className={`aspect-square ${isLocked ? 'z-20' : 'z-0'}`}
+					className={`aspect-square`}
 				/>
 			</ParallaxLayer>
 		</div>

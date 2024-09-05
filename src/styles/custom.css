@@ -1,6 +1,4 @@
 .parallax-container {
-	/* position: relative; */
-	/* height: 100vh; */
 	overflow: hidden;
 }
 
@@ -23,23 +21,5 @@
 
 .welcome-text {
 	font-weight: 500;
-	/* font-size: 8rem; */
-	color: black;
 	padding: 0 3rem;
-}
-
-.left-section::before {
-	content: '';
-	position: absolute;
-	-webkit-clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
-	clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
-	background-color: black;
-	width: 150%;
-	height: 100%;
-}
-
-.right-section {
-	clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%);
-	/* background: #2f3237; */
-	background: #232332;
 }
