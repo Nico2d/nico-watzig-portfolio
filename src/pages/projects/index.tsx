@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
-import getBlogIndex from '../../lib/notion/getBlogIndex'
-import { postIsPublished } from '../../lib/blog-helpers'
-import { Header } from '../../components/header'
-import { Filter } from '../../components/Filter'
-import { ProjectsGrid } from '../../components/ProjectsGrid'
+import { useState } from 'react'
+import { Filter } from '@/components/Filter'
+import { Header } from '@/components/header'
+import { ProjectsGrid } from '@/components/ProjectsGrid'
+import { postIsPublished } from '@/lib/blog-helpers'
+import getBlogIndex from '@/lib/notion/getBlogIndex'
 
 export async function getStaticProps({ preview }) {
 	const postsTable = await getBlogIndex()

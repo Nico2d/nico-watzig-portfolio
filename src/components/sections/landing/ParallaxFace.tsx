@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import face1 from '../../../../assets/face/LandingFace-part1.png'
-import face2 from '../../../../assets/face/LandingFace-part2.png'
-import face3 from '../../../../assets/face/LandingFace-part3.png'
+import face1 from '@images/face/LandingFace-part1.png'
+import face2 from '@images/face/LandingFace-part2.png'
+import face3 from '@images/face/LandingFace-part3.png'
 import { ParallaxLayer } from './ParallaxLayer'
 
 export const ParallaxFace = ({ isLocked = false }) => {
@@ -25,12 +25,7 @@ export const ParallaxFace = ({ isLocked = false }) => {
 
 	return (
 		<div
-			className={`${
-				isLocked ? '' : 'right-section'
-			}  relative lg:w-3/4 h-3/4 lg:h-full
-			
-			${isLocked ? 'z-30' : 'z-0'}
-			`}
+			className={`${isLocked ? 'z-30' : 'right-section z-0'} relative lg:w-3/4 h-3/4 lg:h-full`}
 		>
 			<ParallaxLayer speed={5} focusPoint={focusPoint} isLock={isLocked}>
 				<img

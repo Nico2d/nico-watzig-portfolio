@@ -1,4 +1,4 @@
-import { contactsData } from '../constants/contact'
+import { contactsData } from '@/constants/contact'
 import ExtLink from './ext-link'
 
 export const ContactIcons = ({ size = 32 }) => {

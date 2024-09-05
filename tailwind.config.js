@@ -23,7 +23,8 @@ module.exports = {
 				// landingLockLeftBackground: "#000000",
 				landingLockLeftBackground: '#db0035',
 
-				landingLockRightBackground: '#232332',
+				// landingLockRightBackground: '#232332',
+				landingLockRightBackground: '#aaaaaa',
 
 				// TEST
 				// landingLockLeftBackground: "#000000",

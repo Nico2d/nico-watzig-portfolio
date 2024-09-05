@@ -1,5 +1,5 @@
+import { WELCOME } from '@/constants/welcome'
 import { TypeAnimation } from 'react-type-animation'
-import { WELCOME } from '../../../constants/welcome'
 
 export const WelcomeText = () => {
 	return (

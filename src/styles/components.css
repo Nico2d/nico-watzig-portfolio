@@ -70,12 +70,12 @@
 		height: 100%;
 	}
 
-	.right-section {
-		@apply bg-landingLockRightBackground;
+	/* .right-section { */
+		/* @apply bg-landingLockRightBackground; */
 		/* clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); */
 		/* clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); */
 		/* background: #232332; */
 
 		/* clip-path: polygon(4% 0, 100% 0, 100% 100%, 17% 100%); */
-	}
+	/* } */
 }

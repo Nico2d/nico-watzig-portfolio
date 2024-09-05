@@ -1,19 +1,18 @@
+import { AboutSection, TechnologiesSection } from '@/components/sections'
 import { useState } from 'react'
-import { AboutSection } from '../components/sections/about'
-import { TechnologiesSection } from '../components/sections/technologies'
 import Landing from './landing'
 
 export default function Index() {
-	const [isLandingLock, setIsLandingLock] = useState(true)
+	const [isLandingUnlock, setIsLandingUnlock] = useState(false)
 
 	return (
 		<>
 			<Landing
-				isLandingLock={isLandingLock}
-				setIsLandingLock={setIsLandingLock}
+				isLandingUnlock={isLandingUnlock}
+				setIsLandingUnlock={setIsLandingUnlock}
 			/>
 
-			{isLandingLock ? (
+			{isLandingUnlock ? (
 				<div className="container-md space-y-8">
 					<AboutSection />
 					<TechnologiesSection />

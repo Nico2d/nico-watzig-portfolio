@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { getNotionPrivImage } from '../lib/notion/utils'
 import { ProjectItem } from './ProjectItem'
+import { getNotionPrivImage } from '@/lib/notion/utils'
 
 export const ProjectsGrid = ({ posts }) => {
 	const [columnsData, setColumnsData] = useState([posts])

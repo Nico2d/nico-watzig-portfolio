@@ -1,31 +1,31 @@
-import { ParallaxFace } from '../components/sections/landing/ParallaxFace'
-import { DiscoverButton } from '../components/DiscoverButton'
-import { WelcomeText } from '../components/sections/landing/WelcomeText'
-import { WelcomeSection } from '../components/sections'
-import { Header } from '../components/header'
+import { DiscoverButton } from "@/components/DiscoverButton"
+import { Header } from "@/components/header"
+import { WelcomeSection } from "@/components/sections"
+import { ParallaxFace } from "@/components/sections/landing/ParallaxFace"
+import { WelcomeText } from "@/components/sections/landing/WelcomeText"
 
-export default function Landing({ isLandingLock, setIsLandingLock }) {
+export default function Landing({ isLandingUnlock, setIsLandingUnlock }) {
 	return (
 		<>
-			{isLandingLock ? <Header /> : null}
+			{isLandingUnlock ? <Header /> : null}
 
-			<div className="parallax-container h-screen flex flex-col flex-col-reverse lg:flex-row">
+			<div className="parallax-container h-screen flex flex-col flex-col-reverse lg:flex-row bg-landingLockRightBackground">
 				<div className="relative lg:w-[350px] h-1/4 lg:h-full bg-black left-section z-10">
 					<WelcomeText />
 				</div>
 
-				<ParallaxFace isLocked={isLandingLock} />
+				<ParallaxFace isLocked={isLandingUnlock} />
 			</div>
 
 			<DiscoverButton
 				size={80}
 				onClick={() => {
-					setIsLandingLock(!isLandingLock)
+					setIsLandingUnlock(!isLandingUnlock)
 				}}
-				isLandingAnimating={isLandingLock}
+				isLandingAnimating={isLandingUnlock}
 			/>
 
-			{isLandingLock ? (
+			{isLandingUnlock ? (
 				<div className="absolute top-1/2 -translate-y-1/2 left-[100px] z-40">
 					<WelcomeSection />
 				</div>

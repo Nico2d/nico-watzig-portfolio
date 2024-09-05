@@ -1,11 +1,11 @@
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Header } from '../../components/header'
-import getPageData from '../../lib/notion/getPageData'
-import React, { useEffect } from 'react'
-import getBlogIndex from '../../lib/notion/getBlogIndex'
-import { getBlogLink } from '../../lib/blog-helpers'
-import { useNotionRender } from '../../hooks/useNotionRender'
-import { INotionProject } from '../../types/notion.types'
+import { Header } from '@/components/header'
+import { useNotionRender } from '@/hooks/useNotionRender'
+import { getBlogLink } from '@/lib/blog-helpers'
+import getBlogIndex from '@/lib/notion/getBlogIndex'
+import getPageData from '@/lib/notion/getPageData'
+import { INotionProject } from '@/types/notion.types'
 
 export async function getStaticProps({ params: { slug }, preview }) {
 	const postsTable = await getBlogIndex()
