@@ -1,8 +1,8 @@
 import { useRef } from 'react'
 import { LazyMotion, domAnimation, useInView } from 'framer-motion'
-import { Introduction } from '../landing/Introduction'
-import { ProjectButton } from '../landing/ProjectButton'
-import { WorkArea } from '../landing/WorkArea'
+import { Introduction } from './Introduction'
+import { ProjectButton } from './ProjectButton'
+import { WorkArea } from './WorkArea'
 
 export function WelcomeSection() {
 	const viewRef = useRef(null)

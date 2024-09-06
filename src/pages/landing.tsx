@@ -1,7 +1,7 @@
 import { DiscoverButton } from '@/components/DiscoverButton'
 import { Header } from '@/components/header'
-import { WelcomeSection } from '@/components/sections'
 import { ParallaxFace } from '@/components/sections/landing/ParallaxFace'
+import { WelcomeSection } from '@/components/sections/landing/WelcomeSection'
 import { WelcomeText } from '@/components/sections/landing/WelcomeText'
 
 export default function Landing({ isLandingUnlock, setIsLandingUnlock }) {
