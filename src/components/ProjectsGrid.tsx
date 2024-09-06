@@ -34,7 +34,7 @@ export const ProjectsGrid = ({ posts }) => {
 
 	if (posts.length < 4) {
 		return (
-			<div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+			<div className="grid grid-cols-1 sm:grid-cols-3 gap-8 ">
 				{posts.map((post) => (
 					<ProjectItem
 						key={post.Slug}

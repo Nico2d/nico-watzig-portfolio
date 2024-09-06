@@ -50,13 +50,16 @@ const Index = ({ posts = [] }) => {
 	return (
 		<>
 			<Header />
-			<Filter onClick={filterProjects} />
 
-			{filteredPosts.length > 0 ? (
-				<ProjectsGrid posts={filteredPosts} />
-			) : (
-				<p>There are no posts yet</p>
-			)}
+			<div className="container-md space-y-8 mt-48">
+				<Filter onClick={filterProjects} />
+
+				{filteredPosts.length > 0 ? (
+					<ProjectsGrid posts={filteredPosts} />
+				) : (
+					<p>There are no posts yet</p>
+				)}
+			</div>
 		</>
 	)
 }

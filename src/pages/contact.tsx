@@ -6,7 +6,7 @@ export default function Contact() {
 	return (
 		<div>
 			<Header />
-			<div>
+			<div className="container-md space-y-8 mt-60">
 				<h1 className="text-6xl bold mt-20 mb-8">Contact</h1>
 
 				<ContactIcons />

@@ -13,7 +13,7 @@ export const Header = () => {
 	const { pathname } = useRouter()
 
 	return (
-		<header className="absolute inset-x-0 w-full container-md space-y-8 z-50">
+		<header className="absolute inset-x-0 top-0 w-full container-md space-y-8 z-50">
 			<nav className="flex flex-1 flex-row justify-between items-center">
 				<ContactIcons size={24} />
 
