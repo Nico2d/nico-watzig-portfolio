@@ -5,30 +5,13 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				// "$A0153E" // darker
-
-				// primary: '#3186CE',
+				primary: '#FF204E',
 				primarydark: '#025091',
-				// background: '#232332',
 				background: '#232332',
 				landingUnlockBackground: '#121212',
-
-				// TESTS:
-				// primary: '#3186CE', //the blue
-				primary: '#FF204E', // neo-pink
-				// primary: '#00224d',
-				landingUnlockBackground: '#121212', // awsome background with neo-pink. Beutiful
-				// landingUnlockBackground: '#00224d',
 				landingUnlockPrimary: '#121212',
-				// landingLockLeftBackground: "#000000",
 				landingLockLeftBackground: '#db0035',
-
-				// landingLockRightBackground: '#232332',
 				landingLockRightBackground: '#aaaaaa',
-
-				// TEST
-				// landingLockLeftBackground: "#000000",
-				// landingUnlockPrimary: "#FE1919",
 
 				brand: {
 					light: '#FBF8F3',

@@ -1,8 +1,8 @@
-import { DiscoverButton } from "@/components/DiscoverButton"
-import { Header } from "@/components/header"
-import { WelcomeSection } from "@/components/sections"
-import { ParallaxFace } from "@/components/sections/landing/ParallaxFace"
-import { WelcomeText } from "@/components/sections/landing/WelcomeText"
+import { DiscoverButton } from '@/components/DiscoverButton'
+import { Header } from '@/components/header'
+import { WelcomeSection } from '@/components/sections'
+import { ParallaxFace } from '@/components/sections/landing/ParallaxFace'
+import { WelcomeText } from '@/components/sections/landing/WelcomeText'
 
 export default function Landing({ isLandingUnlock, setIsLandingUnlock }) {
 	return (
@@ -22,7 +22,7 @@ export default function Landing({ isLandingUnlock, setIsLandingUnlock }) {
 				onClick={() => {
 					setIsLandingUnlock(!isLandingUnlock)
 				}}
-				isLandingAnimating={isLandingUnlock}
+				isLandingUnlock={isLandingUnlock}
 			/>
 
 			{isLandingUnlock ? (
