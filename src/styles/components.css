@@ -43,9 +43,25 @@
 
 		content: '';
 		position: absolute;
-		-webkit-clip-path: polygon(0 0, 75% 0, 100% 100%, 0 100%);
-		clip-path: polygon(0 0, 75% 0, 100% 100%, 0 100%);
-		width: 150%;
-		height: 100%;
+	}
+
+	@media screen and (max-width: 1024px) {
+		.left-section::before {
+			-webkit-clip-path: polygon(0 39%, 100% 0, 100% 100%, 0% 100%);
+			clip-path: polygon(0 39%, 100% 0, 100% 100%, 0% 100%);
+			width: 100%;
+			height: 100%;
+			bottom: 0;
+			left: 0;
+		}
+	}
+
+	@media screen and (min-width: 1025px) {
+		.left-section::before {
+			-webkit-clip-path: polygon(0 0, 75% 0, 100% 100%, 0 100%);
+			clip-path: polygon(0 0, 75% 0, 100% 100%, 0 100%);
+			width: 150%;
+			height: 100%;
+		}
 	}
 }

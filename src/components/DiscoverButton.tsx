@@ -14,7 +14,6 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 		if (isLandingUnlock) {
 			clearInterval(animationInterval)
 		} else {
-			console.log('START ANIMATIONS')
 			setAnimationInterval(
 				setInterval(() => {
 					controls.start({
@@ -25,13 +24,18 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 				}, 7000)
 			)
 		}
+
+		return () => {
+			clearInterval(animationInterval)
+		}
 	}, [isLandingUnlock])
 
 	return (
-		<>
+		<div className="max-lg:hidden">
 			<motion.div
 				onClick={isLandingUnlock ? onClick : null}
-				className={`absolute h-[${size}px] z-20 bg-landingUnlockPrimary cursor-pointer ${
+				className={`
+					absolute h-[${size}px] z-20 bg-landingUnlockPrimary cursor-pointer ${
 					!isLandingUnlock && isAnimationPlaying
 						? 'invisible'
 						: 'visible'
@@ -56,9 +60,7 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 			<motion.div
 				onClick={onClick}
 				className={`absolute size-[80px] z-30 ${
-					isLandingUnlock
-						? 'bg-landingLockLeftBackground'
-						: 'bg-landingUnlockPrimary'
+					isLandingUnlock ? 'bg-primary' : 'bg-landingUnlockPrimary'
 				} cursor-pointer left-[100px] bottom-[100px]`}
 				animate={controls}
 				transition={{
@@ -88,8 +90,8 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 					},
 				}}
 			>
-				{isLandingUnlock ? <>I changed my mind</> : <>Give a chance</>}
+				{isLandingUnlock ? 'I changed my mind' : 'Give a chance'}
 			</motion.button>
-		</>
+		</div>
 	)
 }

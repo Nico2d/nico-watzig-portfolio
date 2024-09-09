@@ -1,13 +1,13 @@
 import { AboutSection, TechnologiesSection } from '@/components/sections'
+import LandingSection from '@/components/sections/landing/LandingSection'
 import { useState } from 'react'
-import Landing from './landing'
 
 export default function Index() {
 	const [isLandingUnlock, setIsLandingUnlock] = useState(false)
 
 	return (
 		<>
-			<Landing
+			<LandingSection
 				isLandingUnlock={isLandingUnlock}
 				setIsLandingUnlock={setIsLandingUnlock}
 			/>

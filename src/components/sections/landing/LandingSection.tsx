@@ -3,15 +3,19 @@ import { Header } from '@/components/header'
 import { ParallaxFace } from '@/components/sections/landing/ParallaxFace'
 import { WelcomeSection } from '@/components/sections/landing/WelcomeSection'
 import { WelcomeText } from '@/components/sections/landing/WelcomeText'
+import { useWindowSize } from '@/hooks/useWindowSize'
 
-export default function Landing({ isLandingUnlock, setIsLandingUnlock }) {
+export default function LandingSection({
+	isLandingUnlock,
+	setIsLandingUnlock,
+}) {
 	return (
 		<>
 			{isLandingUnlock ? <Header /> : null}
 
-			<div className="parallax-container h-screen flex flex-col flex-col-reverse lg:flex-row bg-landingLockRightBackground">
+			<div className="parallax-container h-screen flex flex-col-reverse lg:flex-row bg-landingLockRightBackground">
 				<div className="relative lg:w-[350px] h-1/4 lg:h-full bg-black left-section z-10">
-					<WelcomeText />
+					<WelcomeText className="max-lg:hidden" />
 				</div>
 
 				<ParallaxFace isLocked={isLandingUnlock} />
