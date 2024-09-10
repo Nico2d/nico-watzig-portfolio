@@ -6,7 +6,7 @@ module.exports = {
 		extend: {
 			colors: {
 				primary: '#FF204E',
-				primarydark: '#025091',
+				primaryDark: '#db0035',
 				background: '#232332',
 				landingUnlockBackground: '#121212',
 				landingUnlockPrimary: '#121212',

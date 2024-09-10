@@ -15,7 +15,7 @@
 	}
 
 	.btn {
-		@apply min-h-[40px] px-4 rounded-md bg-primary text-white inline-flex items-center justify-center whitespace-nowrap align-middle transition-colors duration-200 ease-linear relative hover:bg-primarydark focus:ring-1 focus:ring-blue-normal;
+		@apply min-h-[40px] px-4 rounded-md bg-primary text-white inline-flex items-center justify-center whitespace-nowrap align-middle transition-colors duration-200 ease-linear relative hover:bg-primaryDark focus:ring-1 focus:ring-blue-normal;
 	}
 
 	.heading-divider {

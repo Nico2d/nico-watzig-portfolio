@@ -30,7 +30,7 @@ export const ProjectButton = ({ viewRef, isInView }) => {
 					className="btn tracking-wide"
 					aria-label="Latest projects"
 				>
-					SEE MY PROJECTS
+					See my projects
 				</Link>
 			</div>
 		</>
