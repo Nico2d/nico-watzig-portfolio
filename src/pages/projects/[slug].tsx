@@ -1,11 +1,11 @@
+import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Header } from '../../components/header'
-import getPageData from '../../lib/notion/getPageData'
-import React, { useEffect } from 'react'
-import getBlogIndex from '../../lib/notion/getBlogIndex'
-import { getBlogLink } from '../../lib/blog-helpers'
-import { useNotionRender } from '../../hooks/useNotionRender'
-import { INotionProject } from '../../types/notion.types'
+import { Header } from '@/components/header'
+import { useNotionRender } from '@/hooks/useNotionRender'
+import { getBlogLink } from '@/lib/blog-helpers'
+import getBlogIndex from '@/lib/notion/getBlogIndex'
+import getPageData from '@/lib/notion/getPageData'
+import { INotionProject } from '@/types/notion.types'
 
 export async function getStaticProps({ params: { slug }, preview }) {
 	const postsTable = await getBlogIndex()
@@ -88,9 +88,9 @@ const RenderPost = ({ post, redirect, preview }) => {
 
 	return (
 		<>
-			<Header titlePre={post.Page} />
+			<Header />
 
-			<div className="space-y-3">
+			<div className="space-y-3 container-md mt-48 mb-20">
 				{renderPostHeader()}
 				{renderContent()}
 			</div>

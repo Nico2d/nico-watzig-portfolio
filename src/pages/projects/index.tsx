@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
-import getBlogIndex from '../../lib/notion/getBlogIndex'
-import { postIsPublished } from '../../lib/blog-helpers'
-import { Header } from '../../components/header'
-import { Filter } from '../../components/Filter'
-import { ProjectsGrid } from '../../components/ProjectsGrid'
+import { useState } from 'react'
+import { Header } from '@/components/header'
+import { postIsPublished } from '@/lib/blog-helpers'
+import getBlogIndex from '@/lib/notion/getBlogIndex'
+import { ProjectsGrid } from '@/components/ui/ProjectsGrid'
+import { Filter } from '@/components/ui/Filter'
 
 export async function getStaticProps({ preview }) {
 	const postsTable = await getBlogIndex()
@@ -24,7 +24,7 @@ export async function getStaticProps({ preview }) {
 			preview: preview || false,
 			posts,
 		},
-		revalidate	: 10,
+		revalidate: 10,
 	}
 }
 
@@ -49,14 +49,17 @@ const Index = ({ posts = [] }) => {
 
 	return (
 		<>
-			<Header titlePre="Projects" />
-			<Filter onClick={filterProjects} />
+			<Header />
 
-			{filteredPosts.length > 0 ? (
-				<ProjectsGrid posts={filteredPosts} />
-			) : (
-				<p>There are no posts yet</p>
-			)}
+			<div className="container-md space-y-8 mt-48 mb-20">
+				<Filter onClick={filterProjects} />
+
+				{filteredPosts.length > 0 ? (
+					<ProjectsGrid posts={filteredPosts} />
+				) : (
+					<p>There are no posts yet</p>
+				)}
+			</div>
 		</>
 	)
 }

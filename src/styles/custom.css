@@ -1,0 +1,25 @@
+.parallax-container {
+	overflow: hidden;
+}
+
+.parallax-layer {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+}
+
+.parallax-container img {
+	aspect-ratio: 1 / 1;
+	width: auto;
+	max-height: 100vh;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	filter: drop-shadow(2px 2px 2px #000);
+}
+
+.welcome-text {
+	font-weight: 500;
+	padding: 0 3rem;
+}
