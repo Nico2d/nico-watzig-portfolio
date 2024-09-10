@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Filter } from '@/components/Filter'
 import { Header } from '@/components/header'
-import { ProjectsGrid } from '@/components/ProjectsGrid'
 import { postIsPublished } from '@/lib/blog-helpers'
 import getBlogIndex from '@/lib/notion/getBlogIndex'
+import { ProjectsGrid } from '@/components/ui/ProjectsGrid'
+import { Filter } from '@/components/ui/Filter'
 
 export async function getStaticProps({ preview }) {
 	const postsTable = await getBlogIndex()

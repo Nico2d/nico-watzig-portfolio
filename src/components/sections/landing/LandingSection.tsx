@@ -1,9 +1,9 @@
-import { ContactIcons } from '@/components/ContactIcons'
-import { DiscoverButton } from '@/components/DiscoverButton'
 import { Header } from '@/components/header'
 import { ParallaxFace } from '@/components/sections/landing/ParallaxFace'
 import { WelcomeSection } from '@/components/sections/landing/WelcomeSection'
 import { WelcomeText } from '@/components/sections/landing/WelcomeText'
+import { ContactIcons } from '@/components/ui/ContactIcons'
+import { DiscoverButton } from '@/components/ui/DiscoverButton'
 import { useWindowSize } from '@/hooks/useWindowSize'
 
 export default function LandingSection({

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import ExtLink from './ext-link'
 import { useRouter } from 'next/router'
-import { ContactIcons } from './ContactIcons'
+import { ContactIcons } from './ui/ContactIcons'
 
 const navItems: { label: string; page?: string; link?: string }[] = [
 	{ label: 'Home', page: '/' },

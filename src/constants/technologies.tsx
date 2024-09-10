@@ -15,6 +15,7 @@ import {
 	SiGatsby,
 	SiWordpress,
 	SiFramer,
+	SiFigma,
 } from 'react-icons/si'
 import { TbBrandReactNative, TbBrandThreejs } from 'react-icons/tb'
 
@@ -71,4 +72,21 @@ export const TECHNOLOGIES = [
 			{ name: 'Framer ', icon: <SiFramer size={iconSize} /> },
 		],
 	},
+]
+
+export const FILTER_TECHNOLOGIES = [
+	{
+		id: 'all',
+		content: 'All',
+	},
+	{
+		id: 'react',
+		content: <FaReact size="20" />,
+	},
+	{
+		id: 'wordpress',
+		content: <SiWordpress size="20" />,
+	},
+	{ id: 'roku', content: <SiRoku size="20" /> },
+	{ id: 'design', content: <SiFigma size="20 " /> },
 ]

@@ -1,6 +1,6 @@
-import { ContactIcons } from '@/components/ContactIcons'
 import { Header } from '@/components/header'
 import Landscape from '@/components/svgs/landscape'
+import { ContactIcons } from '@/components/ui/ContactIcons'
 
 export default function Contact() {
 	return (

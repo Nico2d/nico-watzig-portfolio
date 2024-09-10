@@ -1,26 +1,7 @@
 import { useRef, useState } from 'react'
 import { LazyMotion, domAnimation, useInView } from 'framer-motion'
-import { FaReact } from 'react-icons/fa'
 import { FilterButton } from './FilterButton'
-import { GrWordpress } from 'react-icons/gr'
-import { SiRoku, SiFigma } from 'react-icons/si'
-
-const FILTER_TECHNOLOGIES = [
-	{
-		id: 'all',
-		content: 'All',
-	},
-	{
-		id: 'react',
-		content: <FaReact size="20" />,
-	},
-	{
-		id: 'wordpress',
-		content: <GrWordpress size="20" />,
-	},
-	{ id: 'roku', content: <SiRoku size="20" /> },
-	{ id: 'design', content: <SiFigma size="20 " /> },
-]
+import { FILTER_TECHNOLOGIES } from '@/constants/technologies'
 
 export function Filter({ onClick = (f) => f }) {
 	const animRef = useRef(null)
