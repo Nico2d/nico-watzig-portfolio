@@ -11,29 +11,34 @@ export default function LandingSection({
 	setIsLandingUnlock,
 }) {
 	const res = useWindowSize()
+	const isMobileResolution = res.width < 1024
 
 	return (
 		<>
 			{isLandingUnlock ? <Header /> : null}
 
 			<div className="parallax-container h-screen lg:flex lg:flex-row bg-landingLockRightBackground">
-				{res.width > 1024 ? (
+				{!isMobileResolution ? (
 					<div className="relative lg:w-[350px] h-1/4 lg:h-full left-section z-10">
 						<WelcomeText className="max-lg:hidden" />
 					</div>
 				) : null}
 
-				<ParallaxFace isLocked={isLandingUnlock} />
+				<ParallaxFace
+					isLocked={isLandingUnlock}
+				/>
 
-				{res.width < 1024 ? (
-					<div className="bottom-section text-white pt-28 pl-6">
-						<p className="text-base">Hi, I am</p>
-						<p className="text-3xl font-bold">Nico Wätzig</p>
-						<p className="text-xs font-extrabold tracking-widest">
-							Frontend Developer
-						</p>
+				{isMobileResolution ? (
+					<div className="bottom-section flex justify-between container-md items-center">
+						<div className="mt-[6vh]">
+							<p className="text-base">Hi, I am</p>
+							<p className="text-3xl font-bold">Nico Wätzig</p>
+							<p className="text-xs font-extrabold tracking-widest">
+								Frontend Developer
+							</p>
+						</div>
 
-						<ContactIcons className="absolute top-1/2 -translate-y-1/3 right-5 flex-col" />
+						<ContactIcons className="flex-col" />
 					</div>
 				) : null}
 			</div>

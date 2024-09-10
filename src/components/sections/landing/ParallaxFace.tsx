@@ -89,21 +89,33 @@ export const ParallaxFace = ({ isLocked = false }) => {
 				isLocked ? 'z-30' : 'right-section z-0'
 			} relative lg:w-3/4 h-3/4 lg:h-full`}
 		>
-			<ParallaxLayer transform={getTransform(5)}>
+			<ParallaxLayer
+				transform={
+					resolution.width < BREAK_POINT ? '' : getTransform(5)
+				}
+			>
 				<img
 					className={`aspect-square`}
 					src={face1.src}
 					alt="Layer 1"
 				/>
 			</ParallaxLayer>
-			<ParallaxLayer transform={getTransform(-60)}>
+			<ParallaxLayer
+				transform={
+					resolution.width < BREAK_POINT ? '' : getTransform(-60)
+				}
+			>
 				<img
 					className={`aspect-square`}
 					src={face2.src}
 					alt="Layer 2"
 				/>
 			</ParallaxLayer>
-			<ParallaxLayer transform={getTransform(40)}>
+			<ParallaxLayer
+				transform={
+					resolution.width < BREAK_POINT ? '' : getTransform(40)
+				}
+			>
 				<img
 					className={`aspect-square`}
 					src={face3.src}
