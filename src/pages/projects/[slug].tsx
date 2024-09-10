@@ -90,7 +90,7 @@ const RenderPost = ({ post, redirect, preview }) => {
 		<>
 			<Header />
 
-			<div className="space-y-3 container-md mt-60 mb-20">
+			<div className="space-y-3 container-md mt-48 mb-20">
 				{renderPostHeader()}
 				{renderContent()}
 			</div>
