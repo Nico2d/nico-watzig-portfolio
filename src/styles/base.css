@@ -1,7 +1,8 @@
 @tailwind base;
 @layer base {
 	body {
-		@apply bg-brand-light text-brand-dark dark:bg-brand-dark dark:text-brand-light;
+		/* @apply bg-brand-light text-brand-dark dark:bg-brand-dark dark:text-brand-light; */
+		@apply bg-background text-brand-light;
 	}
 
 	.custom-checkbox {
@@ -10,7 +11,7 @@
 	}
 
 	.custom-link {
-		@apply font-medium text-blue-600 dark:text-blue-500 hover:underline
+		@apply font-medium text-primary hover:underline
 	}
 
 	.custom-checkbox:checked::after {

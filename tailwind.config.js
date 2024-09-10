@@ -5,6 +5,14 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
+				primary: '#FF204E',
+				primaryDark: '#db0035',
+				background: '#232332',
+				landingUnlockBackground: '#121212',
+				landingUnlockPrimary: '#121212',
+				landingLockLeftBackground: '#db0035',
+				landingLockRightBackground: '#aaaaaa',
+
 				brand: {
 					light: '#FBF8F3',
 					dark: '#232332',
