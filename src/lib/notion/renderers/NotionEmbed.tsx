@@ -5,6 +5,10 @@ export const NotionEmbed = ({ block }: INotionComponent) => {
 	const { value } = block
 	const { type, id } = value
 
+	if (!value.format) {
+		return null
+	}
+
 	const {
 		block_width,
 		block_height,
@@ -40,7 +44,7 @@ export const NotionEmbed = ({ block }: INotionComponent) => {
 				maxWidth: '100%',
 		  }
 
-	let child = null
+	let child: null | JSX.Element = null
 
 	if (!isImage && !value.file_ids) {
 		// external resource use iframe

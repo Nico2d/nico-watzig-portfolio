@@ -1,12 +1,20 @@
 import Link from 'next/link'
 
+interface IProjectItemProps {
+	title: string
+	description: string
+	thumbnail: string
+	stack: string[]
+	slug?: string
+}
+
 export const ProjectItem = ({
 	title = '',
 	description = '',
 	thumbnail = '',
 	stack = [],
 	slug,
-}) => {
+}: IProjectItemProps) => {
 	if (slug) {
 		return (
 			<Link

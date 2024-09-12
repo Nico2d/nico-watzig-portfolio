@@ -13,7 +13,7 @@ export const NotionBookmark = ({ block }: INotionComponent) => {
 		bookmark_cover: null,
 	}
 
-	const link = rawLink[0][0]
+	const link = rawLink?.[0][0]
 	const title = rawTitle || getUrlDomain(link)
 
 	return (

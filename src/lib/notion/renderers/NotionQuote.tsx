@@ -13,4 +13,6 @@ export const NotionQuote = ({ block }: INotionComponent) => {
 			properties.title
 		)
 	}
+
+	return <></>
 }

@@ -10,5 +10,4 @@ export default {
 	a: ExtLink,
 
 	Counter: dynamic(() => import('./counter')),
-	Equation: dynamic(() => import('./equation')),
 }

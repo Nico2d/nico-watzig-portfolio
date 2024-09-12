@@ -60,17 +60,17 @@ export function TechnologiesSection() {
 									<div className="flex items-center flex-wrap gap-x-5 gap-y-8">
 										{tech.items.map((item) => (
 											<div
-												key={item.name}
+												key={item?.name}
 												className="group relative flex"
 											>
 												<span tabIndex={0} role="img">
-													{item.icon}
+													{item?.icon}
 												</span>
 												<span
 													className="group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity bg-gray-800 text-sm text-gray-100 rounded-md absolute left-1/2
     -translate-x-1/2 translate-y-full opacity-0 mt-3 mx-auto px-2 w-max"
 												>
-													{item.name}
+													{item?.name}
 												</span>
 											</div>
 										))}

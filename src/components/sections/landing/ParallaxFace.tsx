@@ -6,6 +6,7 @@ import { ParallaxLayer } from './ParallaxLayer'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { distanceFromFocusArea } from '@/utils/countDistance'
 import { DistanceType } from '@/types/types'
+import Image from 'next/image'
 
 export const ParallaxFace = ({ isLocked = false }) => {
 	const BREAK_POINT = 1024
@@ -94,10 +95,12 @@ export const ParallaxFace = ({ isLocked = false }) => {
 					resolution.width < BREAK_POINT ? '' : getTransform(5)
 				}
 			>
-				<img
+				<Image
 					className={`aspect-square`}
 					src={face1.src}
 					alt="Layer 1"
+					width={1350}
+					height={1350}
 				/>
 			</ParallaxLayer>
 			<ParallaxLayer
@@ -105,10 +108,12 @@ export const ParallaxFace = ({ isLocked = false }) => {
 					resolution.width < BREAK_POINT ? '' : getTransform(-60)
 				}
 			>
-				<img
+				<Image
 					className={`aspect-square`}
 					src={face2.src}
 					alt="Layer 2"
+					width={1350}
+					height={1350}
 				/>
 			</ParallaxLayer>
 			<ParallaxLayer
@@ -116,10 +121,12 @@ export const ParallaxFace = ({ isLocked = false }) => {
 					resolution.width < BREAK_POINT ? '' : getTransform(40)
 				}
 			>
-				<img
+				<Image
 					className={`aspect-square`}
 					src={face3.src}
 					alt="Layer 3"
+					width={1350}
+					height={1350}
 				/>
 			</ParallaxLayer>
 		</div>

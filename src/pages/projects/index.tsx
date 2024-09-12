@@ -1,42 +1,37 @@
 import { useState } from 'react'
 import { Header } from '@/components/header'
-import { postIsPublished } from '@/lib/blog-helpers'
-import getBlogIndex from '@/lib/notion/getBlogIndex'
 import { ProjectsGrid } from '@/components/ui/ProjectsGrid'
 import { Filter } from '@/components/ui/Filter'
+import { getProjects } from '@/lib/notion/getProjects'
+import Head from 'next/head'
+import openGraphImage from '@images/Opengraph-image.png'
+import { INotionProject } from '@/types/notion.types'
 
 export async function getStaticProps({ preview }) {
-	const postsTable = await getBlogIndex()
-
-	const posts: any[] = Object.keys(postsTable)
-		.map((slug) => {
-			const post = postsTable[slug]
-			if (!preview && !postIsPublished(post)) {
-				return null
-			}
-
-			return post
-		})
-		.filter(Boolean)
+	const posts: any[] = await getProjects()
 
 	return {
 		props: {
 			preview: preview || false,
 			posts,
 		},
-		revalidate	: 10,
+		revalidate: 10,
 	}
 }
 
-const Index = ({ posts = [] }) => {
-	const [filteredPosts, setFilteredPosts] = useState(posts)
+interface IIndexProps {
+	posts: INotionProject[]
+}
+
+const Index = ({ posts = [] }: IIndexProps) => {
+	const [filteredPosts, setFilteredPosts] = useState<INotionProject[]>(posts)
 
 	const filterProjects = (filter) => {
 		if (filter === 'all') {
 			setFilteredPosts(posts)
 		} else {
 			setFilteredPosts(
-				posts.filter((item) => {
+				posts.filter((item: INotionProject) => {
 					const technologies = item.Technology?.split(',') ?? []
 
 					return technologies
@@ -49,6 +44,21 @@ const Index = ({ posts = [] }) => {
 
 	return (
 		<>
+			<Head>
+				<title>Projects | Nico Wätzig</title>
+				<meta
+					name="description"
+					content="Welcome to my website, where you may discover information about me, the technologies and projects on which I work."
+					key="desc"
+				/>
+				<meta property="og:title" content="Projects | Nico Wätzig" />
+				<meta
+					property="og:description"
+					content="Welcome to my website, where you may discover information about me, the technologies and projects on which I work."
+				/>
+				<meta property="og:image" content={openGraphImage.src} />
+			</Head>
+
 			<Header />
 
 			<div className="container-md space-y-8 mt-48 mb-20">
