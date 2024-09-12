@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { LazyMotion, domAnimation, useInView } from 'framer-motion'
-import { TimeLine } from './TimeLine'
 import { HeadingDivider } from '../../HeadingDivider'
 import Link from 'next/link'
 

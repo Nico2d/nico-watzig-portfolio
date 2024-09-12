@@ -15,7 +15,7 @@ export default function LandingSection({
 
 	return (
 		<>
-			{isLandingUnlock ? <Header /> : null}
+			{isLandingUnlock && !isMobileResolution ? <Header /> : null}
 
 			<div className="parallax-container h-screen lg:flex lg:flex-row bg-landingLockRightBackground">
 				{!isMobileResolution ? (
@@ -25,7 +25,7 @@ export default function LandingSection({
 				) : null}
 
 				<ParallaxFace
-					isLocked={isLandingUnlock}
+					isLocked={isLandingUnlock && !isMobileResolution}
 				/>
 
 				{isMobileResolution ? (
@@ -51,7 +51,7 @@ export default function LandingSection({
 				isLandingUnlock={isLandingUnlock}
 			/>
 
-			{isLandingUnlock ? (
+			{isLandingUnlock && !isMobileResolution ? (
 				<div className="absolute top-1/2 -translate-y-1/2 left-[100px] z-40">
 					<WelcomeSection />
 				</div>

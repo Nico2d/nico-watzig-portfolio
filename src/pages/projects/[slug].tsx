@@ -6,6 +6,7 @@ import { getBlogLink } from '@/lib/blog-helpers'
 import getBlogIndex from '@/lib/notion/getBlogIndex'
 import getPageData from '@/lib/notion/getPageData'
 import { INotionProject } from '@/types/notion.types'
+import Head from 'next/head'
 
 export async function getStaticProps({ params: { slug }, preview }) {
 	const postsTable = await getBlogIndex()
@@ -60,7 +61,8 @@ const RenderPost = ({ post, redirect, preview }) => {
 				const script = document.createElement('script')
 				script.async = true
 				script.src = twitterSrc
-				document.querySelector('body').appendChild(script)
+
+				document.querySelector('body')?.appendChild(script)
 			}
 		}
 	}, [])
@@ -88,6 +90,17 @@ const RenderPost = ({ post, redirect, preview }) => {
 
 	return (
 		<>
+			<Head>
+				<title>{post.Name} | Nico Wätzig</title>
+				<meta name="description" content={post.Summary} key="desc" />
+				<meta
+					property="og:title"
+					content={`${post.Name} | Nico Wätzig`}
+				/>
+				<meta property="og:description" content={post.Summary} />
+				<meta property="og:image" content={post.Thumbnail} />
+			</Head>
+
 			<Header />
 
 			<div className="space-y-3 container-md mt-48 mb-20">

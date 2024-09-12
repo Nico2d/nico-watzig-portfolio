@@ -42,7 +42,7 @@ const isPointInFocusArea = (
 	focusArea: number[][],
 	point: number[]
 ): boolean => {
-	let prevCrossProduct = null
+	let prevCrossProduct: null | number = null
 
 	for (let i = 0; i < focusArea.length; i++) {
 		const p1 = focusArea[i]

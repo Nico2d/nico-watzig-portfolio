@@ -9,20 +9,20 @@ export const NotionList = ({ block, postId }: INotionList) => {
 	const { listCollection } = block.value
 
 	const ListType =
-		listCollection[0].value.type === 'bulleted_list' ? 'ul' : 'ol'
+		listCollection?.[0].value.type === 'bulleted_list' ? 'ul' : 'ol'
 
-	const listCollectionLevel1 = listCollection.filter(
+	const listCollectionLevel1 = listCollection?.filter(
 		(item) => item?.value?.parent_id === postId
 	)
 
 	return (
 		<ListType
-			key={listCollection[0].value.id + 'wrapperListType'}
+			key={listCollection?.[0].value.id + 'wrapperListType'}
 			className={`max-w-md ml-6 ${
 				ListType === 'ul' ? 'list-disc' : 'list-decimal'
 			}`}
 		>
-			{listCollectionLevel1.map((block, idx: number) => (
+			{listCollectionLevel1?.map((block, idx: number) => (
 				<BlockList
 					key={idx}
 					block={block}

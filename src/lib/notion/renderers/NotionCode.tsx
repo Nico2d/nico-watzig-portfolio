@@ -7,7 +7,7 @@ export const NotionCode = ({ block }: INotionComponent) => {
 
 	if (properties.title) {
 		const content = properties.title[0][0]
-		const language = properties.language[0][0]
+		const language = properties.language?.[0][0] ?? ''
 
 		return (
 			<div className="code-snipped" key={value.id}>
@@ -21,4 +21,6 @@ export const NotionCode = ({ block }: INotionComponent) => {
 			</div>
 		)
 	}
+
+	return <></>
 }
