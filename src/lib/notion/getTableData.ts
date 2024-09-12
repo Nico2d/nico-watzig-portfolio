@@ -1,19 +1,20 @@
 import { values } from './rpc'
 import queryCollection from './queryCollection'
-import { IBlock } from '../../types/notion.types'
+import { IBlock, INotionProject } from '../../types/notion.types'
 
 export default async function loadTable(
 	collection_id: string,
 	view_id: string,
 	isPosts = false
-) {
+): Promise<INotionProject[]> {
 	let table: any = {}
 	const collectionData = await queryCollection({
 		collectionId: collection_id,
 		collectionViewId: view_id,
 	})
 	const entries = values(collectionData.recordMap.block).filter(
-		(block: IBlock) => block.value && block.value.parent_id === collection_id
+		(block: IBlock) =>
+			block.value && block.value.parent_id === collection_id
 	)
 
 	const colId = Object.keys(collectionData.recordMap.collection)[0]
@@ -98,6 +99,8 @@ export default async function loadTable(
 		const key = row.id
 		if (isPosts && !key) continue
 
+		row['lastModified'] = entry.value.last_edited_time
+
 		if (key) {
 			table[key] = row
 		} else {
@@ -105,5 +108,6 @@ export default async function loadTable(
 			table.push(row)
 		}
 	}
+
 	return table
 }

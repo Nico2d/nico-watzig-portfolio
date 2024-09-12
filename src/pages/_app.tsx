@@ -7,10 +7,6 @@ import Head from 'next/head'
 export default function MyApp({ Component, pageProps }) {
 	return (
 		<>
-			<Head>
-				<title>Nico Wätzig - Portfolio</title>
-			</Head>
-
 			<ThemeContext>
 				<Component {...pageProps} />
 				<Footer />

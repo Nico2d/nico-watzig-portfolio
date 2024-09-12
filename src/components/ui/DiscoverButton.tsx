@@ -8,11 +8,16 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 	const resolution = useWindowSize()
 	const controls = useAnimation()
 	const [isAnimationPlaying, setIsAnimationPlaying] = useState(false)
-	const [animationInterval, setAnimationInterval] = useState(null)
+	const [
+		animationInterval,
+		setAnimationInterval,
+	] = useState<NodeJS.Timeout | null>(null)
 
 	useEffect(() => {
 		if (isLandingUnlock) {
-			clearInterval(animationInterval)
+			if (animationInterval) {
+				clearInterval(animationInterval)
+			}
 		} else {
 			setAnimationInterval(
 				setInterval(() => {
@@ -26,7 +31,9 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 		}
 
 		return () => {
-			clearInterval(animationInterval)
+			if (animationInterval) {
+				clearInterval(animationInterval)
+			}
 		}
 	}, [isLandingUnlock])
 

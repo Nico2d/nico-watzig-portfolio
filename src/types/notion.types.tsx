@@ -20,6 +20,7 @@ export interface INotionProject {
 	Status: string
 	Summary: string
 	content: IBlock[]
+	lastModified: number
 }
 export interface IBlock {
 	role?: string

@@ -52,7 +52,7 @@ export const NotionText = ({ block, tag = 'span' }: INotionText) => {
 
 	return (
 		<div>
-			{subBlocks.map((subBlockTitle, idx) => {
+			{subBlocks?.map((subBlockTitle, idx) => {
 				let [text, attributes] = subBlockTitle
 
 				return (

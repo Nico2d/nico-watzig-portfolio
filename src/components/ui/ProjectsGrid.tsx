@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react'
 import { ProjectItem } from './ProjectItem'
 import { getNotionPrivImage } from '@/lib/notion/utils'
+import { INotionProject } from '@/types/notion.types'
 
-export const ProjectsGrid = ({ posts }) => {
+interface IProjectsGridProps {
+	posts: INotionProject[]
+}
+
+export const ProjectsGrid = ({ posts }: IProjectsGridProps) => {
 	const [columnsData, setColumnsData] = useState([posts])
 
 	useEffect(() => {
@@ -77,8 +82,11 @@ export const ProjectsGrid = ({ posts }) => {
 	)
 }
 
-function splitListIntoColumns(list, numColumns) {
-	const columns = []
+function splitListIntoColumns(
+	list: INotionProject[],
+	numColumns: number
+): INotionProject[][] {
+	const columns: INotionProject[][] = []
 	for (let i = 0; i < numColumns; i++) {
 		columns.push([])
 	}

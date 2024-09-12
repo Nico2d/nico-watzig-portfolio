@@ -13,7 +13,7 @@ export const NotionCheckbox = ({ block }: INotionComponent) => {
 					readOnly
 					checked={isChecked}
 				/>
-				<span className="text-gray-300">{properties?.title[0][0]}</span>
+				<span className="text-gray-300">{properties?.title?.[0][0]}</span>
 			</label>
 		</div>
 	)

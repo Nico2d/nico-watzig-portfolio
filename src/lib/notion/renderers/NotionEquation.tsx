@@ -1,4 +1,3 @@
-import components from '../../../components/dynamic'
 import { INotionComponent } from '../../../types/notion.types'
 
 export const NotionEquation = ({ block }: INotionComponent) => {
@@ -7,10 +6,8 @@ export const NotionEquation = ({ block }: INotionComponent) => {
 
 	if (properties && properties.title) {
 		const content = properties.title[0][0]
-		return (
-			<components.Equation key={id} displayMode={true}>
-				{content}
-			</components.Equation>
-		)
+		return <span key={id}>{content}</span>
 	}
+
+	return <></>
 }

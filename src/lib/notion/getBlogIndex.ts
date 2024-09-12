@@ -28,8 +28,6 @@ export default async function getBlogIndex(previews = true) {
 	return postsTable
 }
 
-// refactor:
-
 const BlockType = {
 	CollectionViewPage: 'collection_view_page',
 	CollectionView: 'collection_view',

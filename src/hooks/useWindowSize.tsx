@@ -1,14 +1,19 @@
 import { useEffect, useState } from 'react'
 
+type resolutionType = {
+	width: number
+	height: number
+}
+
 export const useWindowSize = () => {
-	const [windowSize, setWindowSize] = useState({
-		width: undefined,
-		height: undefined,
+	const [resolution, setResolution] = useState<resolutionType>({
+		width: 0,
+		height: 0,
 	})
 
 	useEffect(() => {
 		function handleResize() {
-			setWindowSize({
+			setResolution({
 				width: window.innerWidth,
 				height: window.innerHeight,
 			})
@@ -21,5 +26,5 @@ export const useWindowSize = () => {
 		return () => window.removeEventListener('resize', handleResize)
 	}, [])
 
-	return windowSize
+	return resolution
 }

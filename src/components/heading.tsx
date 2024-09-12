@@ -1,30 +1,31 @@
 import Link from 'next/link'
 
-const collectText = (el, acc = []) => {
-  if (el) {
-    if (typeof el === 'string') acc.push(el)
-    if (Array.isArray(el)) el.map((item) => collectText(item, acc))
-    if (typeof el === 'object') collectText(el.props && el.props.children, acc)
-  }
-  return acc.join('').trim()
+const collectText = (el: any, acc: any[] = []) => {
+	if (el) {
+		if (typeof el === 'string') acc.push(el)
+		if (Array.isArray(el)) el.map((item) => collectText(item, acc))
+		if (typeof el === 'object')
+			collectText(el.props && el.props.children, acc)
+	}
+	return acc.join('').trim()
 }
 
 const Heading = ({ children: component, id }: { children: any; id?: any }) => {
-  const children = component.props.children || ''
-  let text = children
+	const children = component.props.children || ''
+	let text = children
 
-  if (null == id) {
-    id = collectText(text)
-      .toLowerCase()
-      .replace(/\s/g, '-')
-      .replace(/[?!:]/g, '')
-  }
+	if (null == id) {
+		id = collectText(text)
+			.toLowerCase()
+			.replace(/\s/g, '-')
+			.replace(/[?!:]/g, '')
+	}
 
-  return (
-    <Link href={`#${id}`} id={id} style={{ color: 'inherit' }}>
-      {component}
-    </Link>
-  )
+	return (
+		<Link href={`#${id}`} id={id} style={{ color: 'inherit' }}>
+			{component}
+		</Link>
+	)
 }
 
 export default Heading
