@@ -1,8 +1,7 @@
 import Footer from '@/components/footer'
 import { ThemeContext } from '@/context/themeContext'
 import '../styles/globals.css'
-import { SpeedInsights } from '@vercel/speed-insights/next'
-import Head from 'next/head'
+import { GoogleTagManager } from '@next/third-parties/google'
 
 export default function MyApp({ Component, pageProps }) {
 	return (
@@ -10,8 +9,9 @@ export default function MyApp({ Component, pageProps }) {
 			<ThemeContext>
 				<Component {...pageProps} />
 				<Footer />
-				<SpeedInsights />
 			</ThemeContext>
+			
+			<GoogleTagManager gtmId={"G-FJY7MTPG18"}/>
 		</>
 	)
 }
