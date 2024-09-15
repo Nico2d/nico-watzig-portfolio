@@ -6,11 +6,6 @@ class MyDocument extends Document {
 		return (
 			<Html lang="en">
 				<Head>
-					<meta
-						name="description"
-						content="Nico Wätzig's Portfolio webpage. Check out my history and the projects and technologies I've worked with."
-					/>
-					<meta name="og:title" content="Nico Wätzig Portfolio" />
 					<Script
 						id="gtm"
 						strategy="afterInteractive"
@@ -24,17 +19,33 @@ class MyDocument extends Document {
 				`,
 						}}
 					></Script>
+					<meta
+						name="description"
+						content="Nico Wätzig's Portfolio webpage. Check out my history and the projects and technologies I've worked with."
+					/>
+					<meta name="og:title" content="Nico Wätzig Portfolio" />
+					<meta
+						name="google-site-verification"
+						content="9VA0PUJUy0c5fHKe8w_Hc9l7lCzkoSXISPeDb0oCAIY"
+					/>
 				</Head>
 
 				<body>
-					<Main />
-					<NextScript />
-
-					<noscript
+					<Script
+						id="gtm"
+						strategy="afterInteractive"
 						dangerouslySetInnerHTML={{
-							__html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KPLMX2XJ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>`,
+							__html: `
+									(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+								new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+								j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+								'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+								})(window,document,'script','dataLayer','GTM-KPLMX2XJ');
+				`,
 						}}
-					/>
+					></Script>
+					<Main />
+					<NextScript />x
 				</body>
 			</Html>
 		)
