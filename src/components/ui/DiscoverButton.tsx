@@ -38,11 +38,11 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 	}, [isLandingUnlock])
 
 	return (
-		<div className="max-lg:hidden">
+		<div id="discovery-container" className="max-lg:hidden">
 			<motion.div
+				id="button-action-discovery-3"
 				onClick={isLandingUnlock ? onClick : null}
-				className={`
-					absolute h-[${size}px] z-20 bg-landingUnlockPrimary cursor-pointer ${
+				className={`absolute h-[${size}px] z-20 bg-landingUnlockPrimary cursor-pointer ${
 					!isLandingUnlock && isAnimationPlaying
 						? 'invisible'
 						: 'visible'
@@ -65,6 +65,7 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 			></motion.div>
 
 			<motion.div
+				id="button-action-discovery-2"
 				onClick={onClick}
 				className={`absolute size-[80px] z-30 ${
 					isLandingUnlock ? 'bg-primary' : 'bg-landingUnlockPrimary'
@@ -84,6 +85,7 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 			></motion.div>
 
 			<motion.button
+				id="button-action-discovery-1"
 				onClick={onClick}
 				className={`absolute pl-[30px] z-30 text-2xl whitespace-nowrap h-[${size}px] bottom-[120px] left-[100px] right`}
 				variants={{
