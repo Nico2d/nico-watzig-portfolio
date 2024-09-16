@@ -45,7 +45,7 @@ class MyDocument extends Document {
 						}}
 					></Script>
 					<Main />
-					<NextScript />x
+					<NextScript />
 				</body>
 			</Html>
 		)
