@@ -1,4 +1,4 @@
-# Portfolio Project with Next.js and Vercel
+# Portfolio Project with Next.js and Notion
 
 This project is a personal portfolio website built using Next.js and deployed on Vercel. It integrates with Notion to fetch data and convert it into projects displayed on the website.
 
