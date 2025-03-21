@@ -96,7 +96,7 @@ export const ParallaxFace = ({ isLocked = false }) => {
 				}
 			>
 				<Image
-					className={`aspect-square`}
+					className={`parallax-image`}
 					src={face1.src}
 					alt="Layer 1"
 					width={1350}
@@ -109,7 +109,7 @@ export const ParallaxFace = ({ isLocked = false }) => {
 				}
 			>
 				<Image
-					className={`aspect-square`}
+					className={`parallax-image`}
 					src={face2.src}
 					alt="Layer 2"
 					width={1350}
@@ -122,7 +122,7 @@ export const ParallaxFace = ({ isLocked = false }) => {
 				}
 			>
 				<Image
-					className={`aspect-square`}
+					className={`parallax-image`}
 					src={face3.src}
 					alt="Layer 3"
 					width={1350}
