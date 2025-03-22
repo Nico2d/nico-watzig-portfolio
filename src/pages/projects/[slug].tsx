@@ -88,22 +88,21 @@ const RenderPost = ({ post, redirect, preview }) => {
 		)
 	}
 
+	const title = `${post.Name} | Nico Wätzig `
+
 	return (
 		<>
 			<Head>
-				<title>{`Nico Wätzig | ${post.Name}`}</title>
+				<title>{title}</title>
 				<meta name="description" content={post.Summary} key="desc" />
-				<meta
-					property="og:title"
-					content={`Nico Wätzig | ${post.Name}`}
-				/>
+				<meta property="og:title" content={title} />
 				<meta property="og:description" content={post.Summary} />
 				<meta property="og:image" content={post.Thumbnail} />
 			</Head>
 
 			<Header />
 
-			<div className="space-y-3 container-md mt-48 mb-20">
+			<div className="space-y-3 container-md mt-12 lg:mt-48 mb-20">
 				<NotionHeaders />
 				<NotionContent />
 			</div>
