@@ -61,7 +61,7 @@ const Index = ({ posts = [] }: IIndexProps) => {
 
 			<Header />
 
-			<div className="container-md space-y-8 mt-48 mb-20">
+			<div className="container-md space-y-8 mt-24 lg:mt-48 mb-20">
 				<Filter onClick={filterProjects} />
 
 				{filteredPosts.length > 0 ? (
