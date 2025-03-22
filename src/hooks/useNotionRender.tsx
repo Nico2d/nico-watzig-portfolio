@@ -28,7 +28,7 @@ export interface pageContent {
 export const useNotionRender = (post: pageContent) => {
 	const LIST_TYPES = new Set(['bulleted_list', 'numbered_list'])
 
-	const renderPostHeader = () => {
+	const NotionHeaders = () => {
 		return (
 			<>
 				<h1>{post.Page || ''}</h1>
@@ -46,87 +46,106 @@ export const useNotionRender = (post: pageContent) => {
 		return LIST_TYPES.has(block.value.type)
 	}
 
-	const switchRender = (block: IBlock, idx: number) => {
+	const switchRender = (block: IBlock): JSX.Element | null => {
+		const keyValue = block.value.id
+
 		switch (block.value.type) {
 			case 'page':
+				return null
 			case 'divider':
-				return <NotionDivider key={idx} />
+				return <NotionDivider key={keyValue} />
 
 			case 'text':
-				return <NotionText key={idx} block={block} />
+				return <NotionText key={keyValue} block={block} />
 
 			case 'image':
-				return <NotionImage key={idx} block={block} />
+				return <NotionImage key={keyValue} block={block} />
 
 			case 'video':
 				break
 
 			case 'embed':
-				return <NotionEmbed key={idx} block={block} />
+				return <NotionEmbed key={keyValue} block={block} />
 
 			case 'header':
-				return <NotionText key={idx} block={block} tag="h2" />
+				return <NotionText key={keyValue} block={block} tag="h2" />
 
 			case 'sub_header':
-				return <NotionText key={idx} block={block} tag="h3" />
+				return <NotionText key={keyValue} block={block} tag="h3" />
 
 			case 'sub_sub_header':
-				return <NotionText key={idx} block={block} tag="h4" />
+				return <NotionText key={keyValue} block={block} tag="h4" />
 
 			case 'bookmark':
-				return <NotionBookmark key={idx} block={block} />
+				return <NotionBookmark key={keyValue} block={block} />
 
 			case 'code':
-				return <NotionCode key={idx} block={block} />
+				return <NotionCode key={keyValue} block={block} />
 
 			case 'quote':
-				return <NotionQuote key={idx} block={block} />
+				return <NotionQuote key={keyValue} block={block} />
 
 			case 'callout':
-				return <NotionCallout key={idx} block={block} />
+				return <NotionCallout key={keyValue} block={block} />
 
 			case 'tweet':
-				return <NotionTweet key={idx} block={block} />
+				return <NotionTweet key={keyValue} block={block} />
 
 			case 'equation':
-				return <NotionEquation key={idx} block={block} />
+				return <NotionEquation key={keyValue} block={block} />
 
 			case 'bulleted_list':
-				return <NotionList2 key={idx} block={block} postId={post.id} />
+				return (
+					<NotionList2
+						key={keyValue}
+						block={block}
+						postId={post.id}
+					/>
+				)
 
 			case 'numbered_list':
-				return <NotionList2 key={idx} block={block} postId={post.id} />
+				return (
+					<NotionList2
+						key={keyValue}
+						block={block}
+						postId={post.id}
+					/>
+				)
 
 			case 'to_do':
-				return <NotionCheckbox key={idx} block={block} />
+				return <NotionCheckbox key={keyValue} block={block} />
 
 			case 'column_list':
-				return <NotionColumnList key={idx} block={block} />
+				return <NotionColumnList key={keyValue} block={block} />
 
 			default:
 				console.log('unknown type', block.value.type)
-				break
+				return null
 		}
+
+		return null
 	}
 
-	const renderContent = () => {
+	const NotionContent = () => {
 		if (!post.content || post.content.length === 0) {
 			return <p>This post has no content</p>
 		}
 
 		const contentBlocks = extractContent(post.content, post.id)
 
-		return contentBlocks.map((block: IBlock, idx) =>
-			switchRender(block, idx)
+		return (
+			<div>
+				{contentBlocks.map((block: IBlock) => switchRender(block))}
+			</div>
 		)
 	}
 
 	return {
-		renderPostHeader,
+		NotionHeaders,
+		NotionContent,
 		renderList: NotionList,
 		isList,
 		switchRender,
-		renderContent,
 	}
 }
 
@@ -144,13 +163,18 @@ const extractContent = (blocksCollection: IBlock[], postId) => {
 	}
 
 	return blocksCollection
-		.filter((block) => block.value.parent_id === postId)
+		.filter((block) => block?.value?.parent_id === postId)
 		.map((block) => extractContentByBlock(block))
 }
 
 const convertBlocksArrayToObject = (blocksCollection) => {
 	return blocksCollection.reduce((accumulator, currentValue) => {
-		accumulator[currentValue.value.id] = currentValue
+		const blockId = currentValue?.value?.id
+
+		if (blockId) {
+			accumulator[blockId] = currentValue
+		}
+
 		return accumulator
 	}, {})
 }

@@ -50,7 +50,7 @@ export async function getStaticPaths() {
 const RenderPost = ({ post, redirect, preview }) => {
 	const router = useRouter()
 
-	const { renderPostHeader, renderContent } = useNotionRender(post)
+	const { NotionContent, NotionHeaders } = useNotionRender(post)
 
 	useEffect(() => {
 		const twitterSrc = 'https://platform.twitter.com/widgets.js'
@@ -91,11 +91,11 @@ const RenderPost = ({ post, redirect, preview }) => {
 	return (
 		<>
 			<Head>
-				<title>{post.Name} | Nico Wätzig</title>
+				<title>{`Nico Wätzig | ${post.Name}`}</title>
 				<meta name="description" content={post.Summary} key="desc" />
 				<meta
 					property="og:title"
-					content={`${post.Name} | Nico Wätzig`}
+					content={`Nico Wätzig | ${post.Name}`}
 				/>
 				<meta property="og:description" content={post.Summary} />
 				<meta property="og:image" content={post.Thumbnail} />
@@ -104,8 +104,8 @@ const RenderPost = ({ post, redirect, preview }) => {
 			<Header />
 
 			<div className="space-y-3 container-md mt-48 mb-20">
-				{renderPostHeader()}
-				{renderContent()}
+				<NotionHeaders />
+				<NotionContent />
 			</div>
 		</>
 	)
