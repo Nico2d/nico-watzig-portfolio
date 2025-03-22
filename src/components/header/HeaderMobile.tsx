@@ -21,7 +21,6 @@ export const HeaderMobile = ({ navItems, pathname }: HeaderMobileProps) => {
 			document.body.classList.remove('overflow-hidden')
 		}
 
-		// Cleanup przy odmontowaniu
 		return () => document.body.classList.remove('overflow-hidden')
 	}, [isMobileMenuOpen])
 
