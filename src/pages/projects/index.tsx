@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Header } from '@/components/header'
+import { Header } from '@/components/header/Header'
 import { ProjectsGrid } from '@/components/ui/ProjectsGrid'
 import { Filter } from '@/components/ui/Filter'
 import { getProjects } from '@/lib/notion/getProjects'
@@ -61,7 +61,7 @@ const Index = ({ posts = [] }: IIndexProps) => {
 
 			<Header />
 
-			<div className="container-md space-y-8 mt-48 mb-20">
+			<div className="container-md space-y-8 mt-24 lg:mt-48 mb-20">
 				<Filter onClick={filterProjects} />
 
 				{filteredPosts.length > 0 ? (

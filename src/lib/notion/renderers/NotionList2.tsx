@@ -22,7 +22,7 @@ export const NotionList2 = ({ block, postId }: INotionList) => {
 			}`}
 		>
 			{title && <li>{title}</li>}
-			{contentBlock.map((block, idx) => switchRender(block, idx))}
+			{contentBlock.map((block) => switchRender(block))}
 		</ListType>
 	)
 }

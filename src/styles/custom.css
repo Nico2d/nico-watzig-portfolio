@@ -1,7 +1,3 @@
-.parallax-container {
-	overflow: hidden;
-}
-
 .parallax-layer {
 	position: absolute;
 	width: 100%;
@@ -9,7 +5,7 @@
 	z-index: 10;
 }
 
-.parallax-container img {
+.parallax-image {
 	aspect-ratio: 1 / 1;
 	width: auto;
 	max-height: 100vh;
