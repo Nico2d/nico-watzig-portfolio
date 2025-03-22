@@ -11,11 +11,11 @@ export function AboutSection() {
 		<LazyMotion features={domAnimation}>
 			<section id="about" className="section">
 				<HeadingDivider title="About me" />
-				<div className="pt-10 max-w-5xl flex flex-col gap-3">
+				<div className="pt-10 max-w-5xl mx-auto flex flex-col gap-3">
 					<div
 						tabIndex={0}
 						ref={ref}
-						className="text-xl font-light leading-relaxed space-y-8"
+						className="text-base text-justify font-light leading-relaxed space-y-8"
 						style={{
 							transform: isInView ? 'none' : 'translateX(-200px)',
 							opacity: isInView ? 1 : 0,
@@ -31,9 +31,9 @@ export function AboutSection() {
 							Axabee, where I had my first exposure to React and
 							WordPress. During this internship, I worked in a
 							team of junior developers to create a{' '}
-							<StyledLink project="axabee">
+							<ProjectLink project="axabee">
 								company website
-							</StyledLink>{' '}
+							</ProjectLink>{' '}
 							using JAMstack principles, resulting in a highly
 							SEO-optimized static site.
 						</p>
@@ -54,9 +54,9 @@ export function AboutSection() {
 								</li>
 								<li>
 									Creating an{' '}
-									<StyledLink project="inteligentne-reklamy">
+									<ProjectLink project="inteligentne-reklamy">
 										interactive map
-									</StyledLink>{' '}
+									</ProjectLink>{' '}
 									for a local advertising company, allowing
 									users to add advertising spots to their cart
 									and plan their campaigns, complete with
@@ -64,9 +64,9 @@ export function AboutSection() {
 								</li>
 								<li>
 									Building a{' '}
-									<StyledLink project="prime-garage">
+									<ProjectLink project="prime-garage">
 										garage designer tool
-									</StyledLink>{' '}
+									</ProjectLink>{' '}
 									that provides real-time updates and pricing
 									based on client specifications.
 								</li>
@@ -78,17 +78,20 @@ export function AboutSection() {
 							worked on large-scale projects such as Better Media
 							Suite (BMS), a comprehensive service available on
 							all platforms. My contributions included{' '}
-							<StyledLink project="the-better">web</StyledLink>{' '}
-							and <StyledLink project="bms-roku">Roku</StyledLink>{' '}
+							<ProjectLink project="the-better">web</ProjectLink>{' '}
+							and{' '}
+							<ProjectLink project="bms-roku">Roku</ProjectLink>{' '}
 							platform development, where I honed my skills in
 							application architecture and OTT platforms. I also
 							played a significant role in maintaining{' '}
-							<StyledLink project="siriusxm">SiriusXM</StyledLink>
+							<ProjectLink project="siriusxm">
+								SiriusXM
+							</ProjectLink>
 							,{' '}
-							<StyledLink project="disc-golf-network">
+							<ProjectLink project="disc-golf-network">
 								Disc Golf Network
-							</StyledLink>
-							, <StyledLink project="fanmio">Fanmio</StyledLink>{' '}
+							</ProjectLink>
+							, <ProjectLink project="fanmio">Fanmio</ProjectLink>{' '}
 							and PlayKids+.
 						</p>
 						<p>
@@ -107,7 +110,7 @@ export function AboutSection() {
 	)
 }
 
-const StyledLink = ({ project, children }) => {
+const ProjectLink = ({ project, children }) => {
 	return (
 		<Link className="custom-link" href={`/projects/${project}`}>
 			{children}
