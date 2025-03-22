@@ -3,13 +3,11 @@ import face1 from '@images/face/LandingFace-part1.png'
 import face2 from '@images/face/LandingFace-part2.png'
 import face3 from '@images/face/LandingFace-part3.png'
 import { ParallaxLayer } from './ParallaxLayer'
-import { useWindowSize } from '@/hooks/useWindowSize'
 import { distanceFromFocusArea } from '@/utils/countDistance'
 import { DistanceType } from '@/types/types'
 import Image from 'next/image'
 
 export const ParallaxFace = ({ isLocked = false }) => {
-	const BREAK_POINT = 1024
 	const FOCUS_POINT_OFFSET = 100
 	const FOCUS_AREA = 80
 
@@ -18,14 +16,15 @@ export const ParallaxFace = ({ isLocked = false }) => {
 		distanceX: 0,
 		distanceY: 0,
 	})
-	const resolution = useWindowSize()
-
+	const [isAnimating, setIsAnimating] = useState(false)
 	const [focusArea, setFocusArea] = useState([
 		[0, 0],
 		[0, 0],
 		[0, 0],
 		[0, 0],
 	])
+
+	const [isParallaxBlocked, setIsParallaxBlocked] = useState(false)
 
 	useEffect(() => {
 		setFocusArea([
@@ -45,12 +44,16 @@ export const ParallaxFace = ({ isLocked = false }) => {
 		])
 	}, [])
 
+	const handleParallax = (x: number, y: number) => {
+		const distance = distanceFromFocusArea(focusArea, [x, y])
+		setDistance(distance)
+	}
+
 	useEffect(() => {
 		const handleMouseMove = (e) => {
 			const { pageX, pageY } = e
 
-			const distance = distanceFromFocusArea(focusArea, [pageX, pageY])
-			setDistance(distance)
+			handleParallax(pageX, pageY)
 		}
 
 		const subscribeMovement = () => {
@@ -88,12 +91,24 @@ export const ParallaxFace = ({ isLocked = false }) => {
 		<div
 			className={`${
 				isLocked ? 'z-30' : 'right-section z-0'
-			} relative lg:w-3/4 h-3/4 lg:h-full`}
+			} relative lg:w-3/4 h-3/4 lg:h-full transition-transform`}
+			onTouchMove={(e) => {
+				setIsAnimating(false)
+				setIsParallaxBlocked(false)
+
+				const [x, y] = [e.touches[0].clientX, e.touches[0].clientY]
+
+				handleParallax(x, y)
+			}}
+			onTouchEnd={(e) => {
+				setIsAnimating(true)
+				setIsParallaxBlocked(true)
+			}}
+			style={{ touchAction: 'none' }}
 		>
 			<ParallaxLayer
-				transform={
-					resolution.width < BREAK_POINT ? '' : getTransform(5)
-				}
+				transform={isParallaxBlocked ? '' : getTransform(5)}
+				isAnimating={isAnimating}
 			>
 				<Image
 					className={`parallax-image`}
@@ -104,9 +119,8 @@ export const ParallaxFace = ({ isLocked = false }) => {
 				/>
 			</ParallaxLayer>
 			<ParallaxLayer
-				transform={
-					resolution.width < BREAK_POINT ? '' : getTransform(-60)
-				}
+				transform={isParallaxBlocked ? '' : getTransform(-60)}
+				isAnimating={isAnimating}
 			>
 				<Image
 					className={`parallax-image`}
@@ -117,9 +131,8 @@ export const ParallaxFace = ({ isLocked = false }) => {
 				/>
 			</ParallaxLayer>
 			<ParallaxLayer
-				transform={
-					resolution.width < BREAK_POINT ? '' : getTransform(40)
-				}
+				transform={isParallaxBlocked ? '' : getTransform(40)}
+				isAnimating={isAnimating}
 			>
 				<Image
 					className={`parallax-image`}

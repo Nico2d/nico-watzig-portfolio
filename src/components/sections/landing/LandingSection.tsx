@@ -24,9 +24,7 @@ export default function LandingSection({
 					</div>
 				) : null}
 
-				<ParallaxFace
-					isLocked={isLandingUnlock && !isMobileResolution}
-				/>
+				<ParallaxFace isLocked={isLandingUnlock} />
 
 				<MobileLandingInfo />
 			</div>

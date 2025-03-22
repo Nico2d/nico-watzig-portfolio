@@ -99,8 +99,8 @@ const calculateDistanceToLine = (
 
 	return {
 		distance: calculateDistance(pointX, pointY, closestX, closestY),
-		distanceX: Math.abs(pointX - closestX),
-		distanceY: Math.abs(pointY - closestY),
+		distanceX: pointX - closestX,
+		distanceY: pointY - closestY,
 	}
 }
 

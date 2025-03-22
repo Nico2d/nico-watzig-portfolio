@@ -1,6 +1,6 @@
 export const MobileLandingInfo = () => {
 	return (
-		<div className="flex lg:hidden bottom-section justify-between container-md items-center">
+		<div className="flex lg:hidden bottom-section justify-between container-md items-center z-10">
 			<div>
 				<p className="text-base">Hi, I am</p>
 				<p className="text-3xl font-bold">Nico Wätzig</p>
