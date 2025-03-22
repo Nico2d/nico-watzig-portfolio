@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { Header } from '@/components/header'
+import { Header } from '@/components/header/Header'
 import { useNotionRender } from '@/hooks/useNotionRender'
 import { getBlogLink } from '@/lib/blog-helpers'
 import getBlogIndex from '@/lib/notion/getBlogIndex'

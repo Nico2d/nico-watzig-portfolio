@@ -1,4 +1,4 @@
-import { Header } from '@/components/header'
+import { Header } from '@/components/header/Header'
 import Landscape from '@/components/svgs/landscape'
 import { ContactIcons } from '@/components/ui/ContactIcons'
 import Head from 'next/head'

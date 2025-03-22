@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Header } from '@/components/header'
+import { Header } from '@/components/header/Header'
 import { ProjectsGrid } from '@/components/ui/ProjectsGrid'
 import { Filter } from '@/components/ui/Filter'
 import { getProjects } from '@/lib/notion/getProjects'

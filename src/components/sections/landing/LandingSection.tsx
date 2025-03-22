@@ -1,4 +1,4 @@
-import { Header } from '@/components/header'
+import { Header } from '@/components/header/Header'
 import { ParallaxFace } from '@/components/sections/landing/ParallaxFace'
 import { WelcomeSection } from '@/components/sections/landing/WelcomeSection'
 import { WelcomeText } from '@/components/sections/landing/WelcomeText'
@@ -15,7 +15,7 @@ export default function LandingSection({
 
 	return (
 		<>
-			{isLandingUnlock && !isMobileResolution ? <Header /> : null}
+			{isLandingUnlock || isMobileResolution ? <Header /> : null}
 
 			<div className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden lg:flex lg:flex-row bg-landingLockRightBackground">
 				{!isMobileResolution ? (
