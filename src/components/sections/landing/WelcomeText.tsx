@@ -4,7 +4,7 @@ import { TypeAnimation } from 'react-type-animation'
 export const WelcomeText = ({ className = '' }) => {
 	return (
 		<div
-			className={`absolute bg-landingUnlockPrimary text-white h-[200px] top-[100px] left-[100px] welcome-text z-10 whitespace-nowrap ${className}`}
+			className={`absolute bg-landing-unlock-primary text-white h-[200px] top-[100px] left-[100px] welcome-text z-10 whitespace-nowrap ${className}`}
 		>
 			<TypeAnimation
 				sequence={addSeparator(WELCOME, 1000)}
