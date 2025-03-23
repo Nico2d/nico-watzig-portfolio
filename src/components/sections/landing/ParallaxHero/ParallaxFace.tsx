@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import face1 from '@images/face/LandingFace-part1.png'
 import face2 from '@images/face/LandingFace-part2.png'
 import face3 from '@images/face/LandingFace-part3.png'
-import { ParallaxLayer } from './ParallaxLayer'
 import { distanceFromFocusArea } from '@/utils/countDistance'
 import { DistanceType } from '@/types/types'
 import Image from 'next/image'
+import { ParallaxLayer } from './ParallaxLayer'
 
 export const ParallaxFace = ({ isLocked = false }) => {
 	const FOCUS_POINT_OFFSET = 100
@@ -87,6 +87,30 @@ export const ParallaxFace = ({ isLocked = false }) => {
 		return `translateX(${x}px) translateY(${y}px) scale(${scale})`
 	}
 
+	const PARALLAX_IMAGES = [
+		{
+			image: {
+				src: face1.src,
+				alt: 'layer 1',
+			},
+			offset: 5,
+		},
+		{
+			image: {
+				src: face2.src,
+				alt: 'layer 2',
+			},
+			offset: -60,
+		},
+		{
+			image: {
+				src: face3.src,
+				alt: 'layer 3',
+			},
+			offset: 40,
+		},
+	]
+
 	return (
 		<div
 			className={`${
@@ -106,42 +130,27 @@ export const ParallaxFace = ({ isLocked = false }) => {
 			}}
 			style={{ touchAction: 'none' }}
 		>
-			<ParallaxLayer
-				transform={isParallaxBlocked ? '' : getTransform(5)}
-				isAnimating={isAnimating}
-			>
-				<Image
-					className={`parallax-image`}
-					src={face1.src}
-					alt="Layer 1"
-					width={1350}
-					height={1350}
-				/>
-			</ParallaxLayer>
-			<ParallaxLayer
-				transform={isParallaxBlocked ? '' : getTransform(-60)}
-				isAnimating={isAnimating}
-			>
-				<Image
-					className={`parallax-image`}
-					src={face2.src}
-					alt="Layer 2"
-					width={1350}
-					height={1350}
-				/>
-			</ParallaxLayer>
-			<ParallaxLayer
-				transform={isParallaxBlocked ? '' : getTransform(40)}
-				isAnimating={isAnimating}
-			>
-				<Image
-					className={`parallax-image`}
-					src={face3.src}
-					alt="Layer 3"
-					width={1350}
-					height={1350}
-				/>
-			</ParallaxLayer>
+			{PARALLAX_IMAGES.map((parallaxItem, idx) => {
+				const transform = isParallaxBlocked
+					? ''
+					: getTransform(parallaxItem.offset)
+
+				return (
+					<ParallaxLayer
+						key={idx}
+						transform={transform}
+						isAnimating={isAnimating}
+					>
+						<Image
+							className={`parallax-image`}
+							src={parallaxItem.image.src}
+							alt={parallaxItem.image.alt}
+							width={1350}
+							height={1350}
+						/>
+					</ParallaxLayer>
+				)
+			})}
 		</div>
 	)
 }

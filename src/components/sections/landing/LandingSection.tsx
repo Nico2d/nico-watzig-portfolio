@@ -1,5 +1,5 @@
 import { Header } from '@/components/header/Header'
-import { ParallaxFace } from '@/components/sections/landing/ParallaxFace'
+import { ParallaxFace } from '@/components/sections/landing/ParallaxHero/ParallaxFace'
 import { WelcomeSection } from '@/components/sections/landing/WelcomeSection'
 import { WelcomeText } from '@/components/sections/landing/WelcomeText'
 import { DiscoverButton } from '@/components/ui/DiscoverButton'
