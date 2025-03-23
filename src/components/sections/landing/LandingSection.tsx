@@ -17,7 +17,7 @@ export default function LandingSection({
 		<>
 			{isLandingUnlock || isMobileResolution ? <Header /> : null}
 
-			<div className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden lg:flex lg:flex-row bg-landingLockRightBackground">
+			<div className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden lg:flex lg:flex-row bg-landing-lock-right-bg">
 				{!isMobileResolution ? (
 					<div className="relative lg:w-[350px] h-1/4 lg:h-full left-section z-10">
 						<WelcomeText className="max-lg:hidden" />

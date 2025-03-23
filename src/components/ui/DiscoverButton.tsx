@@ -42,7 +42,7 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 			<motion.div
 				id="button-action-discovery-3"
 				onClick={isLandingUnlock ? onClick : null}
-				className={`absolute h-[${size}px] z-20 bg-landingUnlockPrimary cursor-pointer ${
+				className={`absolute h-[${size}px] z-20 bg-landing-unlock-primary cursor-pointer ${
 					!isLandingUnlock && isAnimationPlaying
 						? 'invisible'
 						: 'visible'
@@ -68,7 +68,7 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 				id="button-action-discovery-2"
 				onClick={onClick}
 				className={`absolute size-[80px] z-30 ${
-					isLandingUnlock ? 'bg-primary' : 'bg-landingUnlockPrimary'
+					isLandingUnlock ? 'bg-primary' : 'bg-landing-unlock-primary'
 				} cursor-pointer left-[100px] bottom-[100px]`}
 				animate={controls}
 				transition={{

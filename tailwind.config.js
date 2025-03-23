@@ -5,13 +5,18 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
+				'primary-focused': '#db0035',
 				primary: '#FF204E',
-				primaryDark: '#db0035',
-				background: '#232332',
-				landingUnlockBackground: '#121212',
-				landingUnlockPrimary: '#121212',
-				landingLockLeftBackground: '#db0035',
-				landingLockRightBackground: '#aaaaaa',
+				background: '#101828',
+				surface: '#1e2939',
+
+				landing: {
+					'unlock-primary': '#121212',
+					'lock-left-bg': '#db0035',
+					'lock-right-bg': '#aaaaaa',
+				},
+
+				// old:
 
 				brand: {
 					light: '#FBF8F3',
@@ -23,10 +28,6 @@ module.exports = {
 					lighter: '#71C5EE',
 					light: '#3182CE',
 					normal: '#025091',
-				},
-				card: {
-					dark: '#FFFFFF0A',
-					light: '#FFFFFFCC',
 				},
 				badge: {
 					dark: '#E2E8F029',
