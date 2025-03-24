@@ -38,8 +38,10 @@ export default function LandingSection({
 			/>
 
 			{isLandingUnlock && isDesktop && (
-				<div className="absolute top-1/2 -translate-y-1/2 left-[100px] z-40">
-					<IntroductionSection />
+				<div className="container mx-auto px-4">
+					<div className="absolute top-1/2 -translate-y-1/2 z-40">
+						<IntroductionSection />
+					</div>
 				</div>
 			)}
 		</>

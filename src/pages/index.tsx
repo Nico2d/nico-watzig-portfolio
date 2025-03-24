@@ -44,7 +44,7 @@ export default function Index() {
 			/>
 
 			{isLandingUnlock || isMobile ? (
-				<div className="container-md space-y-8">
+				<div className="container mx-auto px-4 space-y-8">
 					<AboutSection />
 					<TechnologiesSection />
 				</div>

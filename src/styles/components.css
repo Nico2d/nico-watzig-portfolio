@@ -5,10 +5,6 @@
 		@apply py-12 md:py-16;
 	}
 
-	.container-md {
-		@apply max-w-7xl mx-auto px-4;
-	}
-
 	mark,
 	.highlight {
 		@apply bg-transparent text-primary font-bold;

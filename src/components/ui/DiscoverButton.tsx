@@ -2,7 +2,7 @@ import { useWindowSize } from '@/hooks/useWindowSize'
 import { useAnimation, motion } from 'motion/react'
 import { useState, useEffect } from 'react'
 
-export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
+export const DiscoverButton = ({ onClick, isLandingUnlock }) => {
 	const OFFSET = 100
 
 	const { resolution, isMobile } = useWindowSize()
@@ -46,20 +46,21 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 			<motion.div
 				id="button-action-discovery-3"
 				onClick={isLandingUnlock ? onClick : null}
-				className={`absolute h-[${size}px] z-20 bg-landing-unlock-primary cursor-pointer ${
+				className={`absolute z-20 bg-landing-unlock-primary cursor-pointer ${
 					!isLandingUnlock && isAnimationPlaying
 						? 'invisible'
 						: 'visible'
 				}`}
-				animate={isLandingUnlock ? 'extended' : 'normal'}
+				initial={isLandingUnlock ? 'unlocked' : 'locked'}
+				animate={isLandingUnlock ? 'unlocked' : 'locked'}
 				variants={{
-					normal: {
+					locked: {
 						bottom: `${OFFSET}px`,
 						left: `${OFFSET}px`,
-						top: `${resolution.height - OFFSET - size}px`,
-						right: `${resolution.width - OFFSET - size}px`,
+						top: `${resolution.height - OFFSET - 80}px`,
+						right: `${resolution.width - OFFSET - 80}px`,
 					},
-					extended: {
+					unlocked: {
 						bottom: '0px',
 						left: '0px',
 						top: '0px',
@@ -91,13 +92,13 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 			<motion.button
 				id="button-action-discovery-1"
 				onClick={onClick}
-				className={`absolute pl-[30px] z-30 text-2xl whitespace-nowrap h-[${size}px] bottom-[120px] left-[100px] right`}
+				className={`absolute pl-[30px] z-30 text-2xl whitespace-nowrap h-[80px] bottom-[80px] left-[100px] right`}
 				variants={{
-					normal: {
+					locked: {
 						bottom: '0px',
 						left: '0px',
 					},
-					extended: {
+					unlocked: {
 						bottom: `${OFFSET}px`,
 						left: `${OFFSET}px`,
 					},

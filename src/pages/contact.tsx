@@ -22,7 +22,7 @@ export default function Contact() {
 			</Head>
 
 			<Header />
-			<div className="container-md space-y-8 mt-24 lg:mt-48">
+			<div className="container mx-auto px-4 space-y-8 mt-24 lg:mt-48">
 				<ContactForm />
 			</div>
 		</>

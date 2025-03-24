@@ -10,7 +10,7 @@ export function IntroductionSection() {
 
 	return (
 		<LazyMotion features={domAnimation}>
-			<section id="intro" className="section w-[700px]">
+			<section id="intro">
 				<Introduction isInView={isInView} viewRef={viewRef} />
 				<WorkArea isInView={isInView} viewRef={viewRef} />
 				<ProjectButton isInView={isInView} viewRef={viewRef} />
