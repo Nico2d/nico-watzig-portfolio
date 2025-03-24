@@ -1,6 +1,6 @@
 'use client'
 
-import { LazyMotion, domAnimation, m } from 'framer-motion'
+import { LazyMotion, domAnimation, m } from 'motion/react'
 import { initial, exit, transition, animate } from '../utils/motions'
 
 export function HeadingDivider({ title = '' }) {

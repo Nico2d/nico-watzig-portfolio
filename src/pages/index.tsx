@@ -7,7 +7,7 @@ import openGraphImage from '@images/Opengraph-image.png'
 
 export default function Index() {
 	const [isLandingUnlock, setIsLandingUnlock] = useState(false)
-	const resolution = useWindowSize()
+	const { isMobile } = useWindowSize()
 
 	const saveIsLandingUnlock = (value: boolean) => {
 		localStorage.setItem('isLandingUnlock', value.toString())
@@ -43,7 +43,7 @@ export default function Index() {
 				setIsLandingUnlock={saveIsLandingUnlock}
 			/>
 
-			{isLandingUnlock || resolution.width < 1024 ? (
+			{isLandingUnlock || isMobile ? (
 				<div className="container-md space-y-8">
 					<AboutSection />
 					<TechnologiesSection />

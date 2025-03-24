@@ -7,7 +7,7 @@ import { DistanceType } from '@/types/types'
 import Image from 'next/image'
 import { ParallaxLayer } from './ParallaxLayer'
 
-export const ParallaxFace = ({ isLocked = false }) => {
+export const ParallaxHero = ({ isLocked = false }) => {
 	const FOCUS_POINT_OFFSET = 100
 	const FOCUS_AREA = 80
 

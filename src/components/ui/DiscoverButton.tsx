@@ -1,11 +1,11 @@
 import { useWindowSize } from '@/hooks/useWindowSize'
-import { motion, useAnimation } from 'framer-motion'
+import { useAnimation, motion } from 'motion/react'
 import { useState, useEffect } from 'react'
 
 export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 	const OFFSET = 100
 
-	const resolution = useWindowSize()
+	const { resolution } = useWindowSize()
 	const controls = useAnimation()
 	const [isAnimationPlaying, setIsAnimationPlaying] = useState(false)
 	const [
@@ -18,7 +18,11 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 			if (animationInterval) {
 				clearInterval(animationInterval)
 			}
-		} else {
+
+			return
+		}
+
+		if (typeof window !== 'undefined') {
 			setAnimationInterval(
 				setInterval(() => {
 					controls.start({

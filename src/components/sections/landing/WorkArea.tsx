@@ -1,4 +1,4 @@
-import { useInView } from 'framer-motion'
+import { useInView } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 
 export const WorkArea = ({ isInView, viewRef }) => {

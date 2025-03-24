@@ -7,8 +7,6 @@ const resend = new Resend(process.env.RESEND_API_KEY)
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 	const { message, email, name } = await req.body
 
-	console.log('CONTETN:', message, email)
-
 	const { data, error } = await resend.emails.send({
 		from: 'Acme <onboarding@resend.dev>',
 		to: ['delivered@resend.dev'],

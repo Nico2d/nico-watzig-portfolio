@@ -1,7 +1,7 @@
 import { useRef } from 'react'
-import { LazyMotion, domAnimation, useInView } from 'framer-motion'
 import { HeadingDivider } from '../../HeadingDivider'
 import Link from 'next/link'
+import { domAnimation, LazyMotion, useInView } from 'motion/react'
 
 export function AboutSection() {
 	const ref = useRef(null)
