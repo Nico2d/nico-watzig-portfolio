@@ -1,10 +1,10 @@
 import { WELCOME } from '@/constants/welcome'
 import { TypeAnimation } from 'react-type-animation'
 
-export const WelcomeText = ({ className = '' }) => {
+export const HelloTextAnimation = () => {
 	return (
 		<div
-			className={`absolute bg-landing-unlock-primary text-white h-[200px] top-[100px] left-[100px] welcome-text z-10 whitespace-nowrap ${className}`}
+			className={`absolute bg-landing-unlock-primary text-white h-[200px] top-[100px] left-[100px] welcome-text z-10 whitespace-nowrap max-lg:hidden`}
 		>
 			<TypeAnimation
 				sequence={addSeparator(WELCOME, 1000)}

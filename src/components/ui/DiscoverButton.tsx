@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 	const OFFSET = 100
 
-	const { resolution } = useWindowSize()
+	const { resolution, isMobile } = useWindowSize()
 	const controls = useAnimation()
 	const [isAnimationPlaying, setIsAnimationPlaying] = useState(false)
 	const [
@@ -40,6 +40,8 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 			}
 		}
 	}, [isLandingUnlock])
+
+	if (isMobile) return null
 
 	return (
 		<div id="discovery-container" className="max-lg:hidden">

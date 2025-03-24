@@ -4,7 +4,7 @@ import { ProjectButton } from './ProjectButton'
 import { WorkArea } from './WorkArea'
 import { useInView, LazyMotion, domAnimation } from 'motion/react'
 
-export function WelcomeSection() {
+export function IntroductionSection() {
 	const viewRef = useRef(null)
 	const isInView = useInView(viewRef, { once: true })
 
