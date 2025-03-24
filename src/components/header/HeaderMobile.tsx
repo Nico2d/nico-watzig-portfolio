@@ -35,13 +35,11 @@ export const HeaderMobile = ({ navItems, pathname }: HeaderMobileProps) => {
 
 			{isMobileMenuOpen && (
 				<div className="fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center text-white z-50">
-					<button
-						onClick={toggleMenu}
-						aria-label="Close Menu"
-						className="absolute top-4 right-4"
-					>
-						<FiX size={32} />
-					</button>
+					<div className="absolute container mx-auto px-4 top-0 py-4 w-full flex justify-end">
+						<button onClick={toggleMenu} aria-label="Close Menu">
+							<FiX size={32} />
+						</button>
+					</div>
 
 					<ul className="space-y-12 text-xl uppercase text-center">
 						{navItems.map(({ label, page, link }) => {
