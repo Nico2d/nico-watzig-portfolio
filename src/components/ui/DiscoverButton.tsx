@@ -22,17 +22,15 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 			return
 		}
 
-		if (typeof window !== 'undefined') {
-			setAnimationInterval(
-				setInterval(() => {
-					controls.start({
-						scale: [1, 2, 2, 1, 1],
-						rotate: [0, 0, 180, 180, 0],
-						borderRadius: ['0%', '0%', '50%', '50%', '0%'],
-					})
-				}, 7000)
-			)
-		}
+		setAnimationInterval(
+			setInterval(() => {
+				controls.start({
+					scale: [1, 2, 2, 1, 1],
+					rotate: [0, 0, 180, 180, 0],
+					borderRadius: ['0%', '0%', '50%', '50%', '0%'],
+				})
+			}, 7000)
+		)
 
 		return () => {
 			if (animationInterval) {
@@ -68,7 +66,7 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 						right: '0px',
 					},
 				}}
-			></motion.div>
+			/>
 
 			<motion.div
 				id="button-action-discovery-2"
@@ -88,7 +86,7 @@ export const DiscoverButton = ({ size = 80, onClick, isLandingUnlock }) => {
 				onAnimationComplete={() => {
 					setIsAnimationPlaying(false)
 				}}
-			></motion.div>
+			/>
 
 			<motion.button
 				id="button-action-discovery-1"
