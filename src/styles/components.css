@@ -41,6 +41,11 @@
 		position: absolute;
 	}
 
+	.left-side-polygon {
+		-webkit-clip-path: polygon(0 0, 75% 0, 100% 100%, 0 100%);
+		clip-path: polygon(0 0, 75% 0, 100% 100%, 0 100%);
+	}
+
 	@media screen and (max-width: 1024px) {
 		.left-section::before {
 			-webkit-clip-path: polygon(0 39%, 100% 0, 100% 100%, 0% 100%);

@@ -19,6 +19,7 @@ export const Header = ({ isHidden = false }: { isHidden?: boolean }) => {
 			variants={{
 				visible: {
 					opacity: 1,
+					visibility: 'visible',
 					transition: {
 						delay: 0.2,
 						duration: 0.5,
@@ -27,6 +28,7 @@ export const Header = ({ isHidden = false }: { isHidden?: boolean }) => {
 				},
 				hidden: {
 					opacity: 0,
+					visibility: 'hidden',
 					transition: { duration: 0, ease: 'easeInOut' },
 				},
 			}}

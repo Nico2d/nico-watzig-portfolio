@@ -1,11 +1,17 @@
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { useAnimation, motion } from 'motion/react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, MutableRefObject } from 'react'
 
-export const DiscoverButton = ({ onClick, isLandingUnlock }) => {
+interface DiscoverButtonProps {
+	onClick: () => void
+	isLandingUnlock: boolean
+	ref?: MutableRefObject<null>
+}
+
+export const DiscoverButton = ({ onClick, isLandingUnlock, ref }) => {
 	const OFFSET = 100
 
-	const { resolution, isMobile } = useWindowSize()
+	const { resolution, isMobile, isDesktop } = useWindowSize()
 	const controls = useAnimation()
 	const [isAnimationPlaying, setIsAnimationPlaying] = useState(false)
 	const [
@@ -14,7 +20,7 @@ export const DiscoverButton = ({ onClick, isLandingUnlock }) => {
 	] = useState<NodeJS.Timeout | null>(null)
 
 	useEffect(() => {
-		if (isLandingUnlock) {
+		if (isLandingUnlock || isMobile) {
 			if (animationInterval) {
 				clearInterval(animationInterval)
 			}
@@ -39,10 +45,14 @@ export const DiscoverButton = ({ onClick, isLandingUnlock }) => {
 		}
 	}, [isLandingUnlock])
 
-	if (isMobile) return null
+	// if (isMobile) return null
 
 	return (
-		<div id="discovery-container" className="max-lg:hidden">
+		<div
+			ref={ref}
+			id="discovery-container"
+			// className="max-lg:hidden"
+		>
 			<motion.div
 				id="button-action-discovery-3"
 				onClick={isLandingUnlock ? onClick : null}
@@ -92,7 +102,7 @@ export const DiscoverButton = ({ onClick, isLandingUnlock }) => {
 			<motion.button
 				id="button-action-discovery-1"
 				onClick={onClick}
-				className={`absolute pl-[30px] z-30 text-2xl whitespace-nowrap h-[80px] bottom-[80px] left-[100px] right`}
+				className={`absolute pl-[30px] z-30 text-2xl whitespace-nowrap h-[80px] bottom-[100px] left-[100px] right`}
 				variants={{
 					locked: {
 						bottom: '0px',
