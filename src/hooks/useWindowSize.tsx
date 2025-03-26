@@ -8,10 +8,7 @@ type resolutionType = {
 }
 
 export const useWindowSize = () => {
-	const [resolution, setResolution] = useState<resolutionType>({
-		width: 0,
-		height: 0
-	})
+	const [resolution, setResolution] = useState<resolutionType>()
 
 	useEffect(() => {
 		function handleResize() {
@@ -30,46 +27,8 @@ export const useWindowSize = () => {
 
 	return {
 		resolution,
-		isMobile: resolution.width < 1024,
-		isDesktop: resolution.width >= 1024,
+		isMobile: resolution ? resolution.width < 1024 : false,
+		isDesktop: resolution ? resolution.width >= 1024 : false,
+	
 	}
 }
-
-// import { useState, useEffect } from 'react';
-
-interface ScreenInfo {
-	width: number
-	height: number
-	isMobile: boolean
-	isDesktop: boolean
-}
-
-export const useScreenInfo = (): ScreenInfo => {
-	const [screenInfo, setScreenInfo] = useState<ScreenInfo>({
-		width: window.innerWidth,
-		height: window.innerHeight,
-		isMobile: window.innerWidth < 768,
-		isDesktop: window.innerWidth >= 768,
-	})
-
-	useEffect(() => {
-		const handleResize = () => {
-			setScreenInfo({
-				width: window.innerWidth,
-				height: window.innerHeight,
-				isMobile: window.innerWidth < 768,
-				isDesktop: window.innerWidth >= 768,
-			})
-		}
-
-		window.addEventListener('resize', handleResize)
-
-		return () => {
-			window.removeEventListener('resize', handleResize)
-		}
-	}, [])
-
-	return screenInfo
-}
-
-export default useScreenInfo
