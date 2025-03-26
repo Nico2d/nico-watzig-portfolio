@@ -1,94 +1,36 @@
-# Portfolio Project with Next.js and Notion
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-This project is a personal portfolio website built using Next.js and deployed on Vercel. It integrates with Notion to fetch data and convert it into projects displayed on the website.
+## Getting Started
 
-## Features
+First, run the development server:
 
--   **Static Site Generation (SSG):** Uses Next.js to pre-render pages for optimal performance.
-
--   **Notion Integration:** Fetches content from a Notion database.
-
--   **Responsive Design:** Works seamlessly on desktop and mobile devices.
-
--   **Deployment on Vercel:** Simplified deployment process with automatic updates on code changes.
-
-## Tech Stack
-
--   **Frontend:** Next.js (React)
-
--   **Backend:** Notion API for fetching data
-
--   **Hosting:** Vercel
-
-## Installation
-
-To run the project locally, follow these steps:
-
-Install dependencies:
-
-```
-npm install
-# or
-yarn install
-# or
-pnpm install
-```
-
-Set up environment variables:
-Create a `.env.local` file in the root directory and add your Notion API key and database ID:
-
-```
-NOTION_API_KEY=your-notion-api-key
-NOTION_DATABASE_ID=your-database-id
-```
-
-Run the development server:
-
-```
+```bash
 npm run dev
 # or
 yarn dev
 # or
 pnpm dev
+# or
+bun dev
 ```
 
-Open http://localhost:3000 in your browser to view the site.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Deployment
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-To deploy the project to Vercel:
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-1. Push your code to a Git repository (e.g., GitHub).
+## Learn More
 
-2. Connect the repository to Vercel.
+To learn more about Next.js, take a look at the following resources:
 
-3. Add the environment variables (NOTION_API_KEY and NOTION_DATABASE_ID) in the Vercel dashboard.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-4. Vercel will automatically build and deploy the project.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Usage
+## Deploy on Vercel
 
-Add Projects in Notion:
-Create a database in Notion to store your projects.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Add entries with details such as title, description, and links.
-
-Sync with Website:
-The website fetches data from Notion and updates automatically on build.
-
-Customize Portfolio:
-Modify components or styles in the project to fit your personal branding.
-
-## Scripts
-
-```
-pnpm dev: Start the development server.
-
-pnpm build: Build the project for production.
-
-pnpm start: Start the production server.
-```
-
-## License
-
-This project is open source and available under the MIT License.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

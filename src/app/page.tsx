@@ -1,47 +1,38 @@
-'use client'
+"use client";
 
-import { AboutSection, TechnologiesSection } from '@/components/sections'
-import LandingSection from '@/components/sections/landing/LandingSection'
-import { useState, useEffect } from 'react'
+import { AboutSection } from "@/components/organisms/AboutSection";
+import LandingSection from "@/components/organisms/LandingSection/LandingSection";
+import { TechnologiesSection } from "@/components/organisms/TechnologiesSection";
+import { useEffect, useState } from "react";
 
-const HomePage = () => {
-	console.log('This is my Home page :D')
+export default function Home() {
+    const [isLandingUnlock, setIsLandingUnlock] = useState(false);
+    // const { isMobile } = useWindowSize()
 
-	// console.log('window:', window.innerWidth)
+    const saveIsLandingUnlock = (value: boolean) => {
+        localStorage.setItem("isLandingUnlock", value.toString());
+        setIsLandingUnlock(value);
+    };
 
-	const [isLandingUnlock, setIsLandingUnlock] = useState(false)
-	// const { isMobile } = useWindowSize()
+    useEffect(() => {
+        const storedValue = localStorage.getItem("isLandingUnlock");
+        if (storedValue) {
+            setIsLandingUnlock(storedValue === "true");
+        }
+    }, []);
 
-	const saveIsLandingUnlock = (value: boolean) => {
-		localStorage.setItem('isLandingUnlock', value.toString())
-		setIsLandingUnlock(value)
-	}
+    return (
+        <div className="">
+            <LandingSection
+                isLandingUnlock={isLandingUnlock}
+                setIsLandingUnlock={saveIsLandingUnlock}
+            />
 
-	useEffect(() => {
-		const storedValue = localStorage.getItem('isLandingUnlock')
-		if (storedValue) {
-			setIsLandingUnlock(storedValue === 'true')
-		}
-	}, [])
-
-	return (
-		<div>
-			{/* Home Page
-			<TestUI /> */}
-
-			<LandingSection
-				isLandingUnlock={isLandingUnlock}
-				setIsLandingUnlock={saveIsLandingUnlock}
-			/>
-
-			{/* {isLandingUnlock || isMobile ? ( */}
-			<div className="container mx-auto px-4 space-y-8">
-				<AboutSection />
-				<TechnologiesSection />
-			</div>
-			{/* ) : null} */}
-		</div>
-	)
+            {/* {isLandingUnlock || isMobile ? ( */}
+            <div className="container mx-auto px-4 flex flex-col gap-8">
+                <AboutSection />
+                <TechnologiesSection />
+            </div>
+        </div>
+    );
 }
-
-export default HomePage

@@ -1,5 +1,5 @@
 export type DistanceType = {
-	distance: number
-	distanceX: number
-	distanceY: number
-}
+    distance: number;
+    distanceX: number;
+    distanceY: number;
+};
