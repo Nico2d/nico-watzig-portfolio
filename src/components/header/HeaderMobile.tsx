@@ -7,9 +7,8 @@ import ExtLink from '../ext-link'
 
 interface HeaderMobileProps {
 	navItems: NavItemType[]
-	pathname: string
 }
-export const HeaderMobile = ({ navItems, pathname }: HeaderMobileProps) => {
+export const HeaderMobile = ({ navItems }: HeaderMobileProps) => {
 	const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
 
 	const toggleMenu = () => setMobileMenuOpen((prev) => !prev)
@@ -41,12 +40,10 @@ export const HeaderMobile = ({ navItems, pathname }: HeaderMobileProps) => {
 						</button>
 					</div>
 
+					{/* TODO: this is the same as in HeaderDesktop */}
 					<ul className="space-y-12 text-xl uppercase text-center">
 						{navItems.map(({ label, page, link }) => {
-							const isHome = page === navItems[0].page
-							const isPage = isHome
-								? pathname === '/'
-								: pathname.includes(page)
+							const isCurrentPage = false
 
 							return (
 								<li key={label} onClick={toggleMenu}>
@@ -54,7 +51,9 @@ export const HeaderMobile = ({ navItems, pathname }: HeaderMobileProps) => {
 										<Link
 											href={page}
 											className={
-												isPage ? 'highlight' : undefined
+												isCurrentPage
+													? 'highlight'
+													: undefined
 											}
 										>
 											{label}

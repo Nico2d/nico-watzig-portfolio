@@ -1,5 +1,7 @@
 import { DistanceType } from '@/types/types'
 
+// TODO: move this functions to usePraralaxFocus hook
+
 export const distanceFromFocusArea = (
 	focusArea: number[][],
 	currentPoint: [number, number]

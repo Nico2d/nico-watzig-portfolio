@@ -6,10 +6,10 @@ import { distanceFromFocusArea } from '@/utils/countDistance'
 import { DistanceType } from '@/types/types'
 import Image from 'next/image'
 import { ParallaxLayer } from './ParallaxLayer'
+import { useParallaxFocus } from '@/hooks/useParallaxFocus'
 
 export const ParallaxHero = ({ isLocked = false }) => {
-	const FOCUS_POINT_OFFSET = 100
-	const FOCUS_AREA = 80
+	const { boundingClientRect, getVertices } = useParallaxFocus()
 
 	const [distance, setDistance] = useState<DistanceType>({
 		distance: 0,
@@ -17,35 +17,11 @@ export const ParallaxHero = ({ isLocked = false }) => {
 		distanceY: 0,
 	})
 	const [isAnimating, setIsAnimating] = useState(false)
-	const [focusArea, setFocusArea] = useState([
-		[0, 0],
-		[0, 0],
-		[0, 0],
-		[0, 0],
-	])
 
 	const [isParallaxBlocked, setIsParallaxBlocked] = useState(false)
 
-	useEffect(() => {
-		setFocusArea([
-			[FOCUS_POINT_OFFSET, window.innerHeight - FOCUS_POINT_OFFSET],
-			[
-				FOCUS_POINT_OFFSET + FOCUS_AREA,
-				window.innerHeight - FOCUS_POINT_OFFSET,
-			],
-			[
-				FOCUS_POINT_OFFSET + FOCUS_AREA,
-				window.innerHeight - (FOCUS_POINT_OFFSET + FOCUS_AREA),
-			],
-			[
-				FOCUS_POINT_OFFSET,
-				window.innerHeight - (FOCUS_POINT_OFFSET + FOCUS_AREA),
-			],
-		])
-	}, [])
-
 	const handleParallax = (x: number, y: number) => {
-		const distance = distanceFromFocusArea(focusArea, [x, y])
+		const distance = distanceFromFocusArea(getVertices(), [x, y])
 		setDistance(distance)
 	}
 
@@ -77,7 +53,7 @@ export const ParallaxHero = ({ isLocked = false }) => {
 		return () => {
 			unsubscribeMovement()
 		}
-	}, [focusArea, isLocked])
+	}, [boundingClientRect, isLocked])
 
 	const getTransform = (speed: number) => {
 		const x = (distance.distanceX * speed) / 100
