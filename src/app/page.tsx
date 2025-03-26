@@ -2,7 +2,6 @@
 
 import { AboutSection, TechnologiesSection } from '@/components/sections'
 import LandingSection from '@/components/sections/landing/LandingSection'
-import { TestUI } from '@/components/ui/TestUi'
 import { useState, useEffect } from 'react'
 
 const HomePage = () => {
@@ -34,8 +33,6 @@ const HomePage = () => {
 				isLandingUnlock={isLandingUnlock}
 				setIsLandingUnlock={saveIsLandingUnlock}
 			/>
-
-			<TestUI />
 
 			{/* {isLandingUnlock || isMobile ? ( */}
 			<div className="container mx-auto px-4 space-y-8">

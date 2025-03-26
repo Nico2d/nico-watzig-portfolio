@@ -1,4 +1,3 @@
-import { useWindowSize } from '@/hooks/useWindowSize'
 import { motion, useAnimation, Variants } from 'motion/react'
 import { useState, useEffect } from 'react'
 
@@ -21,51 +20,37 @@ export const BlackBox = ({
 	const controls = useAnimation()
 
 	useEffect(() => {
-		// if (isLandingUnlock) {
-		// 	if (animationInterval) {
-		// 		clearInterval(animationInterval)
-		// 	}
-		// 	if (isAnimationPlaying) {
-		// 		controls.stop()
-		// 	}
-		// 	controls.start('fullscreen')
-		// } else {
-		// 	controls.start('default')
-		// 	setAnimationInterval(
-		// 		setInterval(() => {
-		// 			controls.start('animation')
-		// 		}, 7000)
-		// 	)
-		// }
-		// return () => {
-		// 	if (animationInterval) {
-		// 		clearInterval(animationInterval)
-		// 	}
-		// }
+		if (isLandingUnlock) {
+			if (animationInterval) {
+				clearInterval(animationInterval)
+			}
+			if (isAnimationPlaying) {
+				controls.stop()
+			}
+			controls.start('fullscreen')
+		} else {
+			controls.start('default')
+			setAnimationInterval(
+				setInterval(() => {
+					controls.start('animation')
+				}, 7000)
+			)
+		}
+		return () => {
+			if (animationInterval) {
+				clearInterval(animationInterval)
+			}
+		}
 	}, [isLandingUnlock])
 
 	console.log('boundingClientRect: ', boundingClientRect)
 
 	const boxVariants: Variants = {
-		// default: {
-		// 	bottom: boundingClientRect.bottom,
-		// 	left: boundingClientRect.left,
-		// 	top: boundingClientRect.top,
-		// 	right: boundingClientRect.right,
-		// },
 		default: {
 			bottom: boundingClientRect.bottom,
 			left: boundingClientRect.left,
-			// width: 100,
-			// height: 100,
-
 			top: boundingClientRect.top,
 			right: boundingClientRect.right,
-
-			// top: 1121, //pytanie czy to nie jest zależne od rozdzielczości w takim razie aż tak bardzo
-			// right: 1634,
-			// top: 100,
-			// right: 100,
 		},
 		fullscreen: {
 			bottom: 0,
@@ -94,16 +79,15 @@ export const BlackBox = ({
 		<motion.div
 			className="bg-landing-unlock-primary cursor-pointer absolute z-20"
 			variants={boxVariants}
-			// animate={controls}
-			// initial={isLandingUnlock ? 'fullscreen' : 'default'}
-			initial={'default'}
-			// onAnimationStart={() => {
-			// 	setIsAnimationPlaying(true)
-			// }}
-			// onAnimationComplete={() => {
-			// 	setIsAnimationPlaying(false)
-			// }}
-			// onClick={onClick}
+			animate={controls}
+			initial={isLandingUnlock ? 'fullscreen' : 'default'}
+			onAnimationStart={() => {
+				setIsAnimationPlaying(true)
+			}}
+			onAnimationComplete={() => {
+				setIsAnimationPlaying(false)
+			}}
+			onClick={onClick}
 		/>
 	)
 }
