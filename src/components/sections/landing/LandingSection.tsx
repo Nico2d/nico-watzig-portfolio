@@ -22,10 +22,6 @@ export default function LandingSection({
 	const { isDesktop, resolution } = useWindowSize()
 	const { boundingClientRect } = useParallaxFocus()
 
-	useEffect(() => {
-		console.log('window:', window.innerWidth, window.innerHeight)
-	})
-
 	return (
 		<>
 			<Header isHidden={isDesktop && !isLandingUnlock} />
@@ -50,11 +46,15 @@ export default function LandingSection({
 							<ParallaxHero isLocked={isLandingUnlock} />
 						</div>
 
-						<BlackBox
-							isLandingUnlock={isLandingUnlock}
-							onClick={() => setIsLandingUnlock(!isLandingUnlock)}
-							boundingClientRect={boundingClientRect}
-						/>
+						{boundingClientRect && (
+							<BlackBox
+								isLandingUnlock={isLandingUnlock}
+								onClick={() =>
+									setIsLandingUnlock(!isLandingUnlock)
+								}
+								boundingClientRect={boundingClientRect}
+							/>
+						)}
 					</div>
 
 					{isLandingUnlock && (

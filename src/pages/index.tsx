@@ -7,20 +7,20 @@ import openGraphImage from '@images/Opengraph-image.png'
 // import { TestUI } from '@/components/ui/TestUi'
 
 export default function Index() {
-	// const [isLandingUnlock, setIsLandingUnlock] = useState(false)
-	// // const { isMobile } = useWindowSize()
+	const [isLandingUnlock, setIsLandingUnlock] = useState(false)
+	const { isMobile, resolution } = useWindowSize()
 
-	// const saveIsLandingUnlock = (value: boolean) => {
-	// 	localStorage.setItem('isLandingUnlock', value.toString())
-	// 	setIsLandingUnlock(value)
-	// }
+	const saveIsLandingUnlock = (value: boolean) => {
+		localStorage.setItem('isLandingUnlock', value.toString())
+		setIsLandingUnlock(value)
+	}
 
-	// useEffect(() => {
-	// 	const storedValue = localStorage.getItem('isLandingUnlock')
-	// 	if (storedValue) {
-	// 		setIsLandingUnlock(storedValue === 'true')
-	// 	}
-	// }, [])
+	useEffect(() => {
+		const storedValue = localStorage.getItem('isLandingUnlock')
+		if (storedValue) {
+			setIsLandingUnlock(storedValue === 'true')
+		}
+	}, [])
 
 	return (
 		<>
@@ -39,17 +39,19 @@ export default function Index() {
 				<meta property="og:image" content={openGraphImage.src} />
 			</Head>
 
-			{/* <LandingSection
+			<LandingSection
 				isLandingUnlock={isLandingUnlock}
 				setIsLandingUnlock={saveIsLandingUnlock}
-			/> */}
+			/>
 
-			{/* {isLandingUnlock || isMobile ? ( */}
-				<div className="container mx-auto px-4 space-y-8">
-					<AboutSection />
-					<TechnologiesSection />
-				</div>
-			{/* ) : null} */}
+			<div
+				className={`container mx-auto px-4 space-y-8 ${
+					isLandingUnlock || isMobile ? '' : 'hidden'
+				}`}
+			>
+				<AboutSection />
+				<TechnologiesSection />
+			</div>
 		</>
 	)
 }

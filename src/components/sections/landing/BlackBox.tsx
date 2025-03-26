@@ -27,9 +27,11 @@ export const BlackBox = ({
 			if (isAnimationPlaying) {
 				controls.stop()
 			}
+
 			controls.start('fullscreen')
 		} else {
 			controls.start('default')
+
 			setAnimationInterval(
 				setInterval(() => {
 					controls.start('animation')
@@ -42,8 +44,6 @@ export const BlackBox = ({
 			}
 		}
 	}, [isLandingUnlock])
-
-	console.log('boundingClientRect: ', boundingClientRect)
 
 	const boxVariants: Variants = {
 		default: {
@@ -73,11 +73,11 @@ export const BlackBox = ({
 		},
 	}
 
-	console.log('isLandingUnlock: ', isLandingUnlock)
+	console.log('isLandingUnlock: ', isLandingUnlock, boundingClientRect)
 
 	return (
 		<motion.div
-			className="bg-landing-unlock-primary cursor-pointer absolute z-20"
+			className={`bg-landing-unlock-primary cursor-pointer absolute z-20`}
 			variants={boxVariants}
 			animate={controls}
 			initial={isLandingUnlock ? 'fullscreen' : 'default'}
