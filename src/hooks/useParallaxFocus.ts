@@ -6,18 +6,18 @@ export const useParallaxFocus = (size = 50, bottomOffset = 100) => {
 	const [boundingClientRect, setBoundingClientRect] = useState<DOMRect>()
 
 	useEffect(() => {
-		console.log('resolution: ', resolution)
-
 		if (!resolution) return
+
+		const leftPosition = getLeftPosition(resolution)
 
 		const boundingClientRect: DOMRect = {
 			width: size,
 			height: size,
-			left: getLeftPosition(resolution),
+			left: leftPosition,
 			bottom: bottomOffset,
-			right: resolution.width - getLeftPosition(resolution) - size,
+			right: resolution.width - leftPosition - size,
 			top: resolution.height - bottomOffset - size,
-			x: getLeftPosition(resolution),
+			x: leftPosition,
 			y: resolution.height - bottomOffset - size,
 			toJSON: () => {},
 		}

@@ -1,5 +1,5 @@
 import { motion, useAnimation, Variants } from 'motion/react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 interface BlackBoxProps {
 	isLandingUnlock: boolean
@@ -12,6 +12,7 @@ export const BlackBox = ({
 	onClick,
 	boundingClientRect,
 }: BlackBoxProps) => {
+	const boxRef = useRef<HTMLDivElement>(null)
 	const [isAnimationPlaying, setIsAnimationPlaying] = useState(false)
 	const [
 		animationInterval,
@@ -45,18 +46,30 @@ export const BlackBox = ({
 		}
 	}, [isLandingUnlock])
 
+	useEffect(() => {
+		if (!isLandingUnlock) {
+			controls.start({
+				left: boundingClientRect.left,
+				transition: {
+					duration: 0,
+					ease: 'linear',
+				},
+			})
+		}
+	}, [boundingClientRect.left])
+
 	const boxVariants: Variants = {
 		default: {
 			bottom: boundingClientRect.bottom,
 			left: boundingClientRect.left,
-			top: boundingClientRect.top,
-			right: boundingClientRect.right,
+			width: boundingClientRect.width,
+			height: boundingClientRect.height,
 		},
 		fullscreen: {
 			bottom: 0,
 			left: 0,
-			top: 0,
-			right: 0,
+			width: '100vw',
+			height: '100vh',
 			scale: 1,
 			rotate: 0,
 			borderRadius: '0%',
@@ -73,10 +86,9 @@ export const BlackBox = ({
 		},
 	}
 
-	console.log('isLandingUnlock: ', isLandingUnlock, boundingClientRect)
-
 	return (
 		<motion.div
+			ref={boxRef}
 			className={`bg-landing-unlock-primary cursor-pointer absolute z-20`}
 			variants={boxVariants}
 			animate={controls}

@@ -23,12 +23,11 @@ export const useWindowSize = () => {
 		handleResize()
 
 		return () => window.removeEventListener('resize', handleResize)
-	}, [ ])
+	}, [])
 
 	return {
 		resolution,
 		isMobile: resolution ? resolution.width < 1024 : false,
 		isDesktop: resolution ? resolution.width >= 1024 : false,
-	
 	}
 }
