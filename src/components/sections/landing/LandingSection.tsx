@@ -1,40 +1,32 @@
-'use client'
-
-import { Header } from '@/components/header/Header'
 import { ParallaxHero } from '@/components/sections/landing/ParallaxHero/ParallaxHero'
 import { IntroductionSection } from '@/components/sections/landing/IntroductionSection'
 import { HelloTextAnimation } from '@/components/sections/landing/HelloTextAnimation'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { MobileLandingInfo } from './MobileLandingInfo'
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
-import { useParallaxFocus } from '@/hooks/useParallaxFocus'
-import { BlackBox } from './BlackBox'
+import { useRef } from 'react'
+import { useParallaxHero } from '@/stores/parallaxHero/useParallaxHero'
+import { DiscoveryButtonPortal } from '@/components/ui/DiscoveryButtonPortal'
 
-interface LandingSectionProps {
-	isLandingUnlock: boolean
-	setIsLandingUnlock: Dispatch<SetStateAction<boolean>>
-}
-
-export default function LandingSection({
-	isLandingUnlock,
-	setIsLandingUnlock,
-}: LandingSectionProps) {
-	const { isDesktop, resolution } = useWindowSize()
-	const { boundingClientRect } = useParallaxFocus()
+export default function LandingSection() {
+	const { isDesktop } = useWindowSize()
+	const { isLandingUnlock } = useParallaxHero()
 
 	return (
 		<>
-			<Header isHidden={isDesktop && !isLandingUnlock} />
-
 			{isDesktop ? (
 				<>
 					{/* DESKTOP */}
 					<div className="h-screen"></div>
-
-					<div className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden bg-landing-lock-right-bg">
+					{/* WHY? h-screen make space of screen and absolte perfect mach h-screen on mobile devices insted of 100vhh :/ */}
+					<div
+						id="discovery-root"
+						className="absolute top-0 left-0 right-0 bottom-0 overflow-hidden bg-landing-lock-right-bg"
+					>
 						<div className="absolute left-0 top-0 right-1/2 bottom-0 bg-landing-lock-left-bg left-section left-side-polygon z-[1]" />
 						<div className="relative container mx-auto px-4 h-screen z-10">
 							<HelloTextAnimation />
+
+							<DiscoveryButtonPortal />
 						</div>
 
 						<div
@@ -45,16 +37,6 @@ export default function LandingSection({
 						>
 							<ParallaxHero isLocked={isLandingUnlock} />
 						</div>
-
-						{boundingClientRect && (
-							<BlackBox
-								isLandingUnlock={isLandingUnlock}
-								onClick={() =>
-									setIsLandingUnlock(!isLandingUnlock)
-								}
-								boundingClientRect={boundingClientRect}
-							/>
-						)}
 					</div>
 
 					{isLandingUnlock && (

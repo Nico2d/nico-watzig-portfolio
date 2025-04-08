@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useWindowSize } from './useWindowSize'
 
-export const useParallaxFocus = (size = 50, bottomOffset = 100) => {
+export const useParallaxFocus = (size = 75, bottomOffset = 100) => {
 	const { resolution } = useWindowSize()
 	const [boundingClientRect, setBoundingClientRect] = useState<DOMRect>()
 
@@ -9,6 +9,8 @@ export const useParallaxFocus = (size = 50, bottomOffset = 100) => {
 		if (!resolution) return
 
 		const leftPosition = getLeftPosition(resolution)
+
+		console.log('LEFT POSITION', leftPosition)
 
 		const boundingClientRect: DOMRect = {
 			width: size,

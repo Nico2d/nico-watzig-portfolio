@@ -1,67 +1,65 @@
+import { useParallaxHero } from '@/stores/parallaxHero/useParallaxHero'
 import { motion, useAnimation, Variants } from 'motion/react'
 import { useState, useEffect, useRef } from 'react'
 
 interface BlackBoxProps {
-	isLandingUnlock: boolean
-	onClick: () => void
 	boundingClientRect: DOMRect
 }
 
-export const BlackBox = ({
-	isLandingUnlock,
-	onClick,
-	boundingClientRect,
-}: BlackBoxProps) => {
-	const boxRef = useRef<HTMLDivElement>(null)
+export const BlackBox = ({ boundingClientRect }: BlackBoxProps) => {
+	const {
+		isLandingUnlock,
+		saveIsLandingUnlock,
+		landingUnlock,
+	} = useParallaxHero()
+
 	const [isAnimationPlaying, setIsAnimationPlaying] = useState(false)
-	const [
-		animationInterval,
-		setAnimationInterval,
-	] = useState<NodeJS.Timeout | null>(null)
+	const intervalRef = useRef<NodeJS.Timeout | null>(null)
 	const controls = useAnimation()
 
 	useEffect(() => {
-		if (isLandingUnlock) {
-			if (animationInterval) {
-				clearInterval(animationInterval)
-			}
+		const unlockLanding = async () => {
+			if (intervalRef.current) clearInterval(intervalRef.current)
+
 			if (isAnimationPlaying) {
 				controls.stop()
 			}
 
-			controls.start('fullscreen')
-		} else {
-			controls.start('default')
-
-			setAnimationInterval(
-				setInterval(() => {
-					controls.start('animation')
-				}, 7000)
-			)
-		}
-		return () => {
-			if (animationInterval) {
-				clearInterval(animationInterval)
-			}
-		}
-	}, [isLandingUnlock])
-
-	useEffect(() => {
-		if (!isLandingUnlock) {
-			controls.start({
+			await controls.start({
 				left: boundingClientRect.left,
 				transition: {
 					duration: 0,
 					ease: 'linear',
 				},
 			})
+
+			await controls.start('fullscreen')
 		}
-	}, [boundingClientRect.left])
+
+		const lockLanding = async () => {
+			await controls.start('default')
+
+			intervalRef.current = setInterval(() => {
+				controls.start('animation')
+			}, 7000)
+		}
+
+		if (isLandingUnlock) {
+			unlockLanding()
+		} else {
+			lockLanding()
+		}
+
+		return () => {
+			if (intervalRef.current) clearInterval(intervalRef.current)
+		}
+	}, [isLandingUnlock])
+
+	console.log('[BlackBox] isLandingUnlock', isLandingUnlock)
 
 	const boxVariants: Variants = {
 		default: {
 			bottom: boundingClientRect.bottom,
-			left: boundingClientRect.left,
 			width: boundingClientRect.width,
 			height: boundingClientRect.height,
 		},
@@ -73,9 +71,13 @@ export const BlackBox = ({
 			scale: 1,
 			rotate: 0,
 			borderRadius: '0%',
+			transition: {
+				ease: 'easeInOut',
+				duration: 0.4,
+			},
 		},
 		animation: {
-			scale: [1, 2, 2, 1, 1],
+			scale: [1, 1.5, 1.5, 1.2, 1],
 			rotate: [0, 0, 180, 180, 0],
 			borderRadius: ['0%', '0%', '50%', '50%', '0%'],
 			transition: {
@@ -88,18 +90,22 @@ export const BlackBox = ({
 
 	return (
 		<motion.div
-			ref={boxRef}
-			className={`bg-landing-unlock-primary cursor-pointer absolute z-20`}
+			className={`bg-landing-unlock-primary ${
+				isLandingUnlock ? '' : 'cursor-pointer'
+			} absolute z-[10]`}
 			variants={boxVariants}
 			animate={controls}
-			initial={isLandingUnlock ? 'fullscreen' : 'default'}
+			initial={'default'}
 			onAnimationStart={() => {
 				setIsAnimationPlaying(true)
 			}}
 			onAnimationComplete={() => {
 				setIsAnimationPlaying(false)
 			}}
-			onClick={onClick}
+			onClick={() => {
+				// !isLandingUnlock && saveIsLandingUnlock(true)
+				landingUnlock()
+			}}
 		/>
 	)
 }
