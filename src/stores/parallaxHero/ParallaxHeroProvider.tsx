@@ -26,21 +26,23 @@ export const ParallaxHeroProvider = ({ children }: IParallaxHeroProvider) => {
 			const isLandingUnlockValue = storedValue === 'true'
 
 			setIsLandingUnlock(isLandingUnlockValue)
+			setIsInContainer(!isLandingUnlockValue)
 		}
 	}, [])
 
 	const landingUnlock = async () => {
-		setIsLandingUnlock(!isLandingUnlock)
-
-		await controls.start('default')
-		setIsInContainer(!isInContainer)
+		console.log('landingUnlock - TO FULLSCREEN')
+		// await controls.start('default')
+		setIsInContainer(false)
+		setIsLandingUnlock(true)
 	}
 
-	const landingLock = () => {
-		console.log('landingLock')
-		// saveIsLandingUnlock(false)
-		setIsInContainer(true)
+	const landingLock = async () => {
+		console.log('landingLock - TO DEFAULT')
 		setIsLandingUnlock(false)
+
+		await controls.start('default')
+		setIsInContainer(true)
 	}
 
 	return (

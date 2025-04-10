@@ -25,7 +25,7 @@ export const DiscoveryButtonPortal = () => {
 	}, [])
 
 	useEffect(() => {
-		if (isInContainer) {
+		if (!isInContainer) {
 			controls.start('fullscreen')
 		}
 	}, [isInContainer])
@@ -37,7 +37,11 @@ export const DiscoveryButtonPortal = () => {
 		return component
 	}
 
+	console.log('isInContainer: ', isInContainer)
+
 	if (isInContainer) {
+		return component
+	} else {
 		return ReactDOM.createPortal(
 			<motion.div
 				className={`bg-landing-unlock-primary absolute z-[10]`}
@@ -64,11 +68,9 @@ export const DiscoveryButtonPortal = () => {
 				}}
 				animate={controls}
 				initial={'default'}
-				onClick={landingUnlock}
+				onClick={landingLock}
 			/>,
 			portalContainer
 		)
-	} else {
-		return component
 	}
 }
