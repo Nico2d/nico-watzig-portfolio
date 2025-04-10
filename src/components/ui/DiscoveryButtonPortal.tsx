@@ -31,8 +31,6 @@ export const DiscoveryButtonPortal = () => {
 		return component
 	}
 
-	console.log('isInContainer', isInContainer)
-
 	if (isInContainer) {
 		return component
 	} else {

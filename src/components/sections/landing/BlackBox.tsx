@@ -39,7 +39,6 @@ export const BlackBox = ({ boundingClientRect }: BlackBoxProps) => {
 	}
 
 	const toDefault = async () => {
-		console.log('TO DEFAULT')
 		await controls.start('default')
 
 		intervalRef.current = setInterval(() => {

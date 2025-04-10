@@ -17,6 +17,7 @@ export const HomeTemplate = () => {
 		return (
 			<>
 				<Header isHidden={!isLandingUnlock} />
+
 				<DynamicLandingSection />
 				<div className={`container mx-auto px-4 space-y-8`}>
 					<AboutSection />
