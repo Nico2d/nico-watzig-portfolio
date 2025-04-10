@@ -3,7 +3,6 @@ import { IntroductionSection } from '@/components/sections/landing/IntroductionS
 import { HelloTextAnimation } from '@/components/sections/landing/HelloTextAnimation'
 import { useWindowSize } from '@/hooks/useWindowSize'
 import { MobileLandingInfo } from './MobileLandingInfo'
-import { useRef } from 'react'
 import { useParallaxHero } from '@/stores/parallaxHero/useParallaxHero'
 import { DiscoveryButtonPortal } from '@/components/ui/DiscoveryButtonPortal'
 

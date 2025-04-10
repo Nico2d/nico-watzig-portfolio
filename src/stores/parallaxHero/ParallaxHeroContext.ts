@@ -9,6 +9,7 @@ interface ParallaxHeroContextType {
 	landingUnlock: () => void
 	landingLock: () => void
 	setIsInContainer: (value: boolean) => void
+	initialAnimation: 'default' | 'fullscreen'
 }
 
 export const ParallaxHeroContext = createContext<
