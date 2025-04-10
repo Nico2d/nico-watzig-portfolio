@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
-import face1 from '@images/face/LandingFace-part1.png'
-import face2 from '@images/face/LandingFace-part2.png'
-import face3 from '@images/face/LandingFace-part3.png'
+import face1 from '@images/face/LandingFace-part1.webp'
+import face2 from '@images/face/LandingFace-part2.webp'
+import face3 from '@images/face/LandingFace-part3.webp'
 import { distanceFromFocusArea } from '@/utils/countDistance'
 import { DistanceType } from '@/types/types'
 import Image from 'next/image'
@@ -119,6 +119,7 @@ export const ParallaxHero = ({ isLocked = false }) => {
 					>
 						<Image
 							className={`parallax-image`}
+							priority={true}
 							src={parallaxItem.image.src}
 							alt={parallaxItem.image.alt}
 							width={1350}

@@ -60,7 +60,8 @@ export const DiscoveryButtonPortal = () => {
 						},
 					}}
 					animate={controls}
-					initial={isInContainer ? 'default' : 'fullscreen'}
+					// initial={isInContainer ? 'default' : 'fullscreen'}
+					initial={'default'}
 				/>
 
 				<motion.div
@@ -84,7 +85,8 @@ export const DiscoveryButtonPortal = () => {
 							},
 						},
 					}}
-					initial={isInContainer ? 'default' : 'fullscreen'}
+					// initial={isInContainer ? 'default' : 'fullscreen'}
+					initial={'default'}
 					animate={controls}
 					onClick={landingLock}
 				/>
@@ -98,7 +100,7 @@ export const DiscoveryButtonPortal = () => {
 					animate={'fullscreen'}
 					onClick={landingLock}
 				>
-					{'I changed my mind'}
+					I changed my mind
 				</motion.div>
 			</>,
 			portalContainer
