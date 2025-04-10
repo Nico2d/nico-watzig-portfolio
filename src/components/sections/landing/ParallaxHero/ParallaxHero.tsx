@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react'
-import face1 from '@images/face/LandingFace-part1.png'
-import face2 from '@images/face/LandingFace-part2.png'
-import face3 from '@images/face/LandingFace-part3.png'
-import { distanceFromFocusArea } from '@/utils/countDistance'
+import face1 from '@images/face/LandingFace-part1.webp'
+import face2 from '@images/face/LandingFace-part2.webp'
+import face3 from '@images/face/LandingFace-part3.webp'
 import { DistanceType } from '@/types/types'
 import Image from 'next/image'
 import { ParallaxLayer } from './ParallaxLayer'
+import { useParallaxFocus } from '@/hooks/useParallaxFocus'
+import { useCountDistance } from '@/hooks/useCountDistance'
 
 export const ParallaxHero = ({ isLocked = false }) => {
-	const FOCUS_POINT_OFFSET = 100
-	const FOCUS_AREA = 80
+	const { boundingClientRect, getVertices } = useParallaxFocus()
+	const { distanceFromFocusArea } = useCountDistance()
 
 	const [distance, setDistance] = useState<DistanceType>({
 		distance: 0,
@@ -17,35 +18,11 @@ export const ParallaxHero = ({ isLocked = false }) => {
 		distanceY: 0,
 	})
 	const [isAnimating, setIsAnimating] = useState(false)
-	const [focusArea, setFocusArea] = useState([
-		[0, 0],
-		[0, 0],
-		[0, 0],
-		[0, 0],
-	])
 
 	const [isParallaxBlocked, setIsParallaxBlocked] = useState(false)
 
-	useEffect(() => {
-		setFocusArea([
-			[FOCUS_POINT_OFFSET, window.innerHeight - FOCUS_POINT_OFFSET],
-			[
-				FOCUS_POINT_OFFSET + FOCUS_AREA,
-				window.innerHeight - FOCUS_POINT_OFFSET,
-			],
-			[
-				FOCUS_POINT_OFFSET + FOCUS_AREA,
-				window.innerHeight - (FOCUS_POINT_OFFSET + FOCUS_AREA),
-			],
-			[
-				FOCUS_POINT_OFFSET,
-				window.innerHeight - (FOCUS_POINT_OFFSET + FOCUS_AREA),
-			],
-		])
-	}, [])
-
 	const handleParallax = (x: number, y: number) => {
-		const distance = distanceFromFocusArea(focusArea, [x, y])
+		const distance = distanceFromFocusArea(getVertices(), [x, y])
 		setDistance(distance)
 	}
 
@@ -77,7 +54,7 @@ export const ParallaxHero = ({ isLocked = false }) => {
 		return () => {
 			unsubscribeMovement()
 		}
-	}, [focusArea, isLocked])
+	}, [boundingClientRect, isLocked])
 
 	const getTransform = (speed: number) => {
 		const x = (distance.distanceX * speed) / 100
@@ -143,6 +120,7 @@ export const ParallaxHero = ({ isLocked = false }) => {
 					>
 						<Image
 							className={`parallax-image`}
+							priority={true}
 							src={parallaxItem.image.src}
 							alt={parallaxItem.image.alt}
 							width={1350}

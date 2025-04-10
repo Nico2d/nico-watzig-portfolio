@@ -12,8 +12,6 @@ const navItems: NavItemType[] = [
 ]
 
 export const Header = ({ isHidden = false }: { isHidden?: boolean }) => {
-	const { pathname } = useRouter()
-
 	return (
 		<motion.header
 			variants={{
@@ -36,8 +34,8 @@ export const Header = ({ isHidden = false }: { isHidden?: boolean }) => {
 			animate={isHidden ? 'hidden' : 'visible'}
 			className="absolute inset-x-0 top-0 w-full z-50 container mx-auto px-4"
 		>
-			<HeaderDesktop navItems={navItems} pathname={pathname} />
-			<HeaderMobile navItems={navItems} pathname={pathname} />
+			<HeaderDesktop navItems={navItems} />
+			<HeaderMobile navItems={navItems} />
 		</motion.header>
 	)
 }

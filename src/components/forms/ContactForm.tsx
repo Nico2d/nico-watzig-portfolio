@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
-import { FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa'
 import contactInfo from '@/constants/contact-info.json'
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa'
 
 type FormData = {
 	name: string
@@ -67,7 +67,7 @@ export const ContactForm = () => {
 					</p>
 				</div>
 				<div className="flex items-center gap-4">
-					<FaPhone className="text-gray-400" />
+					<FaPhoneAlt className="text-gray-400" />
 					<p className="text-gray-300">
 						<a
 							href={`tel:${contactInfo.phone.trim()}`}
