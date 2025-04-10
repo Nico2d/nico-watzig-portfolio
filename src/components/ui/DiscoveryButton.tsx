@@ -1,29 +1,28 @@
 import { useParallaxFocus } from '@/hooks/useParallaxFocus'
 import { BlackBox } from '../sections/landing/BlackBox'
 import { useParallaxHero } from '@/stores/parallaxHero/useParallaxHero'
-import { PinkBox } from '../sections/landing/PinkBox'
 import { motion } from 'motion/react'
 
 export const DiscoveryButton = () => {
 	const { boundingClientRect } = useParallaxFocus()
-	const { isLandingUnlock } = useParallaxHero()
+	const { landingUnlock } = useParallaxHero()
 
 	if (!boundingClientRect) return null
 
 	return (
 		<>
 			<BlackBox boundingClientRect={boundingClientRect} />
-			{/* <PinkBox boundingClientRect={boundingClientRect} /> */}
 			<motion.div
-				className={`absolute text-2xl whitespace-nowrap bottom-[100px] z-[30] pointer-events-none`}
+				className={`absolute text-2xl whitespace-nowrap bottom-[100px] z-[30] cursor-pointer`}
 				style={{
-					left: isLandingUnlock ? boundingClientRect.left : 0,
-					padding: isLandingUnlock ? 0 : 16,
-					marginLeft: isLandingUnlock ? 8 : 16,
+					left: 0,
+					padding: 16,
+					marginLeft: 16,
 				}}
-				animate={isLandingUnlock ? 'fullscreen' : 'default'}
+				animate={'default'}
+				onClick={landingUnlock}
 			>
-				{isLandingUnlock ? 'I changed my mind' : 'Give a chance'}
+				Give a chance
 			</motion.div>
 		</>
 	)

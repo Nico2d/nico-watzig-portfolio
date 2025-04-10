@@ -9,7 +9,6 @@ interface ParallaxHeroContextType {
 	landingUnlock: () => void
 	landingLock: () => void
 	setIsInContainer: (value: boolean) => void
-	setIsLandingUnlock: (value: boolean) => void
 }
 
 export const ParallaxHeroContext = createContext<

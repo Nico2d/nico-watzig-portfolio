@@ -11,7 +11,6 @@ interface IParallaxHeroProvider {
 export const ParallaxHeroProvider = ({ children }: IParallaxHeroProvider) => {
 	const [isLandingUnlock, setIsLandingUnlock] = useState<boolean>()
 	const controls = useAnimation()
-	// isLandingUnlock = fullscreen
 
 	const [isInContainer, setIsInContainer] = useState<boolean>()
 
@@ -25,22 +24,18 @@ export const ParallaxHeroProvider = ({ children }: IParallaxHeroProvider) => {
 		if (storedValue) {
 			const isLandingUnlockValue = storedValue === 'true'
 
-			setIsLandingUnlock(isLandingUnlockValue)
+			saveIsLandingUnlock(isLandingUnlockValue)
 			setIsInContainer(!isLandingUnlockValue)
 		}
 	}, [])
 
 	const landingUnlock = async () => {
-		console.log('landingUnlock - TO FULLSCREEN')
-		// await controls.start('default')
 		setIsInContainer(false)
-		setIsLandingUnlock(true)
+		saveIsLandingUnlock(true)
 	}
 
 	const landingLock = async () => {
-		console.log('landingLock - TO DEFAULT')
-		setIsLandingUnlock(false)
-
+		saveIsLandingUnlock(false)
 		await controls.start('default')
 		setIsInContainer(true)
 	}
@@ -55,7 +50,6 @@ export const ParallaxHeroProvider = ({ children }: IParallaxHeroProvider) => {
 				landingUnlock,
 				landingLock,
 				setIsInContainer,
-				setIsLandingUnlock,
 			}}
 		>
 			{children}
