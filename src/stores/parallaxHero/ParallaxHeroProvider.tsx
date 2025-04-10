@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { ParallaxHeroContext } from './ParallaxHeroContext'
+import { useAnimation } from 'motion/react'
 
 interface IParallaxHeroProvider {
 	children: React.ReactNode
@@ -9,6 +10,9 @@ interface IParallaxHeroProvider {
 
 export const ParallaxHeroProvider = ({ children }: IParallaxHeroProvider) => {
 	const [isLandingUnlock, setIsLandingUnlock] = useState<boolean>()
+	const controls = useAnimation()
+	// isLandingUnlock = fullscreen
+
 	const [isInContainer, setIsInContainer] = useState<boolean>()
 
 	const saveIsLandingUnlock = (value: boolean) => {
@@ -25,26 +29,31 @@ export const ParallaxHeroProvider = ({ children }: IParallaxHeroProvider) => {
 		}
 	}, [])
 
-	const landingUnlock = () => {
-		console.log('landingUnlock')
-		saveIsLandingUnlock(true)
-		setIsInContainer(true)
+	const landingUnlock = async () => {
+		setIsLandingUnlock(!isLandingUnlock)
+
+		await controls.start('default')
+		setIsInContainer(!isInContainer)
 	}
 
 	const landingLock = () => {
 		console.log('landingLock')
-		saveIsLandingUnlock(false)
-		setIsInContainer(false)
+		// saveIsLandingUnlock(false)
+		setIsInContainer(true)
+		setIsLandingUnlock(false)
 	}
 
 	return (
 		<ParallaxHeroContext.Provider
 			value={{
+				controls,
 				isLandingUnlock,
 				saveIsLandingUnlock,
 				isInContainer,
 				landingUnlock,
 				landingLock,
+				setIsInContainer,
+				setIsLandingUnlock,
 			}}
 		>
 			{children}

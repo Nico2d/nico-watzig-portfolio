@@ -11,61 +11,84 @@ export const BlackBox = ({ boundingClientRect }: BlackBoxProps) => {
 		isLandingUnlock,
 		saveIsLandingUnlock,
 		landingUnlock,
+		landingLock,
+		setIsInContainer,
 	} = useParallaxHero()
 
 	const [isAnimationPlaying, setIsAnimationPlaying] = useState(false)
 	const intervalRef = useRef<NodeJS.Timeout | null>(null)
+
 	const controls = useAnimation()
 
-	useEffect(() => {
-		const unlockLanding = async () => {
-			if (intervalRef.current) clearInterval(intervalRef.current)
+	const toFullScreen = async () => {
+		console.log('TO FULLLSCREEN')
+		landingUnlock()
 
-			if (isAnimationPlaying) {
-				controls.stop()
-			}
+		if (intervalRef.current) clearInterval(intervalRef.current)
 
-			await controls.start({
-				left: boundingClientRect.left,
-				transition: {
-					duration: 0,
-					ease: 'linear',
-				},
-			})
-
-			await controls.start('fullscreen')
+		if (isAnimationPlaying) {
+			controls.stop()
 		}
 
-		const lockLanding = async () => {
-			await controls.start('default')
+		// console.log('boundingClientRect.left: ', boundingClientRect.left)
 
-			intervalRef.current = setInterval(() => {
-				controls.start('animation')
-			}, 7000)
-		}
+		// await controls.start({
+		// 	left: boundingClientRect.left,
+		// 	transition: {
+		// 		duration: 0,
+		// 		ease: 'linear',
+		// 	},
+		// })
 
-		if (isLandingUnlock) {
-			unlockLanding()
-		} else {
-			lockLanding()
-		}
+		// await controls.start('fullscreen')
+		await controls.start({
+			bottom: 0,
+			left: 0,
+			width: '100vw',
+			height: '100vh',
+			scale: 1,
+			rotate: 0,
+			borderRadius: '0%',
+			transition: {
+				ease: 'easeInOut',
+				duration: 0.4,
+			},
+		})
+	}
 
-		return () => {
-			if (intervalRef.current) clearInterval(intervalRef.current)
-		}
-	}, [isLandingUnlock])
+	const toDefault = async () => {
+		console.log('TO DEFAULT')
+		await controls.start('default')
 
-	console.log('[BlackBox] isLandingUnlock', isLandingUnlock)
+		intervalRef.current = setInterval(() => {
+			controls.start('animation')
+		}, 7000)
+
+		landingLock()
+	}
+	// useEffect(() => {
+
+	// 	if (isLandingUnlock) {
+	// 		toFullScreen()
+	// 	} else {
+	// 		toDefault()
+	// 	}
+
+	// 	return () => {
+	// 		if (intervalRef.current) clearInterval(intervalRef.current)
+	// 	}
+	// }, [isLandingUnlock])
 
 	const boxVariants: Variants = {
 		default: {
 			bottom: boundingClientRect.bottom,
 			width: boundingClientRect.width,
 			height: boundingClientRect.height,
+			left: 16,
 		},
 		fullscreen: {
 			bottom: 0,
-			left: 0,
+			left: 16,
 			width: '100vw',
 			height: '100vh',
 			scale: 1,
@@ -103,8 +126,7 @@ export const BlackBox = ({ boundingClientRect }: BlackBoxProps) => {
 				setIsAnimationPlaying(false)
 			}}
 			onClick={() => {
-				// !isLandingUnlock && saveIsLandingUnlock(true)
-				landingUnlock()
+				isLandingUnlock ? toDefault() : toFullScreen()
 			}}
 		/>
 	)

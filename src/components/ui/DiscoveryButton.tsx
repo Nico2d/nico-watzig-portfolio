@@ -13,7 +13,7 @@ export const DiscoveryButton = () => {
 	return (
 		<>
 			<BlackBox boundingClientRect={boundingClientRect} />
-			<PinkBox boundingClientRect={boundingClientRect} />
+			{/* <PinkBox boundingClientRect={boundingClientRect} /> */}
 			<motion.div
 				className={`absolute text-2xl whitespace-nowrap bottom-[100px] z-[30] pointer-events-none`}
 				style={{

@@ -8,8 +8,13 @@ interface IPinkBoxProps {
 
 export const PinkBox = ({ boundingClientRect }: IPinkBoxProps) => {
 	const [isAnimationPlaying, setIsAnimationPlaying] = useState(false)
-	const { isLandingUnlock, landingLock } = useParallaxHero()
-	const controls = useAnimation()
+	const {
+		isLandingUnlock,
+		isInContainer,
+		landingLock,
+		controls,
+	} = useParallaxHero()
+	// const controls = useAnimation()
 
 	const boxVariants: Variants = {
 		default: {
@@ -28,42 +33,45 @@ export const PinkBox = ({ boundingClientRect }: IPinkBoxProps) => {
 		},
 	}
 
-	useEffect(() => {
-		const runAnimation = async () => {
-			if (isLandingUnlock) {
-				await controls.start('fullscreen')
-			} else {
-				await controls.start('default')
-			}
-		}
+	// useEffect(() => {
+	// 	const runAnimation = async () => {
+	// 		if (isLandingUnlock) {
+	// 			await controls.start('fullscreen')
+	// 		} else {
+	// 			await controls.start('default')
+	// 		}
+	// 	}
 
-		runAnimation()
-	}, [isLandingUnlock])
+	// 	runAnimation()
+	// }, [isLandingUnlock])
 
-	const handleClick = async () => {
-		console.log("clicked")
-		// // console.timeLog('clicked')
-		// await controls.start('default')
-		// // console.timeLog('clicked 2')
-		// saveIsLandingUnlock(false)
+	// const handleClick = async () => {
+	// 	console.log("clicked")
+	// 	// // console.timeLog('clicked')
+	// 	// await controls.start('default')
+	// 	// // console.timeLog('clicked 2')
+	// 	// saveIsLandingUnlock(false)
 
-		// controls.
+	// 	// controls.
 
-		landingLock()
-	}
+	// 	landingLock()
+	// }
+
+	console.log('isInContainer ', isInContainer)
+	console.log('control: ', controls)
 
 	return (
 		<motion.div
 			className={`bg-primary cursor-pointer absolute z-[12] bottom-[100px]`}
 			initial={'fullscreen'}
-			animate={controls}
-			// animate={isLandingUnlock ? 'fullscreen' : 'default'}
+			// animate={controls}
 			variants={boxVariants}
+			animate={isInContainer ? 'fullscreen' : 'default'}
 			// whileHover={{
 			// 	scale: 2,
 			// 	transition: { duration: 0.3 },
 			// }}
-			onClick={handleClick}
+			// onClick={handleClick}
 		/>
 	)
 }

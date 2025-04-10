@@ -10,8 +10,6 @@ export const useParallaxFocus = (size = 75, bottomOffset = 100) => {
 
 		const leftPosition = getLeftPosition(resolution)
 
-		console.log('LEFT POSITION', leftPosition)
-
 		const boundingClientRect: DOMRect = {
 			width: size,
 			height: size,
