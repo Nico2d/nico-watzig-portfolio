@@ -11,7 +11,6 @@ interface IParallaxHeroProvider {
 export const ParallaxHeroProvider = ({ children }: IParallaxHeroProvider) => {
 	const [isLandingUnlock, setIsLandingUnlock] = useState<boolean>()
 	const controls = useAnimation()
-	// const [firstLoad, setFirstLoad] = useState(true)
 	const [initialAnimation, setInitialAnimation] = useState<
 		'default' | 'fullscreen'
 	>('default')
