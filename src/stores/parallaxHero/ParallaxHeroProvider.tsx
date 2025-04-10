@@ -24,15 +24,11 @@ export const ParallaxHeroProvider = ({ children }: IParallaxHeroProvider) => {
 
 	useEffect(() => {
 		const storedValue = localStorage.getItem('isLandingUnlock')
-		if (storedValue) {
-			const isLandingUnlockValue = storedValue === 'true'
+		const isLandingUnlockValue: boolean = storedValue === 'true'
 
-			saveIsLandingUnlock(isLandingUnlockValue)
-			setIsInContainer(!isLandingUnlockValue)
-			setInitialAnimation(
-				!isLandingUnlockValue ? 'default' : 'fullscreen'
-			)
-		}
+		saveIsLandingUnlock(isLandingUnlockValue)
+		setIsInContainer(!isLandingUnlockValue)
+		setInitialAnimation(!isLandingUnlockValue ? 'default' : 'fullscreen')
 	}, [])
 
 	const landingUnlock = async () => {

@@ -102,7 +102,7 @@ const RenderPost = ({ post, redirect, preview }) => {
 
 			<Header />
 
-			<div className="space-y-3 container-md mt-12 lg:mt-48 mb-20">
+			<div className="space-y-3 container mx-auto px-4 mt-12 lg:mt-48 mb-20">
 				<NotionHeaders />
 				<NotionContent />
 			</div>
