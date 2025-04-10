@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react'
 import face1 from '@images/face/LandingFace-part1.webp'
 import face2 from '@images/face/LandingFace-part2.webp'
 import face3 from '@images/face/LandingFace-part3.webp'
-import { distanceFromFocusArea } from '@/utils/countDistance'
 import { DistanceType } from '@/types/types'
 import Image from 'next/image'
 import { ParallaxLayer } from './ParallaxLayer'
 import { useParallaxFocus } from '@/hooks/useParallaxFocus'
+import { useCountDistance } from '@/hooks/useCountDistance'
 
 export const ParallaxHero = ({ isLocked = false }) => {
 	const { boundingClientRect, getVertices } = useParallaxFocus()
+	const { distanceFromFocusArea } = useCountDistance()
 
 	const [distance, setDistance] = useState<DistanceType>({
 		distance: 0,

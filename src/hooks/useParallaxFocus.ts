@@ -63,13 +63,6 @@ export const useParallaxFocus = (size = 75, bottomOffset = 100) => {
 				window.innerHeight - (boundingClientRect.bottom + size),
 			],
 		]
-
-		// return [
-		// 	[boundingClientRect.left, boundingClientRect.bottom],
-		// 	[boundingClientRect.right, boundingClientRect.bottom],
-		// 	[boundingClientRect.right, boundingClientRect.top],
-		// 	[boundingClientRect.left, boundingClientRect.top],
-		// ]
 	}
 
 	return { boundingClientRect, getVertices }
