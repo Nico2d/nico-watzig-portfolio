@@ -66,31 +66,6 @@ export const DiscoveryButtonPortal = () => {
 			/>
 
 			<motion.div
-				className={`bg-primary cursor-pointer absolute z-[12] bottom-[100px]`}
-				variants={{
-					default: {
-						bottom: boundingClientRect.bottom - 6,
-						left: boundingClientRect.left - 26,
-						width: boundingClientRect.width,
-						height: boundingClientRect.height,
-						scale: 0,
-					},
-					fullscreen: {
-						bottom: boundingClientRect.bottom - 6,
-						left: boundingClientRect.left - 26,
-						width: boundingClientRect.width,
-						height: boundingClientRect.height,
-						scale: 0.5,
-						transition: {
-							ease: 'easeInOut',
-						},
-					},
-				}}
-				initial={initialAnimation}
-				animate={controls}
-				onClick={landingLock}
-			/>
-			<motion.div
 				className={`absolute text-2xl whitespace-nowrap bottom-[100px] z-[30] cursor-pointer`}
 				style={{
 					left: boundingClientRect.left,
@@ -102,6 +77,29 @@ export const DiscoveryButtonPortal = () => {
 			>
 				I changed my mind
 			</motion.div>
+			<motion.div
+				className={`absolute bottom-[100px] bg-primary cursor-pointer z-[12]`}
+				style={{
+					bottom: boundingClientRect.bottom - 6,
+					left: boundingClientRect.left - 26,
+					width: boundingClientRect.width,
+					height: boundingClientRect.height,
+				}}
+				initial={initialAnimation}
+				variants={{
+					default: {
+						scale: 0,
+					},
+					fullscreen: {
+						scale: 0.5,
+						transition: {
+							ease: 'easeInOut',
+						},
+					},
+				}}
+				animate={controls}
+				onClick={landingLock}
+			/>
 		</>
 	)
 
