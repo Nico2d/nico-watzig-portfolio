@@ -4,42 +4,46 @@ This project is a personal portfolio website built using Next.js and deployed on
 
 ## Features
 
-- **Static Site Generation (SSG):** Uses Next.js to pre-render pages for optimal performance.
+-   **Static Site Generation (SSG):** Uses Next.js to pre-render pages for optimal performance.
 
-- **Notion Integration:** Fetches content from a Notion database.
+-   **Notion Integration:** Fetches content from a Notion database.
 
-- **Responsive Design:** Works seamlessly on desktop and mobile devices.
+-   **Responsive Design:** Works seamlessly on desktop and mobile devices.
 
-- **Deployment on Vercel:** Simplified deployment process with automatic updates on code changes.
+-   **Deployment on Vercel:** Simplified deployment process with automatic updates on code changes.
 
 ## Tech Stack
 
-- **Frontend:** Next.js (React)
+-   **Frontend:** Next.js (React)
 
-- **Backend:** Notion API for fetching data
+-   **Backend:** Notion API for fetching data
 
-- **Hosting:** Vercel
+-   **Hosting:** Vercel
 
 ## Installation
 
 To run the project locally, follow these steps:
 
 Install dependencies:
+
 ```
 npm install
 # or
 yarn install
 # or
 pnpm install
-````
+```
 
 Set up environment variables:
 Create a `.env.local` file in the root directory and add your Notion API key and database ID:
+
 ```
 NOTION_API_KEY=your-notion-api-key
 NOTION_DATABASE_ID=your-database-id
 ```
+
 Run the development server:
+
 ```
 npm run dev
 # or

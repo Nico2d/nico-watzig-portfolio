@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 
 type resolutionType = {
@@ -6,10 +8,7 @@ type resolutionType = {
 }
 
 export const useWindowSize = () => {
-	const [resolution, setResolution] = useState<resolutionType>({
-		width: 0,
-		height: 0,
-	})
+	const [resolution, setResolution] = useState<resolutionType>()
 
 	useEffect(() => {
 		function handleResize() {
@@ -26,5 +25,9 @@ export const useWindowSize = () => {
 		return () => window.removeEventListener('resize', handleResize)
 	}, [])
 
-	return resolution
+	return {
+		resolution,
+		isMobile: resolution ? resolution.width < 1024 : false,
+		isDesktop: resolution ? resolution.width >= 1024 : false,
+	}
 }

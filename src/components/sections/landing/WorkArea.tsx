@@ -1,4 +1,4 @@
-import { useInView } from 'framer-motion'
+import { useInView } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
 
 export const WorkArea = ({ isInView, viewRef }) => {
@@ -30,7 +30,7 @@ export const WorkArea = ({ isInView, viewRef }) => {
 		<div className="mt-3 relative flex flex-col overflow-hidden">
 			<p
 				ref={viewRef}
-				className="text-[17px] md:text-2xl transform-none opacity-100"
+				className="text-[17px] md:text-base transform-none opacity-100"
 				style={{
 					transform: isInView ? 'none' : 'translateX(-200px)',
 					opacity: isInView ? 1 : 0,
@@ -43,7 +43,7 @@ export const WorkArea = ({ isInView, viewRef }) => {
 					className="absolute flex flex-col transition-all duration-500 ease-in-expo"
 					style={{
 						top: count === 0 ? '0' : `-${count}00%`,
-						left: '13px',
+						left: '10px',
 					}}
 				>
 					{text.map((element) => (
@@ -65,7 +65,7 @@ function TextElement({ element }) {
 		<span
 			tabIndex={0}
 			ref={ref}
-			className="text-[17px] md:text-2xl"
+			className="whitespace-nowrap"
 			style={{
 				transform: isInView ? 'none' : 'translateX(-200px)',
 				opacity: isInView ? 1 : 0,

@@ -1,7 +1,8 @@
 import { useRef } from 'react'
-import { LazyMotion, domAnimation, useInView } from 'framer-motion'
 import { HeadingDivider } from '../../HeadingDivider'
 import Link from 'next/link'
+import { domAnimation, LazyMotion, useInView } from 'motion/react'
+import { ProjectButton } from '../landing/ProjectButton'
 
 export function AboutSection() {
 	const ref = useRef(null)
@@ -103,6 +104,25 @@ export function AboutSection() {
 							continuous learning and problem-solving drives me to
 							seek new challenges and opportunities for growth.
 						</p>
+					</div>
+
+					<div
+						ref={ref}
+						className="mx-auto mt-8"
+						style={{
+							transform: isInView ? 'none' : 'translateY(50px)',
+							opacity: isInView ? 1 : 0,
+							transition:
+								'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
+						}}
+					>
+						<Link
+							href="/projects"
+							className="btn tracking-wide"
+							aria-label="Latest projects"
+						>
+							My other projects
+						</Link>
 					</div>
 				</div>
 			</section>

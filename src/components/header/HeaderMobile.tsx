@@ -2,14 +2,12 @@ import { useEffect, useState } from 'react'
 import { FiMenu, FiX } from 'react-icons/fi'
 import { ContactIcons } from '../ui/ContactIcons'
 import { NavItemType } from './Header'
-import Link from 'next/link'
-import ExtLink from '../ext-link'
+import { NavItems } from './NavItems'
 
 interface HeaderMobileProps {
 	navItems: NavItemType[]
-	pathname: string
 }
-export const HeaderMobile = ({ navItems, pathname }: HeaderMobileProps) => {
+export const HeaderMobile = ({ navItems }: HeaderMobileProps) => {
 	const [isMobileMenuOpen, setMobileMenuOpen] = useState(false)
 
 	const toggleMenu = () => setMobileMenuOpen((prev) => !prev)
@@ -34,39 +32,15 @@ export const HeaderMobile = ({ navItems, pathname }: HeaderMobileProps) => {
 			</nav>
 
 			{isMobileMenuOpen && (
-				<div className="fixed inset-0 bg-black bg-opacity-90 flex flex-col items-center justify-center text-white z-50">
-					<button
-						onClick={toggleMenu}
-						aria-label="Close Menu"
-						className="absolute top-4 right-4"
-					>
-						<FiX size={32} />
-					</button>
+				<div className="fixed inset-0 bg-black bg-opacity-70 flex flex-col items-center justify-center text-white z-50 backdrop-blur-md">
+					<div className="absolute container mx-auto px-4 top-0 py-4 w-full flex justify-end">
+						<button onClick={toggleMenu} aria-label="Close Menu">
+							<FiX size={32} />
+						</button>
+					</div>
 
 					<ul className="space-y-12 text-xl uppercase text-center">
-						{navItems.map(({ label, page, link }) => {
-							const isHome = page === navItems[0].page
-							const isPage = isHome
-								? pathname === '/'
-								: pathname.includes(page)
-
-							return (
-								<li key={label} onClick={toggleMenu}>
-									{page ? (
-										<Link
-											href={page}
-											className={
-												isPage ? 'highlight' : undefined
-											}
-										>
-											{label}
-										</Link>
-									) : (
-										<ExtLink href={link}>{label}</ExtLink>
-									)}
-								</li>
-							)
-						})}
+						<NavItems navItems={navItems} />
 					</ul>
 				</div>
 			)}

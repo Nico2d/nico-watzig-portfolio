@@ -5,7 +5,7 @@ export const ProjectButton = ({ viewRef, isInView }) => {
 		<>
 			<p
 				ref={viewRef}
-				className="mt-10 mb-2 text-gray-500 text-xl"
+				className="mt-10 mb-2 text-gray-500 text-base"
 				style={{
 					transform: isInView ? 'none' : 'translateX(-200px)',
 					opacity: isInView ? 1 : 0,

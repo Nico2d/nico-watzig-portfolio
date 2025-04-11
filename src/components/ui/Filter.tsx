@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
-import { LazyMotion, domAnimation, useInView } from 'framer-motion'
 import { FilterButton } from './FilterButton'
 import { FILTER_TECHNOLOGIES } from '@/constants/technologies'
+import { useInView, LazyMotion, domAnimation } from 'motion/react'
 
 export function Filter({ onClick = (f) => f }) {
 	const animRef = useRef(null)

@@ -1,26 +1,9 @@
-import { AboutSection, TechnologiesSection } from '@/components/sections'
-import LandingSection from '@/components/sections/landing/LandingSection'
-import { useWindowSize } from '@/hooks/useWindowSize'
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
 import openGraphImage from '@images/Opengraph-image.png'
+import { HomeTemplate } from '@/components/template/HomeTemplate'
+import { ParallaxHeroProvider } from '@/stores/parallaxHero/ParallaxHeroProvider'
 
 export default function Index() {
-	const [isLandingUnlock, setIsLandingUnlock] = useState(false)
-	const resolution = useWindowSize()
-
-	const saveIsLandingUnlock = (value: boolean) => {
-		localStorage.setItem('isLandingUnlock', value.toString())
-		setIsLandingUnlock(value)
-	}
-
-	useEffect(() => {
-		const storedValue = localStorage.getItem('isLandingUnlock')
-		if (storedValue) {
-			setIsLandingUnlock(storedValue === 'true')
-		}
-	}, [])
-
 	return (
 		<>
 			<Head>
@@ -38,17 +21,11 @@ export default function Index() {
 				<meta property="og:image" content={openGraphImage.src} />
 			</Head>
 
-			<LandingSection
-				isLandingUnlock={isLandingUnlock}
-				setIsLandingUnlock={saveIsLandingUnlock}
-			/>
-
-			{isLandingUnlock || resolution.width < 1024 ? (
-				<div className="container-md space-y-8">
-					<AboutSection />
-					<TechnologiesSection />
-				</div>
-			) : null}
+			<main>
+				<ParallaxHeroProvider>
+					<HomeTemplate />
+				</ParallaxHeroProvider>
+			</main>
 		</>
 	)
 }
