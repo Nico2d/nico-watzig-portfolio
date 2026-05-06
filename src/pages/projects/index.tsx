@@ -6,6 +6,7 @@ import { getProjects } from '@/lib/notion/getProjects'
 import Head from 'next/head'
 import openGraphImage from '@images/Opengraph-image.png'
 import { INotionProject } from '@/types/notion.types'
+import { Footer } from '@/components/footer/Footer'
 
 export async function getStaticProps({ preview }) {
 	const posts: any[] = await getProjects()

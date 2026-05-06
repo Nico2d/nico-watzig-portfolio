@@ -21,6 +21,7 @@ export interface pageContent {
 	Date: string
 	Published: string
 	Slug: string
+	Name: string
 	content: []
 	Authors: []
 }
@@ -31,7 +32,9 @@ export const useNotionRender = (post: pageContent) => {
 	const NotionHeaders = () => {
 		return (
 			<>
-				<h1>{post.Page || ''}</h1>
+				<h1 className="text-5xl font-extrabold mb-6 font-sans">
+					{post.Name || ''}
+				</h1>
 				{post.Date && (
 					<div className="posted">
 						Posted: {getDateStr(post.Date)}

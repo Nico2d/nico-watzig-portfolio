@@ -44,7 +44,7 @@ export const ContactForm = () => {
 		<div className="max-w-6xl w-full grid md:grid-cols-2 gap-24 bg-surface rounded-lg shadow-lg m-auto p-6 mb-6 lg:p-24">
 			<div className="space-y-4">
 				<div className="border-gray-700 border-b pb-4 space-y-3 mb-12">
-					<h2 className="text-3xl font-bold  ">Get in Touch</h2>
+					<h2 className="text-3xl font-bold">Get in Touch</h2>
 					<p className="tracking-wide text-sm">
 						Let's connect! Whether it's a collaboration or a quick
 						question, I'm just a message away.
