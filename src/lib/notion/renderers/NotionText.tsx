@@ -6,7 +6,7 @@ const attributeClassMap: Record<string, string> = {
 	brown: 'notion-brown',
 	orange: 'notion-orange',
 	yellow: 'notion-yellow',
-	teal: 'notion-green',
+	teal: 'text-primary',
 	blue: 'notion-blue',
 	purple: 'notion-purple',
 	pink: 'notion-pink',
@@ -45,7 +45,7 @@ export const NotionText = ({ block, tag = 'span' }: INotionText) => {
 	const { value } = block
 
 	if (!value.properties) {
-		return <div key={value.id} className='h-6'></div>
+		return <div key={value.id} className="h-6"></div>
 	}
 
 	const subBlocks = value.properties.title

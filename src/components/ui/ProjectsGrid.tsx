@@ -61,7 +61,10 @@ export const ProjectsGrid = ({ posts }: IProjectsGridProps) => {
 	return (
 		<div className="flex flex-row justify-between gap-8">
 			{columnsData.map((column, idx) => (
-				<div key={`column-${idx}`} className="flex flex-col gap-5">
+				<div
+					key={`column-${idx}`}
+					className="flex flex-1 flex-col gap-5"
+				>
 					{column.map((post) => (
 						<ProjectItem
 							key={post.id}

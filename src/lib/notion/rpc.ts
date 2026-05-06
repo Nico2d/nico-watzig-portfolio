@@ -17,10 +17,38 @@ export default async function rpc<T>(fnName: string, body: any): Promise<T> {
 
 	if (res.ok) {
 		const data = await res.json()
-		return data as T
+		return normalizeRecordMap(data) as T
 	} else {
 		throw new Error(await getError(res))
 	}
+}
+
+// Notion's private API started wrapping recordMap entries in an extra
+// `{ spaceId, value: { value, role } }` envelope. Older code in this repo
+// expects the legacy `{ value, role }` shape, so unwrap it here.
+function normalizeRecordMap(data: any): any {
+	const recordMap = data?.recordMap
+	if (!recordMap || typeof recordMap !== 'object') return data
+
+	for (const tableName of Object.keys(recordMap)) {
+		const table = recordMap[tableName]
+		if (!table || typeof table !== 'object') continue
+		for (const id of Object.keys(table)) {
+			const entry = table[id]
+			// New envelope: `{ [spaceId?], value: { value, role } }` — unwrap once.
+			if (
+				entry &&
+				typeof entry === 'object' &&
+				entry.value &&
+				typeof entry.value === 'object' &&
+				'value' in entry.value &&
+				'role' in entry.value
+			) {
+				table[id] = entry.value
+			}
+		}
+	}
+	return data
 }
 
 export async function getError(res: Response) {

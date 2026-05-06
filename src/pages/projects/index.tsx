@@ -6,6 +6,8 @@ import { getProjects } from '@/lib/notion/getProjects'
 import Head from 'next/head'
 import openGraphImage from '@images/Opengraph-image.png'
 import { INotionProject } from '@/types/notion.types'
+import { Footer } from '@/components/footer/Footer'
+import { PageBackdrop } from '@/components/template/PageBackdrop'
 
 export async function getStaticProps({ preview }) {
 	const posts: any[] = await getProjects()
@@ -61,15 +63,20 @@ const Index = ({ posts = [] }: IIndexProps) => {
 
 			<Header />
 
-			<div className="container mx-auto px-4 space-y-8 mt-24 lg:mt-48 mb-20">
-				<Filter onClick={filterProjects} />
+			<div className="relative isolate overflow-hidden flex-1">
+				<PageBackdrop />
+				<div className="container mx-auto px-4 space-y-8 mt-24 lg:mt-48 mb-20">
+					<Filter onClick={filterProjects} />
 
-				{filteredPosts.length > 0 ? (
-					<ProjectsGrid posts={filteredPosts} />
-				) : (
-					<p>There are no posts yet</p>
-				)}
+					{filteredPosts.length > 0 ? (
+						<ProjectsGrid posts={filteredPosts} />
+					) : (
+						<p>There are no posts yet</p>
+					)}
+				</div>
 			</div>
+
+			<Footer />
 		</>
 	)
 }
