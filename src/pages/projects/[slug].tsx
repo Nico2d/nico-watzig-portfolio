@@ -1,6 +1,8 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Header } from '@/components/header/Header'
+import { PageBackdrop } from '@/components/template/PageBackdrop'
+import { Footer } from '@/components/footer/Footer'
 import { useNotionRender } from '@/hooks/useNotionRender'
 import { getBlogLink } from '@/lib/blog-helpers'
 import getBlogIndex from '@/lib/notion/getBlogIndex'
@@ -102,10 +104,15 @@ const RenderPost = ({ post, redirect, preview }) => {
 
 			<Header />
 
-			<div className="space-y-3 container mx-auto px-4 mt-12 lg:mt-48 mb-20">
-				<NotionHeaders />
-				<NotionContent />
+			<div className="relative isolate overflow-hidden flex-1">
+				<PageBackdrop />
+				<div className="space-y-3 container mx-auto px-4 mt-12 lg:mt-48 mb-20">
+					<NotionHeaders />
+					<NotionContent />
+				</div>
 			</div>
+
+			<Footer />
 		</>
 	)
 }

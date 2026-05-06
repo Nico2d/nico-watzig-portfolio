@@ -2,6 +2,8 @@ import { Header } from '@/components/header/Header'
 import Head from 'next/head'
 import openGraphImage from '@images/Opengraph-image.png'
 import { ContactForm } from '@/components/forms/ContactForm'
+import { PageBackdrop } from '@/components/template/PageBackdrop'
+import { Footer } from '@/components/footer/Footer'
 
 export default function Contact() {
 	return (
@@ -22,9 +24,14 @@ export default function Contact() {
 			</Head>
 
 			<Header />
-			<div className="container mx-auto px-4 space-y-8 mt-24 lg:mt-48">
-				<ContactForm />
+			<div className="relative isolate overflow-hidden flex-1">
+				<PageBackdrop />
+				<div className="container mx-auto px-4 space-y-8 mt-24 lg:mt-48">
+					<ContactForm />
+				</div>
 			</div>
+
+			<Footer />
 		</>
 	)
 }
