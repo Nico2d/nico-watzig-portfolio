@@ -27,10 +27,6 @@ To run the project locally, follow these steps:
 Install dependencies:
 
 ```
-npm install
-# or
-yarn install
-# or
 pnpm install
 ```
 
@@ -45,10 +41,6 @@ NOTION_DATABASE_ID=your-database-id
 Run the development server:
 
 ```
-npm run dev
-# or
-yarn dev
-# or
 pnpm dev
 ```
 
