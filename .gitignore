@@ -9,23 +9,17 @@
 /coverage
 
 # next.js
-/.next/
 /out/
 
 # production
 /build
 
-# misc
-.DS_Store
-.env.local*
+.*
+!.github
+!.env.temp
+!.prettierrc.json
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-.blog_index_data
-.blog_index_data_previews
-
-.now
-.vercel
