@@ -8,7 +8,6 @@ export type NavItemType = { label: string; page: string; link?: string }
 const navItems: NavItemType[] = [
 	{ label: 'Home', page: '/' },
 	{ label: 'Projects', page: '/projects' },
-	{ label: 'Contact', page: '/contact' },
 ]
 
 export const Header = ({ isHidden = false }: { isHidden?: boolean }) => {
